@@ -166,7 +166,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DAL\" />
+<<<<<<< HEAD
     <Folder Include="Entidades\" />
+=======
+>>>>>>> 5ee9377d7f13ae04d213e20b2eadbe8536f23091
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
