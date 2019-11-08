@@ -27,16 +27,13 @@
                             <label for="data-aprovacao">Data Aprovação</label>
                             <input type="text" id="data-aprovacao" name="data-aprovacao" class="form-control" />
                         </div>
-                        <div class="col-md-3">
-
-                            <label for="inputEstado">Departamento</label>
+                        <div class="col-md-3">                 
+                            
+                            <label for="inpuDepartamento">Departamento</label>
                             <div class="col">
                                 @{Html.RenderAction("_ListaDepartamentos", "Departamento");}
                             </div>
-                        </div>                            @*<label for="departamento">Departamento</label>
-                            <select id="departamento" class="form-control">
-                                <option value="0">Selecione o Departamento</option>
-                            </select>*@
+                        </div>                       
                     </div>
                     <div class="col-md-3">
                         <label for="nome-projeto">Nome Projeto</label>
@@ -46,15 +43,21 @@
             </div>
             <div class="row">
                 <div class="form-esteira">
-                    <div class="col-md-3">
-                        <label for="esteira">Esteira</label>
-                        <select class="form-control" id="esteira">
-                            <option>Selecione Esteira</option>
-                            <option>Expresso</option>
-                            <option>Pequeno</option>
-                            <option>Grande</option>
-                        </select>
+
+                    <label for="inputEsteira">Esteira</label>
+                    <div class="col">
+                        @{Html.RenderAction("_ListaEsteiras", "Esteira");}
                     </div>
+
+                    @*<div class="col-md-3">
+        <label for="esteira">Esteira</label>
+        <select class="form-control" id="esteira">
+            <option>Selecione Esteira</option>
+            <option>Expresso</option>
+            <option>Pequeno</option>
+            <option>Grande</option>
+        </select>*@
+                </div>
                     <div class="col-md-3">
                         <label for="cores">Farol</label>
                         @{ Html.RenderAction("_ListaFarol", "Farol");}
@@ -74,10 +77,7 @@
                     </div>
                 </div>
             </div>
-    </div>
-    </form>
-
-
+        </form>
     </div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
@@ -95,6 +95,7 @@
         })
     </script>
 </body>
+</html>
 
 
 

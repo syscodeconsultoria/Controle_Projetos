@@ -121,16 +121,28 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\FarolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IniciativaController.cs" />
     <Compile Include="DAL\Departamento_DAL.cs" />
     <Compile Include="DAL\Farol_DAL.cs" />
+=======
+    <Compile Include="Controllers\EsteiraController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IniciativaController.cs" />
+    <Compile Include="DAL\Departamento_DAL.cs" />
+    <Compile Include="DAL\Esteira_DAL.cs" />
+>>>>>>> c91251500188aaaaadeb418c1ea638282212795b
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Departamento.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\Farol.cs" />
+=======
+    <Compile Include="Models\Esteira.cs" />
+>>>>>>> c91251500188aaaaadeb418c1ea638282212795b
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +183,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Iniciativa\Create.cshtml" />
     <Content Include="Views\Departamento\_ListaDepartamentos.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Farol\_ListaFarol.cshtml" />
+=======
+    <Content Include="Views\Esteira\_ListaEsteiras.cshtml" />
+>>>>>>> c91251500188aaaaadeb418c1ea638282212795b
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
