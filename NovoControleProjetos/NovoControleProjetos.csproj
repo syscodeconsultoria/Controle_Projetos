@@ -121,13 +121,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
+    <Compile Include="Controllers\FarolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IniciativaController.cs" />
     <Compile Include="DAL\Departamento_DAL.cs" />
+    <Compile Include="DAL\Farol_DAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Departamento.cs" />
+    <Compile Include="Models\Farol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +171,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Iniciativa\Create.cshtml" />
     <Content Include="Views\Departamento\_ListaDepartamentos.cshtml" />
+    <Content Include="Views\Farol\_ListaFarol.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
