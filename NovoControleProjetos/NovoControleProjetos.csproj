@@ -121,6 +121,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
+<<<<<<< HEAD
+    <Compile Include="Controllers\FarolController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IniciativaController.cs" />
+    <Compile Include="DAL\Departamento_DAL.cs" />
+    <Compile Include="DAL\Farol_DAL.cs" />
+=======
     <Compile Include="Controllers\EsteiraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IniciativaController.cs" />
@@ -132,6 +139,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Departamento.cs" />
+<<<<<<< HEAD
+    <Compile Include="Models\Farol.cs" />
+=======
     <Compile Include="Models\Esteira.cs" />
     <Compile Include="Models\Orcamento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -174,6 +184,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Iniciativa\Create.cshtml" />
     <Content Include="Views\Departamento\_ListaDepartamentos.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Farol\_ListaFarol.cshtml" />
+=======
     <Content Include="Views\Esteira\_ListaEsteiras.cshtml" />
     <Content Include="Views\Orcamento\_Create.cshtml" />
   </ItemGroup>
