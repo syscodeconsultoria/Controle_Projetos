@@ -28,53 +28,58 @@
                             <input type="text" id="data-aprovacao" name="data-aprovacao" class="form-control" />
                         </div>
                         <div class="col-md-3">
-                            <label for="departamento">Departamento</label>
+
+                            <label for="inputEstado">Departamento</label>
+                            <div class="col">
+                                @{Html.RenderAction("_ListaDepartamentos", "Departamento");}
+                            </div>
+                        </div>                            @*<label for="departamento">Departamento</label>
                             <select id="departamento" class="form-control">
                                 <option value="0">Selecione o Departamento</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="nome-projeto">Nome Projeto</label>
-                            <input type="text" id="nome-projeto" name="nome-projeto" class="form-control" />
-                        </div>
+                            </select>*@
                     </div>
-                </div>
-                <div class="row">
-                    <div class="form-esteira">
-                        <div class="col-md-3">
-                            <label for="esteira">Esteira</label>
-                            <select class="form-control" id="esteira">
-                                <option>Selecione Esteira</option>
-                                <option>Expresso</option>
-                                <option>Pequeno</option>
-                                <option>Grande</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="cores">Farol</label>
-                            <input type="color" id="cores" name="cores" list="arcoIris" value="#FF0000" class="form-control">
-                            <datalist id="arcoIris">
-                                <option value="#FF0000">Vermelho</option>
-                                <option value="#FFA500">Laranja</option>
-                                <option value="#FFFF00">Amarelo</option>
-                                <option value="#008000">Verde</option>
-                                <option value="#0000FF">Azul</option>
-                                <option value="#4B0082">Indigo</option>
-                                <option value="#EE82EE">Violeta</option>
-                            </datalist>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="comentario-farol">Comentario</label>
-                            <textarea maxlength="240" class="form-control" id="comentario-farol"></textarea>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="etapa">Etapa</label>
-                            <input type="text" id="etapa" name="etapa" class="form-control" />
-                        </div>
+                    <div class="col-md-3">
+                        <label for="nome-projeto">Nome Projeto</label>
+                        <input type="text" id="nome-projeto" name="nome-projeto" class="form-control" />
                     </div>
                 </div>
             </div>
-        </form>
+            <div class="row">
+                <div class="form-esteira">
+                    <div class="col-md-3">
+                        <label for="esteira">Esteira</label>
+                        <select class="form-control" id="esteira">
+                            <option>Selecione Esteira</option>
+                            <option>Expresso</option>
+                            <option>Pequeno</option>
+                            <option>Grande</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="cores">Farol</label>
+                        <input type="color" id="cores" name="cores" list="arcoIris" value="#FF0000" class="form-control">
+                        <datalist id="arcoIris">
+                            <option value="#FF0000">Vermelho</option>
+                            <option value="#FFA500">Laranja</option>
+                            <option value="#FFFF00">Amarelo</option>
+                            <option value="#008000">Verde</option>
+                            <option value="#0000FF">Azul</option>
+                            <option value="#4B0082">Indigo</option>
+                            <option value="#EE82EE">Violeta</option>
+                        </datalist>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="comentario-farol">Comentario</label>
+                        <textarea maxlength="240" class="form-control" id="comentario-farol"></textarea>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="etapa">Etapa</label>
+                        <input type="text" id="etapa" name="etapa" class="form-control" />
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
 
 
     </div>
