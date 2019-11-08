@@ -124,13 +124,16 @@
     <Compile Include="Controllers\EsteiraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IniciativaController.cs" />
+    <Compile Include="Controllers\OrcamentoController.cs" />
     <Compile Include="DAL\Departamento_DAL.cs" />
     <Compile Include="DAL\Esteira_DAL.cs" />
+    <Compile Include="DAL\Orcamento_DAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\Esteira.cs" />
+    <Compile Include="Models\Orcamento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +175,7 @@
     <Content Include="Views\Iniciativa\Create.cshtml" />
     <Content Include="Views\Departamento\_ListaDepartamentos.cshtml" />
     <Content Include="Views\Esteira\_ListaEsteiras.cshtml" />
+    <Content Include="Views\Orcamento\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
