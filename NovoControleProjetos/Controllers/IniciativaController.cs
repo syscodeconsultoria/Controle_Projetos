@@ -14,9 +14,20 @@ namespace NovoControleProjetos.Controllers
             return View();
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             return View();
         }
+
+        public ActionResult _InsertIniciativa()
+        {
+            return PartialView();
+        }
+
+        //[HttpPost]
+        //public JsonResult _InsertIniciativa(string nome)
+        //{
+        //    return Json();
+        //}
     }
 }

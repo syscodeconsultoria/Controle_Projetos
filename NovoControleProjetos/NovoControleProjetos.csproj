@@ -191,6 +191,7 @@
     <Content Include="Views\Orcamento\_Create.cshtml" />
     <Content Include="Views\Etapa\_ListaEtapas.cshtml" />
     <Content Include="Views\Jornada\_Create.cshtml" />
+    <Content Include="Views\Iniciativa\_InsertIniciativa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
