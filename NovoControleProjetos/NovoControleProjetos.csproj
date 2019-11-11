@@ -124,6 +124,7 @@
     <Compile Include="Controllers\EtapaController.cs" />
     <Compile Include="Controllers\FarolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JornadaController.cs" />
     <Compile Include="Controllers\ListControlExtensionsController.cs" />
     <Compile Include="DAL\Etapa_DAL.cs" />
     <Compile Include="DAL\Farol_DAL.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Controllers\OrcamentoController.cs" />
     <Compile Include="DAL\Departamento_DAL.cs" />
     <Compile Include="DAL\Esteira_DAL.cs" />
+    <Compile Include="DAL\Jornada_DAL.cs" />
     <Compile Include="DAL\Orcamento_DAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -140,6 +142,7 @@
     <Compile Include="Models\Etapa.cs" />
     <Compile Include="Models\Farol.cs" />
     <Compile Include="Models\Esteira.cs" />
+    <Compile Include="Models\Jornada.cs" />
     <Compile Include="Models\Orcamento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -186,11 +189,13 @@
     <Content Include="Views\Esteira\_ListaEsteiras.cshtml" />
     <Content Include="Views\Orcamento\_Create.cshtml" />
     <Content Include="Views\Etapa\_ListaEtapas.cshtml" />
+    <Content Include="Views\Jornada\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Entidades\" />
     <Folder Include="Views\ListControlExtensions\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

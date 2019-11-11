@@ -16,87 +16,105 @@
     <div>
         <form>
             <div class="container">
-                <div class="row">
-                    <div class="form-iniciativa">
-                        <div class="col-md-3">
+
+                <div class="form-iniciativa">
+
+                    <div class="row">
+
+                        <div class="col-sm-2">
+                            <label for="nome-projeto">Nome Projeto</label>
+                            <input type="text" id="nome-projeto" name="nome-projeto" class="form-control" />
+                        </div>
+
+                        <div class="col-sm-2">
                             <label for="iniciativa">Iniciativa</label>
                             <input type="text" id="iniciativa" name="iniciativa" class="form-control" />
                         </div>
-                        <div class="col-md-3">
+
+                        <div class="col-sm-2">
                             <label for="data-aprovacao">Data Aprovação</label>
-                            <input type="text" id="data-aprovacao" name="data-aprovacao" class="form-control" />
+                            <input type="date" id="data-aprovacao" name="data-aprovacao" class="form-control" />
                         </div>
-                        <div class="col-md-3">
 
+                        <div class="col-sm-2">
                             <label for="inpuDepartamento">Departamento</label>
-                            <div class="col">
-                                @{Html.RenderAction("_ListaDepartamentos", "Departamento");}
-                            </div>
+                            @{Html.RenderAction("_ListaDepartamentos", "Departamento");}
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="nome-projeto">Nome Projeto</label>
-                        <input type="text" id="nome-projeto" name="nome-projeto" class="form-control" />
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="form-esteira">
+                        <div class="col-sm-2">
+                            <label for="etapa">Etapa</label>
+                            <input type="text" id="etapa" name="etapa" class="form-control" />
+                        </div>
 
-                        <label for="inputEsteira">Esteira</label>
-                        <div class="col">
+                        <div class="col-sm-2">
+                            <label for="outro">outro campo</label>
+                            <input type="text" id="outro" name="outro" class="form-control" />
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="inputEsteira">Esteira</label>
                             @{Html.RenderAction("_ListaEsteiras", "Esteira");}
                         </div>
 
+                        <div class="col-md-3">
+                            <label for="cores">Farol</label>
+                            @{ Html.RenderAction("_ListaFarol", "Farol");}
+                            @*<select id="cores" data-cor="white" class="form-control" style="background:white; color:black">
+                                    <option value="none"> - </option>
+                                    <option value="red" style="background-color:red; color:white">Critico</option>
+                                    <option value="black" style="background-color:black; color:white">Backlog</option>
+                                </select>*@
+                        </div>
 
-                    </div>
-                    <div class="col-md-3">
-                        <label for="cores">Farol</label>
-                        @{ Html.RenderAction("_ListaFarol", "Farol");}
-                        @*<select id="cores" data-cor="white" class="form-control" style="background:white; color:black">
-                                <option value="none"> - </option>
-                                <option value="red" style="background-color:red; color:white">Critico</option>
-                                <option value="black" style="background-color:black; color:white">Backlog</option>
-                            </select>*@
-                    </div>
-                    <div class="col-md-3">
-                        <label for="comentario-farol">Comentario</label>
-                        <textarea maxlength="240" class="form-control" id="comentario-farol"></textarea>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="etapa">Etapa</label>
-                        <input type="text" id="etapa" name="etapa" class="form-control" />
-                    </div>
-                </div>
-                <div class="row">
-                    <label for="form-parcial-orcamento"> Orçamento:</label>
-                    @{Html.RenderAction("_Create", "Orcamento");}
-                </div>
+                        <div class="col-md-3">
+                            <label for="comentario-farol">Comentario</label>
+                            <textarea maxlength="240" class="form-control" id="comentario-farol"></textarea>
+                        </div>
 
-                <div class="row">
-                    <label for="form-parcial-orcamento"> Etapas previstas:</label>
-                    @{Html.RenderAction("_ListaEtapas", "Etapa");}
+                       
+                    </div>
+
+                    <div class="row">
+                        <label for="form-parcial-orcamento"> Orçamento:</label>
+                        @{Html.RenderAction("_Create", "Orcamento");}
+                    </div>
+
+                    <div class="row">
+                        <label for="form-parcial-etapa"> Etapas previstas:</label>
+                        @{Html.RenderAction("_ListaEtapas", "Etapa");}
+                    </div>
+
+                    <div class="row">
+                        <label for="form-parcial-jornada"> Informações da Jornada:</label>
+                        @{Html.RenderAction("_Create", "Jornada");}
+                    </div>
                 </div>
             </div>
+
         </form>
     </div>
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            var cores = [];
-
-            $("#cores").change(function () {
-
-                var background = $(this).val();
-                var font = $(this).attr("data-cor");
-                $(this).css("background", background).css("color", font);
-            })
-
-        })
-    </script>
 </body>
 </html>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var cores = [];
+
+        $("#cores").change(function () {
+
+            var background = $(this).val();
+            var font = $(this).attr("data-cor");
+            $(this).css("background", background).css("color", font);
+        })
+
+    })
+</script>
+
 
 
 

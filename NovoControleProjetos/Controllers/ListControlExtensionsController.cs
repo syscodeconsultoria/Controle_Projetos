@@ -9,12 +9,12 @@ namespace System.Web.Mvc
     public static class ListControlExtensions
     {
         public static MvcHtmlString CheckBoxList(this HtmlHelper htmlHelper, string name,
-                MultiSelectList listInfos)
+                MultiSelectList listInfos, object htmlAttributes)
         {
-            return CheckBoxList(htmlHelper, name, listInfos, Position.Vertical);
+            return CheckBoxList(htmlHelper, name, listInfos, Position.Vertical, htmlAttributes);
         }
         public static MvcHtmlString CheckBoxList(this HtmlHelper htmlHelper, string name,
-                MultiSelectList listInfos, Position position)
+                MultiSelectList listInfos, Position position, object htmlAttributes)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -34,8 +34,10 @@ namespace System.Web.Mvc
             foreach (SelectListItem info in listInfos)
             {
                 lineNumber++;
+                
+
                 TagBuilder builder = new TagBuilder("input");
-                TagBuilder builder2 = new TagBuilder("input");
+                //TagBuilder builder2 = new TagBuilder("input");
                 if (selectedValues.Contains(info.Value))
                 {
                     builder.MergeAttribute("checked", "checked");
@@ -43,11 +45,14 @@ namespace System.Web.Mvc
                 builder.MergeAttribute("type", "checkbox");
                 builder.MergeAttribute("name", name);
                 builder.MergeAttribute("value", info.Value);
+                //builder.MergeAttribute("class", "form-control");
                 builder.InnerHtml = info.Text;
-                builder2.MergeAttribute("type", "date");
-                builder2.InnerHtml = "inicio";
+                //builder2.InnerHtml = " inicio ";
+                //builder2.MergeAttribute("type", "date");
+                //builder2.MergeAttribute("class", "form-control");
+                //sb.Append("<div class=\"col-md-3\">");
                 sb.Append(builder.ToString(TagRenderMode.Normal));
-                sb.Append(builder2.ToString(TagRenderMode.Normal));
+                //sb.Append(builder2.ToString(TagRenderMode.Normal));
                 
                 if (position == Position.Vertical)
                 {
