@@ -16,7 +16,7 @@ namespace NovoControleProjetos.DAL
         {
             using (con)
             {
-                var cmd = new SqlCommand("producao.UP_Controle_Projetos_OPER_M_INICIATIVA", con);
+                var cmd = new SqlCommand("producao.UP_Controle_Projetos_Oper_M_Iniciativa", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 con.Open();
                 cmd.Parameters.AddWithValue("@INICIATIVA", nome);
@@ -33,7 +33,7 @@ namespace NovoControleProjetos.DAL
 
             using (con)
             {
-                var cmd = new SqlCommand("producao.UP_Controle_Projetos_OPER_M_INICIATIVA", con);
+                var cmd = new SqlCommand("producao.UP_Controle_Projetos_Oper_M_Iniciativa", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 con.Open();
                 cmd.Parameters.AddWithValue("@ID", id);
