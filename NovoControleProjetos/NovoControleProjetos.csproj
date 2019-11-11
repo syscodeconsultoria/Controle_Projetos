@@ -133,6 +133,7 @@
     <Compile Include="Controllers\OrcamentoController.cs" />
     <Compile Include="DAL\Departamento_DAL.cs" />
     <Compile Include="DAL\Esteira_DAL.cs" />
+    <Compile Include="DAL\Iniciativa_DAL.cs" />
     <Compile Include="DAL\Jornada_DAL.cs" />
     <Compile Include="DAL\Orcamento_DAL.cs" />
     <Compile Include="Global.asax.cs">
