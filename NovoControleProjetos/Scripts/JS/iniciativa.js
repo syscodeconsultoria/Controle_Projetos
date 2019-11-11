@@ -21,6 +21,17 @@
         $("#farol option").css("background", "white").css("color", "black");
     });
 
+    $("#cad-iniciativa").click(() => {
+
+        var nome = $("#projeto").val();
+
+        $.post("/Iniciativa/_InsertIniciativa", { nome: nome }, function (data) {
+            var id = data;
+            window.location.href = "/Iniciativa/Create/" + id;
+        });
+
+    });
+
    
 
 })

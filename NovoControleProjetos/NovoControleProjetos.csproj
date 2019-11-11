@@ -133,6 +133,7 @@
     <Compile Include="Controllers\OrcamentoController.cs" />
     <Compile Include="DAL\Departamento_DAL.cs" />
     <Compile Include="DAL\Esteira_DAL.cs" />
+    <Compile Include="DAL\Iniciativa_DAL.cs" />
     <Compile Include="DAL\Jornada_DAL.cs" />
     <Compile Include="DAL\Orcamento_DAL.cs" />
     <Compile Include="Global.asax.cs">
@@ -192,6 +193,7 @@
     <Content Include="Views\Orcamento\_Create.cshtml" />
     <Content Include="Views\Etapa\_ListaEtapas.cshtml" />
     <Content Include="Views\Jornada\_Create.cshtml" />
+    <Content Include="Views\Iniciativa\_InsertIniciativa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
