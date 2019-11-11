@@ -142,6 +142,7 @@
     <Compile Include="Models\Etapa.cs" />
     <Compile Include="Models\Farol.cs" />
     <Compile Include="Models\Esteira.cs" />
+    <Compile Include="Models\Iniciativa.cs" />
     <Compile Include="Models\Jornada.cs" />
     <Compile Include="Models\Orcamento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

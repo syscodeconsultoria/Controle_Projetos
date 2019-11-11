@@ -1,6 +1,9 @@
-﻿
+﻿@model NovoControleProjetos.Models.Iniciativa
+
+
 @{
     // Layout = null;
+    var texto = "Orçamento";
 }
 
 
@@ -21,6 +24,7 @@
                 <div class="col-lg-8">
                     <label for="nome-projeto">Nome Projeto</label>
                     <input type="text" id="nome-projeto" name="nome-projeto" class="form-control" />
+
                 </div>
 
                 <div class="col-md-2">
@@ -86,17 +90,17 @@
             </div>
 
             <div class="row">
-                <label for="form-parcial-orcamento" style="color:brown"> Orçamento:</label>
+                <label for="form-parcial-orcamento" style=" padding-left: 15px; color:brown" data-toggle="tooltip" data-placement="left" title="@texto"> Orçamento:</label>
                 @{Html.RenderAction("_Create", "Orcamento");}
-            </div>
+            </div>  
 
             <div class="row">
-                <label for="form-parcial-etapa" style="color:brown"> Etapas previstas:</label>
+                <label for="form-parcial-etapa" style=" padding-left: 15px; color:brown"> Etapas previstas:</label>
                 @{Html.RenderAction("_ListaEtapas", "Etapa");}
             </div>
 
             <div class="row">
-                <label for="form-parcial-jornada" style="color:brown"> Informações da Jornada:</label>
+                <label for="form-parcial-jornada" style=" padding-left: 15px; color:brown"> Informações da Jornada:</label>
                 @{Html.RenderAction("_Create", "Jornada");}
             </div>
         </form>
@@ -108,6 +112,11 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/JS/iniciativa.js"></script>
 
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 
 
 
