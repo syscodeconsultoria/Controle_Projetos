@@ -18,15 +18,10 @@ namespace NovoControleProjetos.Controllers
             List<SelectListItem> listInfo = new List<SelectListItem>();
 
             foreach(var x in etapas)
-            {
-               
-
+            { 
                 listInfo.Add(new SelectListItem() { Text = x.Ds_Etapa, Value = x.Id_Etapa.ToString() });
             }
-
-            //listInfo.Add(new SelectListItem() { Text = "Maruti", Value = "Suzuki" });
-
-            //listInfo.Add(new SelectListItem() { Text = "Samson", Value = "Sun" });
+            
             List<string> selectedValues = new List<string>();
             
             MultiSelectList models = new MultiSelectList(listInfo, "Value", "Text", selectedValues);
