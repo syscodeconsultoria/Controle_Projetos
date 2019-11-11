@@ -1,6 +1,6 @@
 ﻿
 @{
-// Layout = null;
+    // Layout = null;
 }
 
 
@@ -54,10 +54,10 @@
                         <label for="cores">Farol</label>
                         @{ Html.RenderAction("_ListaFarol", "Farol");}
                         @*<select id="cores" data-cor="white" class="form-control" style="background:white; color:black">
-                            <option value="none"> - </option>
-                            <option value="red" style="background-color:red; color:white">Critico</option>
-                            <option value="black" style="background-color:black; color:white">Backlog</option>
-                        </select>*@
+                                <option value="none"> - </option>
+                                <option value="red" style="background-color:red; color:white">Critico</option>
+                                <option value="black" style="background-color:black; color:white">Backlog</option>
+                            </select>*@
                     </div>
                     <div class="col-md-3">
                         <label for="comentario-farol">Comentario</label>
@@ -69,9 +69,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label for="form-parcial-orcamento"> Orçamento:</label>                    
+                    <label for="form-parcial-orcamento"> Orçamento:</label>
                     @{Html.RenderAction("_Create", "Orcamento");}
                 </div>
+
+                <div class="row">
+                    <label for="form-parcial-orcamento"> Etapas previstas:</label>
+                    @{Html.RenderAction("_ListaEtapas", "Etapa");}
+                </div>
+            </div>
         </form>
     </div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -84,7 +90,7 @@
 
                 var background = $(this).val();
                 var font = $(this).attr("data-cor");
-                $(this).css("background", background).css("color",font);
+                $(this).css("background", background).css("color", font);
             })
 
         })

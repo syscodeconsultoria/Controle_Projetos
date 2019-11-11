@@ -75,3 +75,4 @@ _[Ss]cripts
 .vs/
 .vs/*
 */sqlite3*
+Web.config

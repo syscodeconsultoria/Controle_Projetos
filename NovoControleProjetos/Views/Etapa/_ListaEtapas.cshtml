@@ -1,0 +1,24 @@
+﻿@{
+    var _count = ViewBag.total;
+
+}
+
+@*@model IEnumerable<NovoControleProjetos.Models.Etapa>
+
+    <table>
+        @for (int i = 0; i < ViewBag.etapas; i++)
+        {
+        <td>
+            @Html.CheckBoxFor(model => model.Ds_Etapa[i]);
+            @Html.HiddenFor(x => Model.
+            @Html.CheckBoxFor(x => Model.hobbies[idx].IsSelected)
+            @Html.DisplayFor(x => Model.hobbies[idx].HobbiesName)
+            @Html.HiddenFor(x => Model.hobbies[idx].HobbiesName)
+        </td>
+        }
+
+    </table>*@
+
+
+@Html.CheckBoxList("chkModels", (ViewBag.etapas as MultiSelectList), Position.Vertical)
+
