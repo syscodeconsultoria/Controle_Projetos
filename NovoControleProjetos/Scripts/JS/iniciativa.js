@@ -21,7 +21,7 @@
         $("#farol option").css("background", "white").css("color", "black");
     });
 
-    $("#cad-iniciativa").click(() => {
+    $("#cad-iniciativa").click(function() {
 
         var nome = $("#projeto").val();
 
@@ -70,7 +70,7 @@
             success: function (data) {
                 window.location.href = "/Home/Index";
             }
-        })
+        });
 
 
 
