@@ -7,7 +7,9 @@ namespace NovoControleProjetos.Models
 {
     public class Iniciativa
     {
+        public int Id_Iniciativa { get; set; }
         public string Nome_Iniciativa { get; set; }
+        public int Num_Iniciativa { get; set; }
         public int cod_departamento { get; set; }
         public string Esteira { get; set; }
         public int cod_farol { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NovoControleProjetos.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,13 @@ namespace NovoControleProjetos.Controllers
         {
             var projeto = iniciativa.GetIniciativa(id);
             return View(projeto);
+        }
+
+        [HttpPost]
+        public ActionResult Create(Iniciativa model)
+        {
+            iniciativa.UpdateIniciativa(model);
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult _InsertIniciativa()

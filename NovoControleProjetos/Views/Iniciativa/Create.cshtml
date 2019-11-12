@@ -24,7 +24,7 @@
 
                 <div class="col-lg-8">
                     <label for="nome-projeto">Nome Projeto</label>
-                    <input type="text" id="nome-projeto" name="nome-projeto" class="form-control" value="@Model.Nome_Iniciativa" />
+                    <input type="text" id="nome-projeto" name="nome-projeto" data-id="@Model.Id_Iniciativa" class="form-control" value="@Model.Nome_Iniciativa" />
                 </div>
 
                 <div class="col-md-2">
@@ -124,6 +124,11 @@
                     <label for="inputEsteira">Prioridade</label>
                     @{Html.RenderAction("_ListaEsteiras", "Esteira");}
                 </div>
+            </div><br />
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" id="update-iniciativa">
+                    <span class="glyphicon glyphicon-save"></span> Salvar
+                </button>
             </div>
 
         </form>
