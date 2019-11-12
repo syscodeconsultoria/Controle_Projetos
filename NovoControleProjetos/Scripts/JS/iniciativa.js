@@ -34,7 +34,7 @@
 
     $("#update-iniciativa").click(function() {
         
-        var iniciativa = {
+        var _iniciativa = {
 
             Id_Iniciativa: $("#nome-projeto").attr("data-id"),
             Nome_Iniciativa: $("#nome-projeto").val(),
@@ -45,7 +45,7 @@
             cod_etapa: $("#etapa").val(),
             CPF: $("#cpf-iniciativa").val(),
             VPL: $("#vpl").val(),
-            cod_orcamento: 1,
+            //cod_orcamento: 1,
             cod_CETI: 1,
             cod_comissao_varejo: 1,
             cod_jornada: 1,
@@ -62,10 +62,18 @@
             resumo_iniciativa: ""
         };
 
+        var _orcamento = {
+
+            total_aprovado: $("#total_aprovado").val(),
+            total_realizado: $("#total_realizado").val(),
+            total_contratado: $("#total_contratado").val()
+
+        };
+
         $.ajax({
             type: "POST",
             cache: false,
-            data: { model: iniciativa },
+            data: { iniciativa: _iniciativa, orcamento: _orcamento },
             url: "/Iniciativa/Create",
             success: function (data) {
                 window.location.href = "/Home/Index";

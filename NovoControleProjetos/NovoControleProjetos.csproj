@@ -126,6 +126,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JornadaController.cs" />
     <Compile Include="Controllers\ListControlExtensionsController.cs" />
+    <Compile Include="Controllers\RelacionamentosController.cs" />
     <Compile Include="DAL\Etapa_DAL.cs" />
     <Compile Include="DAL\Farol_DAL.cs" />
     <Compile Include="Controllers\EsteiraController.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="DAL\Iniciativa_DAL.cs" />
     <Compile Include="DAL\Jornada_DAL.cs" />
     <Compile Include="DAL\Orcamento_DAL.cs" />
+    <Compile Include="DAL\Relacionamentos_DAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,6 +202,7 @@
     <Folder Include="Entidades\" />
     <Folder Include="Views\ListControlExtensions\" />
     <Folder Include="Views\NewFolder1\" />
+    <Folder Include="Views\Relacionamentos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
