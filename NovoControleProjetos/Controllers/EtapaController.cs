@@ -22,6 +22,12 @@ namespace NovoControleProjetos.Controllers
                 //listInfo.Add(new SelectListItem() { Text = x.Ds_Etapa, Value = x.Id_Etapa.ToString() });
                 listInfo.Add(new SelectListItem() { Text = "Prioritários Departamento", Value = "1" });
                 listInfo.Add(new SelectListItem() { Text = "Workshop", Value = "2" });
+                listInfo.Add(new SelectListItem() { Text = "PF", Value = "1" });
+                listInfo.Add(new SelectListItem() { Text = "PJ", Value = "1" });
+                listInfo.Add(new SelectListItem() { Text = "Consignado", Value = "1" });
+                listInfo.Add(new SelectListItem() { Text = "Oferta de valor", Value = "1" });
+                listInfo.Add(new SelectListItem() { Text = "POBJ", Value = "1" });
+
             }
             
             List<string> selectedValues = new List<string>();

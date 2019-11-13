@@ -23,22 +23,24 @@
 
             <div class="row">
 
-                <div class="col-sm-2" style="padding-left:0;">
+                <div class="col-md-2" style="padding-right: 0px; padding-left: 0px;">
                     <label for="iniciativa">Iniciativa</label>
                     <input type="text" id="iniciativa" name="iniciativa" class="form-control" />
+
                 </div>
 
-                <div class="col-xs-4">
+                <div class="col-md-6">
                     <label for="nome-projeto">Nome Projeto</label>
-                    <input type="text"  id="nome-projeto" name="nome-projeto" data-id="@Model.Id_Iniciativa" class="form-control" value="@Model.Nome_Iniciativa" />
+                    <input type="text" class="form-control" style="min-width: 100%;" />
+                    @*<input type="text" id="nome-projeto" name="nome-projeto" data-id="@Model.Id_Iniciativa" class="form-control" value="@Model.Nome_Iniciativa" />*@
                 </div>
 
-                <div class="col-md-4" style="padding-left:0">
+                <div class="col-md-2" style="padding-left:0">
                     <label for="inpuDepartamento">Departamento</label>
                     @{Html.RenderAction("_ListaDepartamentos", "Departamento");}
                 </div>
 
-                <div class="col-sm-2">
+                <div class="col-md-2">
                     <label for="data-aprovacao">Data Aprovação</label>
                     <input type="text" id="data-aprovacao" name="data-aprovacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" />
                 </div>
@@ -112,12 +114,12 @@
                     <input type="text" id="data-piloto" name="data-piloto" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="00/00/0000" />
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <label for="tf-versao-agencia">TF Agencia</label>
                     <input type="text" id="tf-versao-agencia" name="tf-versao-agencia" class="form-control" />
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <label for="tf-versao-pa">TF PA</label>
                     <input type="text" id="tf-versao-pa" name="tf-versao-pa" class="form-control" />
                 </div>
@@ -140,6 +142,11 @@
                         <option value="true">Sim</option>
                         <option value="false">Não</option>
                     </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label for="inputEsteira">Mega</label>
+                    @{Html.RenderAction("_ListaEsteiras", "Esteira");}
                 </div>
 
             </div>
@@ -183,34 +190,65 @@
         <div class="row" style="padding-top:15px;">
 
 
-
-            <div class="col-sm-2" style="padding-left:0" >
+            <div class="col-sm-2" style="padding-left:0">
                 <label for="data-plenouso">Pleno Uso</label>
                 <input type="text" id="pleno-uso" name="pleno-uso" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="00/00/0000" />
             </div>
 
-            <div class="col-sm-2" >
+            <div class="col-sm-2">
                 <label for="data-comunicacao">Data Comunicação</label>
                 <input type="text" id="data-comunicacao" name="data-comunicacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="99/99/9999" />
             </div>
 
-            <div class="col-sm-2" >
+            <div class="col-sm-2">
                 <label for="data-visita">Data visita</label>
                 <input type="text" id="data-visita" name="data-visita" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="99/99/9999" />
             </div>
 
-
             <div class="col-sm-2">
                 <label for="agencia-visitada">Agência visitada</label>
                 <input type="text" id="agencia-visitada" name="agencia-visitada" class="form-control" />
+            </div>        
+
+            <div class="col-sm-2">
+                <label for="responsavel-neg">Contato Negócio</label>
+                <input type="text" id="responsavel-neg" name="responsavel-neg" class="form-control" />
             </div>
 
-            <div class="col-sm-2" >
-                <label for="inputEsteira">Mega</label>
-                @{Html.RenderAction("_ListaEsteiras", "Esteira");}
+            <div class="col-sm-2">
+                <label for="responsavel-ds">Contato DS</label>
+                <input type="text" id="responsavel-ds" name="responsavel-ds" class="form-control" />
             </div>
+
         </div>
 
+            <div class="row" style="padding-top:15px;">
+
+                <div class="col-md-3" style="border: 1px solid currentColor; border-image: none; width: 210.5px; padding-right: 0px; margin-right: 15px;">
+                    <div>
+                        <label for="form-parcial-etapa" style=" padding-left: 15px; color:brown"> Origem:</label>
+                    </div>
+
+                    @{Html.RenderAction("_ListaEtapas", "Etapa");}
+
+                </div>
+
+                <div class="col-md-3" style=" border: 1px solid currentColor; width: 210.5px;">
+
+                    <div>
+                        <label for="form-parcial-etapa" style=" padding-left: 15px; color:brown"> Vertical:</label>
+                    </div>
+                    @{Html.RenderAction("_ListaEtapas", "Etapa");}
+
+                </div>
+           
+
+                <div class="col-md-7" style="width: 732.46px;">
+                    <label style="margin-left:18px">Resumo:</label>
+                    <textarea rows="9" class="form-control" style="min-width: 100%;"></textarea>
+                </div>
+
+            </div>
         </form>
     </div>
 
