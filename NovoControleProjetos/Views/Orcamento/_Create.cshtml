@@ -2,20 +2,37 @@
     Layout = null;
 }
 
-<div class="form-create-orcamento">
-    <div class="col-md-3">
-        <label for="total_aprovado">Total Aprovavado</label>
-        <input type="number" id="total_aprovado" name="total_aprovado" class="form-control" />
-    </div>
-    <div class="col-md-3">
-        <label for="total_realizado">Total Aprovado</label>
-        <input type="number" id="total_realizado" name="total_realizado" class="form-control" />
-    </div>
-    <div class="col-md-3">
-        <label for="total_contratado">Total Contratado</label>
-        <input type="number" id="total_contratado" name="total_contratado" class="form-control" />
+
+
+
+<div class="row">
+    <label for="total_aprovado">Total Aprovado</label>
+    <div class="input-group">
+        <div class="input-group-addon">R$</div>
+        <input type="text" style="width: 130px; text-align: right;" id="total_aprovado" name="total_aprovado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />
     </div>
 </div>
+
+<div class="row">
+
+    <label for="total_realizado">Total Aprovado</label>
+    <div class="input-group">
+        <div class="input-group-addon">R$</div>
+        <input type="text" style="width: 130px; text-align: right;" id="total_realizado" name="total_realizado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />
+    </div>
+</div>
+
+<div class="row">
+    <label for="total_contratado">Total Contratado</label>
+    <div class="input-group">
+        <div class="input-group-addon">R$</div>
+        <input type="text" style="width: 130px; text-align: right;" id="total_contratado" name="total_contratado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control">
+    </div>
+
+</div>
+@*<label for="total_contratado">Total Contratado</label>
+    <input type="text" id="total_contratado" name="total_contratado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />*@
+
 
 
 

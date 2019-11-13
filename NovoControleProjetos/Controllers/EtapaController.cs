@@ -14,17 +14,19 @@ namespace NovoControleProjetos.Controllers
         public ActionResult _ListaEtapas()
         {
 
-            var etapas = etapa_DAL.ListaEsteira().ToList();
+            var etapas = etapa_DAL.ListaEsteira().ToList().OrderByDescending(e => e.Id_Etapa).Take(1);
             List<SelectListItem> listInfo = new List<SelectListItem>();
 
             foreach(var x in etapas)
-            { 
-                listInfo.Add(new SelectListItem() { Text = x.Ds_Etapa, Value = x.Id_Etapa.ToString() });
+            {
+                //listInfo.Add(new SelectListItem() { Text = x.Ds_Etapa, Value = x.Id_Etapa.ToString() });
+                listInfo.Add(new SelectListItem() { Text = "Prioritários Departamento", Value = "1" });
+                listInfo.Add(new SelectListItem() { Text = "Workshop", Value = "2" });
             }
             
             List<string> selectedValues = new List<string>();
-            
-            MultiSelectList models = new MultiSelectList(listInfo, "Value", "Text", selectedValues);
+
+            MultiSelectList models = new MultiSelectList(listInfo, "Value", "Text", selectedValues) ;
             ViewBag.etapas = models;
             ViewBag.total = models.Count();
             return View();
