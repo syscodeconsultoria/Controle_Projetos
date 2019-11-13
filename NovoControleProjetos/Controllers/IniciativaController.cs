@@ -49,5 +49,10 @@ namespace NovoControleProjetos.Controllers
             var id = iniciativa_DAL.RetornaIdIniciativa(nome);
             return Json(id,JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult _DetalhesIniciativa()
+        {
+            return PartialView();
+        }
     }
 }
