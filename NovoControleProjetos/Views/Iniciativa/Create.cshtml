@@ -154,38 +154,38 @@
 
             @*<div class="row" style="padding-top:15px;">
 
-            <div class="col-sm-2" style="padding-left:0">
-                <label for="data-plenouso">Pleno Uso</label>
-                <input type="text" id="pleno-uso" name="pleno-uso" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="00/00/0000" />
-            </div>
+                    <div class="col-sm-2" style="padding-left:0">
+                        <label for="data-plenouso">Pleno Uso</label>
+                        <input type="text" id="pleno-uso" name="pleno-uso" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="00/00/0000" />
+                    </div>
 
-            <div class="col-sm-2" style="padding-left:0">
-                <label for="data-comunicacao">Data Comunicação</label>
-                <input type="text" id="data-comunicacao" name="data-comunicacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="99/99/9999" />
-            </div>
+                    <div class="col-sm-2" style="padding-left:0">
+                        <label for="data-comunicacao">Data Comunicação</label>
+                        <input type="text" id="data-comunicacao" name="data-comunicacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="99/99/9999" />
+                    </div>
 
-            <div class="col-sm-2">
-                <label for="form-parcial-etapa" style=" padding-left: 15px; color:brown"> Origem:</label>
-                @{Html.RenderAction("_ListaEtapas", "Etapa");}
-            </div>
+                    <div class="col-sm-2">
+                        <label for="form-parcial-etapa" style=" padding-left: 15px; color:brown"> Origem:</label>
+                        @{Html.RenderAction("_ListaEtapas", "Etapa");}
+                    </div>
 
 
-            <div class="col-sm-2">
-                <label for="responsavel-neg">Contato Negócio</label>
-                <input type="text" id="contato-neg" name="contato-neg" class="form-control" />
-            </div>
+                    <div class="col-sm-2">
+                        <label for="responsavel-neg">Contato Negócio</label>
+                        <input type="text" id="contato-neg" name="contato-neg" class="form-control" />
+                    </div>
 
-            <div class="col-sm-2">
-                <label for="responsavel-ds">Contato DS</label>
-                <input type="text" id="contato-ds" name="contato-ds" class="form-control" />
-            </div>
+                    <div class="col-sm-2">
+                        <label for="responsavel-ds">Contato DS</label>
+                        <input type="text" id="contato-ds" name="contato-ds" class="form-control" />
+                    </div>
 
-            <div class="col-md-4">
-                <label>Resumo</label>
-                <textarea id="resumo-iniciativa" rows="3" size="5" class="form-control"></textarea>
-            </div>
+                    <div class="col-md-4">
+                        <label>Resumo</label>
+                        <textarea id="resumo-iniciativa" rows="3" size="5" class="form-control"></textarea>
+                    </div>
 
-        </div>*@
+                </div>*@
 
             <div class="row" style="padding-top:15px;">
 
@@ -222,17 +222,7 @@
 
             </div>
 
-            <div>
-                <button type="button" class="btn-toggle" data-element="#minhaDiv">Mostrar / Esconder</button>
 
-            </div>
-
-            <div id="minhaDiv" class="row" style="padding-top:15px; display:none">
-
-                @{Html.RenderAction("_DetalhesIniciativa", "Iniciativa");}
-
-
-            </div>
 
             <div class="row" style="padding-top:15px;">
 
@@ -263,7 +253,22 @@
             </div>
 
 
+            <div style="padding-left:0; padding-top:2px; margin-left:0px">
+                
+                <button type="button" id="btn-toggle" class="btn btn-default btn-xs" data-element="#detalhesDiv">
+                    <span id="span-details-plus" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    Detalhes
+                </button>
 
+
+            </div>
+
+            <div id="detalhesDiv" class="row" style="padding-top:15px; display:none">
+
+                @{Html.RenderAction("_DetalhesIniciativa", "Iniciativa");}
+
+
+            </div>
 
 
 
@@ -283,10 +288,26 @@
     })
 
     $(function () {
-        $(".btn-toggle").click(function (e) {
+        $("#btn-toggle").click(function (e) {
+    
+
+
             e.preventDefault();
+             var plus = $("#span-details-plus").hasClass('glyphicon glyphicon-plus');
+           
+
+            if (plus) {
+                $("#span-details-plus").removeClass();
+                $("#span-details-plus").addClass('glyphicon glyphicon-minus');
+            }
+            else {
+                
+                $("#span-details-plus").removeClass();
+                $("#span-details-plus").addClass('glyphicon glyphicon-plus');
+            };     
             el = $(this).data('element');
             $(el).toggle();
+              
         });
     });
 </script>
