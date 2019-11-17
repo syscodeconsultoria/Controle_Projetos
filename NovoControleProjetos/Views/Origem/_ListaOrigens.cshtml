@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+
+}
+
+
+@*@Html.CheckBoxList("chkModelsOrigem", (ViewBag.origens as MultiSelectList), Position.Vertical, new { @class = "form-control" }, 1)*@
+
+@foreach (var item in ViewBag.origens)
+{
+    <div class="form-inline">
+        <input type="checkbox" value="@item.Id_Origem" />
+        <label> @item.Ds_Origem </label>
+    </div>
+}

@@ -9,14 +9,14 @@ using System.Web;
 
 namespace NovoControleProjetos.DAL
 {
-    public class Etapa_DAL
+    public class Origem_DAL
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
-        public List<Etapa> ListaEtapas()
+        public List<Origem> ListaOrigens()
         {
-            List<Etapa> etapas = new List<Etapa>();
+            List<Origem> origens = new List<Origem>();
 
-            SqlCommand command = new SqlCommand("producao.UP_Controle_Projetos_Lista_Etapas", con);
+            SqlCommand command = new SqlCommand("producao.UP_Controle_Projetos_Lista_Origens", con);
             command.CommandType = CommandType.StoredProcedure;
 
             con.Open();
@@ -24,17 +24,16 @@ namespace NovoControleProjetos.DAL
             {
                 while (sdr.Read())
                 {
-                    etapas.Add(new Etapa
+                    origens.Add(new Origem
                     {
-                        Id_Etapa = Convert.ToInt32(sdr["cod_etapa"]),
-                        Ds_Etapa = sdr["ds_etapa"] as string,
-                        Ativo = Convert.ToBoolean(sdr["ativo"])
+                        Id_Origem = Convert.ToInt32(sdr["cod_origem"]),
+                        Ds_Origem = sdr["ds_origem"] as string
                     });
                 }
             }
             con.Close();
 
-            return etapas;
+            return origens;
 
         }
     }

@@ -9,14 +9,15 @@ using System.Web;
 
 namespace NovoControleProjetos.DAL
 {
-    public class Etapa_DAL
+    public class Canal_DAL
     {
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
-        public List<Etapa> ListaEtapas()
-        {
-            List<Etapa> etapas = new List<Etapa>();
 
-            SqlCommand command = new SqlCommand("producao.UP_Controle_Projetos_Lista_Etapas", con);
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
+        public List<Canal> ListaCanais()
+        {
+            List<Canal> canais = new List<Canal>();
+
+            SqlCommand command = new SqlCommand("producao.UP_Controle_Projetos_Lista_Canais", con);
             command.CommandType = CommandType.StoredProcedure;
 
             con.Open();
@@ -24,17 +25,17 @@ namespace NovoControleProjetos.DAL
             {
                 while (sdr.Read())
                 {
-                    etapas.Add(new Etapa
+                    canais.Add(new Canal
                     {
-                        Id_Etapa = Convert.ToInt32(sdr["cod_etapa"]),
-                        Ds_Etapa = sdr["ds_etapa"] as string,
+                        Id_Canal = Convert.ToInt32(sdr["cod_canal"]),
+                        Ds_Canal = sdr["ds_canal"] as string,
                         Ativo = Convert.ToBoolean(sdr["ativo"])
                     });
                 }
             }
             con.Close();
 
-            return etapas;
+            return canais;
 
         }
     }

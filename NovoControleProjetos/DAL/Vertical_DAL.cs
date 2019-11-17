@@ -9,14 +9,14 @@ using System.Web;
 
 namespace NovoControleProjetos.DAL
 {
-    public class Etapa_DAL
+    public class Vertical_DAL
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
-        public List<Etapa> ListaEtapas()
+        public List<Vertical> ListaVerticais()
         {
-            List<Etapa> etapas = new List<Etapa>();
+            List<Vertical> verticais = new List<Vertical>();
 
-            SqlCommand command = new SqlCommand("producao.UP_Controle_Projetos_Lista_Etapas", con);
+            SqlCommand command = new SqlCommand("producao.UP_Controle_Projetos_Lista_Verticais", con);
             command.CommandType = CommandType.StoredProcedure;
 
             con.Open();
@@ -24,17 +24,16 @@ namespace NovoControleProjetos.DAL
             {
                 while (sdr.Read())
                 {
-                    etapas.Add(new Etapa
+                    verticais.Add(new Vertical
                     {
-                        Id_Etapa = Convert.ToInt32(sdr["cod_etapa"]),
-                        Ds_Etapa = sdr["ds_etapa"] as string,
-                        Ativo = Convert.ToBoolean(sdr["ativo"])
+                        Id_Vertical = Convert.ToInt32(sdr["cod_vertical"]),
+                        Ds_Vertical = sdr["ds_vertical"] as string
                     });
                 }
             }
             con.Close();
 
-            return etapas;
+            return verticais;
 
         }
     }

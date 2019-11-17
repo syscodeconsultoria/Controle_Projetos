@@ -11,6 +11,8 @@ namespace NovoControleProjetos.Models
         public string Nome_Iniciativa { get; set; }
         public int Num_Iniciativa { get; set; }
         public int cod_departamento { get; set; }
+
+        public int cod_esteira { get; set; }
         public string Esteira { get; set; }
         public int cod_farol { get; set; }
         public int cod_etapa { get; set; }

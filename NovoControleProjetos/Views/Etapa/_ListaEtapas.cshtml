@@ -1,25 +1,42 @@
-﻿@{
+﻿@model IEnumerable<NovoControleProjetos.Models.Etapa>
+
+@{
     var _count = ViewBag.total;
     Layout = null;
 
 }
 
-@*@model IEnumerable<NovoControleProjetos.Models.Etapa>
 
-    <table>
-        @for (int i = 0; i < ViewBag.etapas; i++)
-        {
-        <td>
-            @Html.CheckBoxFor(model => model.Ds_Etapa[i]);
-            @Html.HiddenFor(x => Model.
-            @Html.CheckBoxFor(x => Model.hobbies[idx].IsSelected)
-            @Html.DisplayFor(x => Model.hobbies[idx].HobbiesName)
-            @Html.HiddenFor(x => Model.hobbies[idx].HobbiesName)
-        </td>
-        }
+@if (ViewBag.tipoLista == "drop")
+{
 
-    </table>*@
+    @Html.DropDownList("id_etapa", new SelectList(ViewBag.etapasInDrop, "id_etapa", "ds_etapa"), String.Empty, new { @class = "form-control" })
+}
+else
+{
+
+    foreach (var item in Model)
+    {
+
+        var iddata = item.Id_Etapa;
+
+    <div class="row">
+        <div class="col-md-3">
+            <input type="checkbox" value="@item.Id_Etapa" />
+            <label> @item.Ds_Etapa </label>
+        </div>
+        <div class='col-md-3'>
+            <input id="inicio-@iddata" type="text" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
+        </div>
+        <div class='col-md-3'>
+            <input id="fim-@iddata" type="text" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
+        </div>
+    </div>
+    }
+
+    @*@Html.CheckBoxList("chkModelsEtapas", (ViewBag.etapas as MultiSelectList), Position.Vertical, new { @class = "form-control" }, 2)*@
+}
 
 
-@Html.CheckBoxList("chkModels", (ViewBag.etapas as MultiSelectList), Position.Vertical)
+
 

@@ -120,13 +120,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CanalController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EtapaController.cs" />
     <Compile Include="Controllers\FarolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JornadaController.cs" />
     <Compile Include="Controllers\ListControlExtensionsController.cs" />
+    <Compile Include="Controllers\OrigemController.cs" />
     <Compile Include="Controllers\RelacionamentosController.cs" />
+    <Compile Include="Controllers\VerticalController.cs" />
+    <Compile Include="DAL\Canal_DAL.cs" />
     <Compile Include="DAL\Etapa_DAL.cs" />
     <Compile Include="DAL\Farol_DAL.cs" />
     <Compile Include="Controllers\EsteiraController.cs" />
@@ -137,10 +141,13 @@
     <Compile Include="DAL\Iniciativa_DAL.cs" />
     <Compile Include="DAL\Jornada_DAL.cs" />
     <Compile Include="DAL\Orcamento_DAL.cs" />
+    <Compile Include="DAL\Origem_DAL.cs" />
     <Compile Include="DAL\Relacionamentos_DAL.cs" />
+    <Compile Include="DAL\Vertical_DAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Canal.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\Etapa.cs" />
     <Compile Include="Models\Farol.cs" />
@@ -148,6 +155,8 @@
     <Compile Include="Models\Iniciativa.cs" />
     <Compile Include="Models\Jornada.cs" />
     <Compile Include="Models\Orcamento.cs" />
+    <Compile Include="Models\Origem.cs" />
+    <Compile Include="Models\Vertical.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -198,12 +207,14 @@
     <Content Include="Views\Jornada\_Create.cshtml" />
     <Content Include="Views\Iniciativa\_InsertIniciativa.cshtml" />
     <Content Include="Views\Iniciativa\_DetalhesIniciativa.cshtml" />
+    <Content Include="Views\Origem\_ListaOrigens.cshtml" />
+    <Content Include="Views\Vertical\_ListaVerticais.cshtml" />
+    <Content Include="Views\Canal\_ListaCanais.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Entidades\" />
     <Folder Include="Views\ListControlExtensions\" />
-    <Folder Include="Views\NewFolder1\" />
     <Folder Include="Views\Relacionamentos\" />
   </ItemGroup>
   <ItemGroup>

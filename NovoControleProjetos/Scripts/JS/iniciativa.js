@@ -21,7 +21,7 @@
         $("#farol option").css("background", "white").css("color", "black");
     });
 
-    $("#cad-iniciativa").click(function() {
+    $("#cad-iniciativa").click(function () {
 
         var nome = $("#projeto").val();
 
@@ -32,8 +32,8 @@
 
     });
 
-    $("#update-iniciativa").click(function() {
-        
+    $("#update-iniciativa").click(function () {
+
         var _iniciativa = {
 
             Id_Iniciativa: $("#nome-projeto").attr("data-id"),
@@ -70,10 +70,40 @@
 
         };
 
+
+
+   
+
+        var _origens = {
+
+            workshop: $("#divWorkshop input").is(':checked')
+
+        };
+
+        var _verticais = {
+
+        };
+
+        function getEtapa() {
+            var searchIDs = $("input[name='checkModels']:checked").map(function () {
+
+                var data = $("input[data-tarefa='" + $(this).val() + "']").val();
+
+                var etapas_ = { data_inicio: data, id_etapa: $(this).val() };
+                return searchIDs.get();
+
+            });
+        }
+        var _etapas = {
+
+            etapa: getEtapa()
+        };
+
+
         $.ajax({
             type: "POST",
             cache: false,
-            data: { iniciativa: _iniciativa, orcamento: _orcamento },
+            data: { iniciativa: _iniciativa, orcamento: _orcamento, etapas: _etapas },
             url: "/Iniciativa/Create",
             success: function (data) {
                 window.location.href = "/Home/Index";

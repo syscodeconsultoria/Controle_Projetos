@@ -5,11 +5,21 @@
 
 <div class="form-group col-md-5" style=" border: 1px solid #ccc;  width: 661.32px; ">
 
-    <div>   
-        <label for="form-parcial-etapa" style=" padding-left: 15px; color:brown"> Etapas:</label>
+    <div class="row" style="padding-top:15px;">
+        <div class="col-md-4" style="width: 152.75px; padding-left: 0px;">
+            <label for="form-parcial-etapa" style=" padding-left: 15px; color:brown"> Etapas:</label>
+        </div>
+        <div class="col-md-3">
+            <label for="form-parcial-etapa-inicio" style=" padding-left: 15px; color:brown"> Início:</label>
+        </div>
+        <div class="col-md-3">
+            <label for="form-parcial-etapa-fim" style=" padding-left: 15px; color:brown"> Fim:</label>
+        </div>
+
     </div>
 
     @{Html.RenderAction("_ListaEtapas", "Etapa");}
+   <br />
 
 </div>
 
@@ -35,7 +45,7 @@
             <label for="form-parcial-etapa" style=" padding-left: 15px; color:brown"> Canal:</label>
         </div>
 
-        @{Html.RenderAction("_ListaEtapas", "Etapa");}
+        @{Html.RenderAction("_ListaVerticais", "vertical");}
 
     </div>
        
@@ -47,7 +57,7 @@
             </div>
             <div class="col-md-6" style="padding-left:0;">
                 <label for="mvp-nome">Nome</label>
-                <input type="text" id="mvp-nome" name="iniciativa" class="form-control" />
+                <input type="text" id="mvp-nome" name="mvp-nome" class="form-control" />
             </div>
 
             <div class="col-md-6">

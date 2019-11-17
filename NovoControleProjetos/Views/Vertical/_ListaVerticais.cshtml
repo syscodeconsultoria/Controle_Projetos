@@ -1,0 +1,9 @@
+﻿@*@Html.CheckBoxList("chkModels", (ViewBag.verticais as MultiSelectList), Position.Vertical, 1)*@
+
+@foreach (var item in ViewBag.verticais)
+{
+    <div class="form-inline">
+        <input type="checkbox" value="@item.Id_Vertical" />
+        <label> @item.Ds_Vertical </label>
+    </div>
+}
