@@ -1,21 +1,24 @@
-﻿@model IEnumerable<NovoControleProjetos.Models.Canal>
+﻿@{ 
+    Layout = null;
+}
+
+@model IEnumerable<NovoControleProjetos.Models.Canal>
 
 @foreach (var item in Model)
 {
 
-    var iddata = item.Ativo;
+    var iddata = item.Id_Canal;
 
-    <div class="row">
-        <div class="col-md-3">
-            <input type="checkbox" value="@item.Id_Etapa" />
-            <label> @item.Ds_Canal </label>
-        </div>
-        <div class='col-md-3'>
-            <input id="inicio-@iddata" type="text" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
-        </div>
-        <div class='col-md-3'>
-            <input id="fim-@iddata" type="text" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
-        </div>
+
+
+    <div class="col-md-3">
+        <input type="checkbox" value="@item.Id_Canal" />
+        <label> @item.Ds_Canal </label>
     </div>
+    <div class='col-md-3'>
+        <input id="inicio-@iddata" type="text" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
+    </div>
+
+
 }
 

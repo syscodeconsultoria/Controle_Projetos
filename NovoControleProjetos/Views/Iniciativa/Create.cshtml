@@ -18,7 +18,7 @@
 <body>*@
 
     @*<div class="container" style="padding-top:15px">*@
-        <form id="form-iniciativa">
+        <form id="form-iniciativa" style="margin-top:15px;">
 
             <div class="row">
 
@@ -45,7 +45,7 @@
                 <div class="col-md-2">
 
                     <label for="data-aprovacao">Data Aprovação</label>
-                    <input type="text" id="data-aprovacao" name="data-aprovacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" />
+                    <input type="text" id="data-aprovacao" name="data-aprovacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
 
                 </div>
             </div>
@@ -96,12 +96,12 @@
 
                     <div class="row">
                         <label for="total_contratado">Total Aprovado CETI</label>
-                        <input type="text" id="total_contratado" name="total_contratado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />
+                        <input type="text" id="total_contratado" name="total_contratado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control"  />
                     </div>
 
                     <div class="row">
                         <label for="data-ceti">Data CETI</label>
-                        <input type="text" id="data-ceti" data-date="data" name="data-ceti" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" />
+                        <input type="text" id="data-ceti" data-date="data" name="data-ceti" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
                     </div>
 
                 </div>
@@ -112,7 +112,7 @@
 
                 <div class="col-sm-2" style="padding-left:0">
                     <label for="data-piloto">Piloto</label>
-                    <input type="text" id="data-piloto" name="data-piloto" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="00/00/0000" />
+                    <input type="text" id="data-piloto" name="data-piloto" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
                 </div>
 
                 <div class="col-sm-2">
@@ -154,17 +154,17 @@
 
                 <div class="col-sm-2" style="padding-left:0">
                     <label for="data-plenouso">Pleno Uso</label>
-                    <input type="text" id="pleno-uso" name="pleno-uso" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="00/00/0000" />
+                    <input type="text" id="pleno-uso" name="pleno-uso" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
                 </div>
 
                 <div class="col-sm-2">
                     <label for="data-comunicacao">Data Comunicação</label>
-                    <input type="text" id="data-comunicacao" name="data-comunicacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="99/99/9999" />
+                    <input type="text" id="data-comunicacao" name="data-comunicacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA"/>
                 </div>
 
                 <div class="col-sm-2">
                     <label for="data-visita">Data visita</label>
-                    <input type="text" id="data-visita" name="data-visita" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="99/99/9999" />
+                    <input type="text" id="data-visita" name="data-visita" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
                 </div>
 
                 <div class="col-sm-2">
@@ -198,29 +198,24 @@
 
             <div class="row"  style="padding-top:15px;">
 
-                <div class="col-md-3" id="div-origem" style="border: 1px solid #ccc; border-image: none; width: 210.5px; padding-left:0px; padding-right: 0px; margin-right: 15px;">
-                    <div>
-                        <label for="form-parcial-etapa" style=" padding-left: 15px; color:brown"> Origem:</label>
+                <div class="col-md-3" id="div-origem" style="border: 1px solid #ccc; border-image: none; width: 210.5px; padding-left:0px; padding-left:15px; padding-right: 0px; margin-right: 15px;">
+                    <div style="padding-top:15px;">
+                        <label for="form-parcial-etapa" style=" padding-left: 0px; color:brown"> Origens:</label>
                     </div>
                     @{Html.RenderAction("_ListaOrigens", "Origem");}
                 </div>
 
-                <div class="col-md-3" id="div-vertical" style=" border: 1px solid #ccc; width: 210.5px;">
-                    <div>
-                        <label for="form-parcial-etapa" style=" padding-left: 15px; color:brown"> Vertical:</label>
+                <div class="col-md-3" id="div-vertical" style="padding-left:15px; border: 1px solid #ccc; width: 210.5px;">
+                    <div style="padding-top:15px;">
+                        <label for="form-parcial-etapa" style=" padding-left: 0px; color:brown"> Verticais:</label>
                     </div>
                     @{Html.RenderAction("_ListaVerticais", "Vertical");}
                 </div>
 
                 <div class="col-md-7" style="width: 732.46px;">
                     <label style="margin-left:18px">Resumo:</label>
-                    <textarea rows="9" class="form-control" style="min-width: 100%;"></textarea>
-
-
-                </div>
-
-
-    
+                    <textarea rows="9" class="form-control" style="min-width: 100%; padding-top:0px;"></textarea>
+                </div>    
 
             </div>
             <div class="pull-right">

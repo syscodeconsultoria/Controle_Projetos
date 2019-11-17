@@ -32,29 +32,71 @@
 
     <div class="row" style="padding: 15px">
         <label>Motivo:</label>
-        <textarea id="motivo-replanejamento" rows="9" class="form-control" style="min-width: 90%;"></textarea>
+        <textarea id="motivo-replanejamento" rows="6" class="form-control" style="min-width: 90%;"></textarea>
     </div>
 
 </div>
 
 <div class="row">
 
-    <div class="form-group col-md-5" style="margin-left: 15px; margin-top: 15px; border: 1px solid #ccc;  width: 661.32px; ">
+    <div class="form-group col-md-5" style="padding-right:0px; padding-left:0px; padding-top: 15px; padding-bottom: 15px; margin-left: 15px; margin-top: 15px; border: 1px solid #ccc;  width: 661.32px; ">
 
         <div>
-            <label for="form-parcial-etapa" style=" padding-left: 15px; color:brown"> Canal:</label>
+            <label for="form-parcial-etapa" style=" color: brown; padding-bottom: 8px; padding-left: 15px;"> Canais:</label>
         </div>
 
-        @{Html.RenderAction("_ListaVerticais", "vertical");}
+        @{Html.RenderAction("_ListaCanais", "Canal");}
 
     </div>
        
-    <div class="form-group col-md-5" style="  margin-left: 15px; border: 1px solid #ccc;  width: 487.32px; margin-left:5px; margin-top: 15px ">        
+    <div class="form-group col-md-5" style="  margin-left: 15px; border: 1px solid #ccc;  width: 487.32px; margin-left:5px; margin-top: 15px ">
 
-        <div class="row" style="padding: 15px;">
+        <div class="row" style="padding: 15px; padding-bottom:5px; padding-top:11px;">
             <div>
-                <label>MVP:</label>
+                <label style=" color: brown;">MVP:</label>
             </div>
+            <div class="col-md-6" style="padding-left:0;">
+                <label for="mvp-nome">Nome</label>
+                <input type="text" id="mvp-nome" name="mvp-nome" class="form-control" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="mvp-entrega">Entrega</label>
+                <input type="text" id="mvp-entrega" name="mvp-entrega" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
+            </div>
+
+        </div>
+
+        <div class="row" style="padding: 15px; padding-top:2px; padding-bottom:5px;">
+
+            <div class="col-md-6" style="padding-left:0;">
+                <label for="mvp-nome">Nome</label>
+                <input type="text" id="mvp-nome-um" name="mvp-nome" class="form-control" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="mvp-entrega">Entrega</label>
+                <input type="text" id="mvp-entrega-um" name="mvp-entrega" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA"/>
+            </div>
+
+        </div>
+
+        <div class="row" style="padding: 15px; padding-top:2px; padding-bottom:5px;">
+
+            <div class="col-md-6" style="padding-left:0;">
+                <label for="mvp-nome">Nome</label>
+                <input type="text" id="mvp-nome-dois" name="mvp-nome" class="form-control" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="mvp-entrega">Entrega</label>
+                <input type="text" id="mvp-entrega-dois" name="mvp-entrega" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA"/>
+            </div>
+
+        </div>
+
+        @*<div class="row" style="padding: 15px; padding-top:2px; padding-bottom:5px;">
+
             <div class="col-md-6" style="padding-left:0;">
                 <label for="mvp-nome">Nome</label>
                 <input type="text" id="mvp-nome" name="mvp-nome" class="form-control" />
@@ -66,6 +108,20 @@
             </div>
 
         </div>
+
+        <div class="row" style="padding: 15px; padding-top:2px; padding-bottom:5px;">
+
+            <div class="col-md-6" style="padding-left:0;">
+                <label for="mvp-nome">Nome</label>
+                <input type="text" id="mvp-nome" name="mvp-nome" class="form-control" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="mvp-entrega">Entrega</label>
+                <input type="text" id="mvp-entrega" name="mvp-entrega" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" />
+            </div>
+
+        </div>*@
 
     </div>
 
