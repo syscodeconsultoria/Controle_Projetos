@@ -9,7 +9,7 @@
 @foreach (var item in ViewBag.origens)
 {
     <div class="form-inline">
-        <input type="checkbox" value="@item.Id_Origem" />
+        <input type="checkbox" name="check-origem" value="@item.Id_Origem" />
         <label> @item.Ds_Origem </label>
     </div>
 }

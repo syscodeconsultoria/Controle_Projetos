@@ -70,40 +70,45 @@
 
         };
 
-
-
-   
-
-        var _origens = {
-
-            workshop: $("#divWorkshop input").is(':checked')
-
-        };
-
-        var _verticais = {
-
-        };
-
-        function getEtapa() {
-            var searchIDs = $("input[name='checkModels']:checked").map(function () {
-
-                var data = $("input[data-tarefa='" + $(this).val() + "']").val();
-
-                var etapas_ = { data_inicio: data, id_etapa: $(this).val() };
-                return searchIDs.get();
-
+        function getOrigens() {
+            var searchIDs = $("input[name='check-origem']:checked").map(function () { 
+                return { id_origem: $(this).val() };
             });
+            return searchIDs.get();
         }
-        var _etapas = {
 
-            etapa: getEtapa()
-        };
+        function getVerticais() {
+
+            var searchIDs = $("input[name='check-vertical']:checked").map(function () {
+                return { id_vertical: $(this).val() };
+            });
+
+            return searchIDs.get();
+        }
+
+        function getEtapas() {
+            var searchIDs = $("input[name='check-etapa']:checked").map(function () {
+                var _data_inicio = $("#inicio-" + $(this).val()).val();
+                var _data_fim = $("#fim-" + $(this).val()).val();
+                return { id_etapa: $(this).val(), data_inicio: _data_inicio, data_fim: _data_fim };
+            });
+            return searchIDs.get();
+        }
+
+        function getCanais() {
+            var searchIDs = $("input[name='check-canal']:checked").map(function () {
+                var _data_canal = $("#datacanal-" + $(this).val()).val();               
+                return { id_canal: $(this).val(), data_canal: _data_canal };
+            });
+            return searchIDs.get();
+        }
 
 
         $.ajax({
             type: "POST",
             cache: false,
-            data: { iniciativa: _iniciativa, orcamento: _orcamento, etapas: _etapas },
+            data: { iniciativa: _iniciativa, orcamento: _orcamento, etapas: getEtapas(), verticais: getVerticais(), origens: getOrigens(), canais: getCanais() },
+
             url: "/Iniciativa/Create",
             success: function (data) {
                 window.location.href = "/Home/Index";

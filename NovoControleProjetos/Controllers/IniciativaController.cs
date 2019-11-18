@@ -26,8 +26,10 @@ namespace NovoControleProjetos.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Iniciativa iniciativa, Orcamento orcamento)
+        public ActionResult Create(Iniciativa iniciativa, Orcamento orcamento, List<Origem> origens, List<Etapa> etapas, List<Vertical> verticais, List<Canal> canais)
         {        
+            //das listas, preciso fazer um select na tabela, remover e depois inserir... 
+            
             int idOrcamento = orcamentoController.InsereOrcamento(orcamento, iniciativa.Id_Iniciativa);
 
             iniciativa.cod_orcamento = idOrcamento;

@@ -6,7 +6,7 @@
 @foreach (var item in ViewBag.verticais)
 {
     <div class="form-inline">
-        <input type="checkbox" value="@item.Id_Vertical" />
+        <input type="checkbox" name="check-vertical" value="@item.Id_Vertical" />
         <label> @item.Ds_Vertical </label>
     </div>
 }
