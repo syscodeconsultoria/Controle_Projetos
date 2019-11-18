@@ -70,22 +70,6 @@
 
         };
 
-        function getOrigens() {
-            var searchIDs = $("input[name='check-origem']:checked").map(function () { 
-                return { id_origem: $(this).val() };
-            });
-            return searchIDs.get();
-        }
-
-        function getVerticais() {
-
-            var searchIDs = $("input[name='check-vertical']:checked").map(function () {
-                return { id_vertical: $(this).val() };
-            });
-
-            return searchIDs.get();
-        }
-
         function getEtapas() {
             var searchIDs = $("input[name='check-etapa']:checked").map(function () {
                 var _data_inicio = $("#inicio-" + $(this).val()).val();
@@ -97,25 +81,36 @@
 
         function getCanais() {
             var searchIDs = $("input[name='check-canal']:checked").map(function () {
-                var _data_canal = $("#datacanal-" + $(this).val()).val();               
+                var _data_canal = $("#datacanal-" + $(this).val()).val();
                 return { id_canal: $(this).val(), data_canal: _data_canal };
             });
             return searchIDs.get();
         }
 
+        function getOrigens() {
+            var searchIDs = $("input[name='check-origem']:checked").map(function () { 
+                return { id_origem: $(this).val() };
+            });
+            return searchIDs.get();
+        }
+
+        function getVerticais() {
+            var searchIDs = $("input[name='check-vertical']:checked").map(function () {
+                return { id_vertical: $(this).val() };
+            });
+            return searchIDs.get();
+        }               
 
         $.ajax({
             type: "POST",
             cache: false,
-            data: { iniciativa: _iniciativa, orcamento: _orcamento, etapas: getEtapas(), verticais: getVerticais(), origens: getOrigens(), canais: getCanais() },
+            data: { iniciativa: _iniciativa, orcamento: _orcamento, etapas: getEtapas(), canais: getCanais(), origens: getOrigens(), verticais: getVerticais()  },
 
             url: "/Iniciativa/Create",
             success: function (data) {
                 window.location.href = "/Home/Index";
             }
         });
-
-
 
     });
 
