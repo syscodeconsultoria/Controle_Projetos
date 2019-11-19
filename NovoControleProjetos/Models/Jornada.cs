@@ -9,7 +9,6 @@ namespace NovoControleProjetos.Models
     {
         public int cod_jornada { get; set; }
         public bool UX { get; set; }
-
         public bool varejo_acompanhou { get; set; }
     }
 }

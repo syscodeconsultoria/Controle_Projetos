@@ -38,36 +38,60 @@
 
             Id_Iniciativa: $("#nome-projeto").attr("data-id"),
             Nome_Iniciativa: $("#nome-projeto").val(),
-            Num_Iniciativa: $("#iniciativa").val(),
-            cod_departamento: $("#id_departamento").val(),
-            Esteira: $("#id_esteira").val(),
+            Num_Iniciativa: $("#num-iniciativa").val(),
+            cod_departamento: $("#id-departamento").val(),
+            data_aprovacao: $("#data-aprovacao").val(),
             cod_farol: $("#farol").val().split(' ')[0],
-            cod_etapa: $("#etapa").val(),
+            cod_esteira: $("#cod_esteira").val(),            
+            cod_etapa: $("#id_etapa").val(),
+            comentario: $('#comentario').val(),
             CPF: $("#cpf-iniciativa").val(),
-            VPL: $("#vpl").val(),
+            //VPL: $("#vpl").val(),
             //cod_orcamento: 1,
-            cod_CETI: 1,
-            cod_comissao_varejo: 1,
-            cod_jornada: 1,
-            cod_mega: 1,
-            cod_visita: 1,
-            cod_canal: 1,
+            //cod_CETI: 1,
+            //cod_comissao_varejo: 1,
+            //cod_jornada: 1,
+            cod_mega: $("#mega").val(),
+            //cod_visita: 1,
+            //cod_canal: 1,
             TF_versao_agencia: $("#tf-versao-agencia").val(),
             TF_versao_PA: $("#tf-versao-pa").val(),
-            cod_prioritario: 1,
-            cod_dt: 1,
-            cod_replanejamento: 1,
+            //cod_prioritario: 1,
+            
+            //cod_replanejamento: 1,
             responsavel_neg: $("#responsavel-neg").val(),
             responsavel_DS: $("#responsavel-ds").val(),
-            resumo_iniciativa: ""
+            resumo_iniciativa: $("#resumo-iniciativa").val()
+        };
+
+
+        var _visita = {
+            data_visita: $("#data-visita").val(),
+            agencia_visitada: $("#agencia-visitada").val(),
+            responsavel_visita: $("#responsavel-visita").val(),
+            comentario_visita: $("#comentario-visita").val()
+        };
+
+        var _jornada = {
+            ux: $("#ux").val(),
+            jornada_analisada: $("#jornada-analisada").val(),
+            comentario_jornada: $("#comentario-jornada").val()
+        };
+
+        var _ceti = {
+            total_aprovado_ceti: $("#total-aprovado-ceti").val(),
+            data_ceti: $("#data-ceti").val()
         };
 
         var _orcamento = {
+            total_aprovado: $("#total-aprovado").val(),
+            total_realizado: $("#total-realizado").val(),
+            total_contratado: $("#total-contratado").val()
+        };
 
-            total_aprovado: $("#total_aprovado").val(),
-            total_realizado: $("#total_realizado").val(),
-            total_contratado: $("#total_contratado").val()
-
+        var _replanejamento = {
+            data_replanejamento: $("#data-replanejamento").val(),
+            motivo_replanejamento: $("#motivo-replanejamento").val()
         };
 
         function getEtapas() {
@@ -104,7 +128,18 @@
         $.ajax({
             type: "POST",
             cache: false,
-            data: { iniciativa: _iniciativa, orcamento: _orcamento, etapas: getEtapas(), canais: getCanais(), origens: getOrigens(), verticais: getVerticais()  },
+            data: {
+                iniciativa: _iniciativa,
+                orcamento: _orcamento,
+                etapas: getEtapas(),
+                canais: getCanais(),
+                origens: getOrigens(),
+                verticais: getVerticais(),
+                visita: _visita,
+                jornada: _jornada,
+                ceti: _ceti,
+                replanejamento: _replanejamento
+            },
 
             url: "/Iniciativa/Create",
             success: function (data) {
@@ -113,7 +148,4 @@
         });
 
     });
-
-
-
 });

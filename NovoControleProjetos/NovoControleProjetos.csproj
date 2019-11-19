@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CanalController.cs" />
+    <Compile Include="Controllers\CetiController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EtapaController.cs" />
     <Compile Include="Controllers\FarolController.cs" />
@@ -129,8 +130,11 @@
     <Compile Include="Controllers\ListControlExtensionsController.cs" />
     <Compile Include="Controllers\OrigemController.cs" />
     <Compile Include="Controllers\RelacionamentosController.cs" />
+    <Compile Include="Controllers\ReplanejamentoController.cs" />
     <Compile Include="Controllers\VerticalController.cs" />
+    <Compile Include="Controllers\VisitaController.cs" />
     <Compile Include="DAL\Canal_DAL.cs" />
+    <Compile Include="DAL\Ceti_DAL.cs" />
     <Compile Include="DAL\Etapa_DAL.cs" />
     <Compile Include="DAL\Farol_DAL.cs" />
     <Compile Include="Controllers\EsteiraController.cs" />
@@ -143,11 +147,14 @@
     <Compile Include="DAL\Orcamento_DAL.cs" />
     <Compile Include="DAL\Origem_DAL.cs" />
     <Compile Include="DAL\Relacionamentos_DAL.cs" />
+    <Compile Include="DAL\Replanejamento_DAL.cs" />
     <Compile Include="DAL\Vertical_DAL.cs" />
+    <Compile Include="DAL\Visita_DAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Canal.cs" />
+    <Compile Include="Models\Ceti.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\Etapa.cs" />
     <Compile Include="Models\Farol.cs" />
@@ -156,7 +163,9 @@
     <Compile Include="Models\Jornada.cs" />
     <Compile Include="Models\Orcamento.cs" />
     <Compile Include="Models\Origem.cs" />
+    <Compile Include="Models\Replanejamento.cs" />
     <Compile Include="Models\Vertical.cs" />
+    <Compile Include="Models\Visita.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -214,8 +223,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Entidades\" />
+    <Folder Include="Views\Ceti\" />
     <Folder Include="Views\ListControlExtensions\" />
     <Folder Include="Views\Relacionamentos\" />
+    <Folder Include="Views\Replanejamento\" />
+    <Folder Include="Views\Visita\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

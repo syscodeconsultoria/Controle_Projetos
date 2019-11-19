@@ -43,7 +43,7 @@ namespace NovoControleProjetos.DAL
 
                 while (reader.Read())
                 {
-                    iniciativa.Nome_Iniciativa = reader["nome_iniciativa"] as string;
+                    iniciativa.nome_iniciativa = reader["nome_iniciativa"] as string;
                     iniciativa.Id_Iniciativa = Convert.ToInt32(reader["Id_iniciativa"]);
                 }
 
@@ -61,8 +61,8 @@ namespace NovoControleProjetos.DAL
                 con.Open();
                 cmd.Parameters.AddWithValue("@OPER", 3);
                 cmd.Parameters.AddWithValue("@ID", iniciativa.Id_Iniciativa);
-                cmd.Parameters.AddWithValue("@INICIATIVA", iniciativa.Nome_Iniciativa);
-                cmd.Parameters.AddWithValue("@num_iniciativa", iniciativa.Num_Iniciativa);
+                cmd.Parameters.AddWithValue("@INICIATIVA", iniciativa.nome_iniciativa);
+                cmd.Parameters.AddWithValue("@num_iniciativa", iniciativa.num_iniciativa);
                 cmd.Parameters.AddWithValue("@cod_departamento", iniciativa.cod_departamento);
                 cmd.Parameters.AddWithValue("@esteira", iniciativa.Esteira);
                 cmd.Parameters.AddWithValue("@cod_farol", iniciativa.cod_farol);

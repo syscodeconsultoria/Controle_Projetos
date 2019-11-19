@@ -26,7 +26,19 @@ namespace NovoControleProjetos.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Iniciativa iniciativa, Orcamento orcamento, List<Origem> origens, List<Etapa> etapas, List<Vertical> verticais, List<Canal> canais)
+        public ActionResult Create
+            (
+            Iniciativa iniciativa, 
+            Orcamento orcamento, 
+            List<Origem> origens, 
+            List<Etapa> etapas, 
+            List<Vertical> verticais, 
+            List<Canal> canais,
+            Visita visita,
+            Jornada jornada,
+            Ceti ceti,
+            Replanejamento replanejamento
+            )
         {        
             //das listas, preciso fazer um select na tabela, remover e depois inserir... 
             
