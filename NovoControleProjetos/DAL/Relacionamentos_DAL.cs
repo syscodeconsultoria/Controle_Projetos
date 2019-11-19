@@ -17,9 +17,10 @@ namespace NovoControleProjetos.DAL
         {
             using (con)
             {
+
                 var cmd = new SqlCommand("producao.UP_Controle_Projetos_Cria_Relacionamento", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                con.Open();
+               
                 cmd.Parameters.AddWithValue("@OPER", "I");
                 cmd.Parameters.AddWithValue("@IdUm", idProjeto);
                 cmd.Parameters.AddWithValue("@IdDois", idOrcamento);
@@ -27,8 +28,9 @@ namespace NovoControleProjetos.DAL
                 //cmd.Parameters.AddWithValue("@id_iniciativa", "id_iniciativa");
 
                 cmd.Parameters.AddWithValue("@Tabela", "producao.TB_Controle_Projetos_Projeto_Orcamento");
-
+                con.Open();
                 cmd.ExecuteNonQuery();
+                con.Close();
 
                 return true;
             }
@@ -38,28 +40,34 @@ namespace NovoControleProjetos.DAL
         {
             var tabela = "producao.TB_Controle_Projetos_Projeto_Origens";
 
-            StringBuilder query = new StringBuilder();
-            foreach (var item in idsOrigens)
+            try
             {
-                var idOrigem = idsOrigens.FirstOrDefault();
-                query.Append("insert into " + tabela + " values(" + idProjeto + ", " + idsOrigens[idOrigem] + ")").Append("\n)");        
-                    
-            }
+                StringBuilder query = new StringBuilder();
+                foreach (var item in idsOrigens)
+                {
+                    var idOrigem = idsOrigens.FirstOrDefault();
+                    query.Append("insert into " + tabela + " values(" + idProjeto + ", " + item + ")");
+                    query.Append("\n");
+                }
 
-            using (con)
+                using (con)
+                {
+                    var cmd = new SqlCommand("producao.UP_Controle_Projetos_Cria_Relacionamento", con);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;                    
+                    cmd.Parameters.AddWithValue("@OPER", "Origem");
+                    cmd.Parameters.AddWithValue("@String", query.ToString());
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
             {
-                var cmd = new SqlCommand("producao.UP_Controle_Projetos_Cria_Relacionamento", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                con.Open();
-                cmd.Parameters.AddWithValue("@OPER", "Origem");
-                cmd.Parameters.AddWithValue("@Query", query);               
-                cmd.ExecuteNonQuery();
 
-                return true;
-            }
-
-          
-
+                throw;
+            }            
         }
     }
 }
