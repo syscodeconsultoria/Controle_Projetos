@@ -12,6 +12,7 @@ namespace NovoControleProjetos.Controllers
         DAL.Iniciativa_DAL iniciativa_DAL = new DAL.Iniciativa_DAL();
         OrcamentoController orcamentoController = new OrcamentoController();
         RelacionamentosController relacionamentosController = new RelacionamentosController();
+        
 
         // GET: Iniciativa
         public ActionResult Index()
@@ -39,7 +40,11 @@ namespace NovoControleProjetos.Controllers
             Ceti ceti,
             Replanejamento replanejamento
             )
-        {        
+        {
+
+
+            bool relOrigens = relacionamentosController.RelacionamentoOrigensProjeto(iniciativa.Id_Iniciativa, origens.Select(x => x.Id_Origem).ToList());
+
             //das listas, preciso fazer um select na tabela, remover e depois inserir... 
             
             int idOrcamento = orcamentoController.InsereOrcamento(orcamento, iniciativa.Id_Iniciativa);

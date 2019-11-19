@@ -23,5 +23,12 @@ namespace NovoControleProjetos.Controllers
 
             return true;
         }
+
+        public bool RelacionamentoOrigensProjeto(int idProjeto, List<int> idsOrigens) {
+
+            relacionamentos_DAL.RelacionamenoOrigensProjeto(idProjeto, idsOrigens);
+
+            return true;
+        }
     }
 }

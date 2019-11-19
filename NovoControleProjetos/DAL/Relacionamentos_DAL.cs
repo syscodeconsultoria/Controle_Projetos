@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace NovoControleProjetos.DAL
@@ -31,6 +32,34 @@ namespace NovoControleProjetos.DAL
 
                 return true;
             }
+        }
+
+        public bool RelacionamenoOrigensProjeto(int idProjeto, List<int> idsOrigens)
+        {
+            var tabela = "producao.TB_Controle_Projetos_Projeto_Origens";
+
+            StringBuilder query = new StringBuilder();
+            foreach (var item in idsOrigens)
+            {
+                var idOrigem = idsOrigens.FirstOrDefault();
+                query.Append("insert into " + tabela + " values(" + idProjeto + ", " + idsOrigens[idOrigem] + ")").Append("\n)");        
+                    
+            }
+
+            using (con)
+            {
+                var cmd = new SqlCommand("producao.UP_Controle_Projetos_Cria_Relacionamento", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                con.Open();
+                cmd.Parameters.AddWithValue("@OPER", "Origem");
+                cmd.Parameters.AddWithValue("@Query", query);               
+                cmd.ExecuteNonQuery();
+
+                return true;
+            }
+
+          
+
         }
     }
 }
