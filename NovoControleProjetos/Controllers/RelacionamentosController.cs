@@ -30,5 +30,21 @@ namespace NovoControleProjetos.Controllers
 
             return true;
         }
+
+        public bool DeletaRelacionamento(int idProjeto, string tabela, string campo)
+        {
+            try
+            {
+                relacionamentos_DAL.DeletaRelacionamento(idProjeto, tabela, campo);
+                
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }           
+
+            return true;
+        }
     }
 }

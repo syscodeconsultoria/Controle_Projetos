@@ -42,11 +42,15 @@ namespace NovoControleProjetos.Controllers
             )
         {
 
-
-            bool relOrigens = relacionamentosController.RelacionamentoOrigensProjeto(iniciativa.Id_Iniciativa, origens.Select(x => x.Id_Origem).ToList());
-
+            if (origens != null) { 
+            bool Ok = relacionamentosController.RelacionamentoOrigensProjeto(iniciativa.Id_Iniciativa, origens.Select(x => x.Id_Origem).ToList());
+            }
+            else
+            {
+                bool Ok = relacionamentosController.DeletaRelacionamento(iniciativa.Id_Iniciativa, "projeto_origens", "id_projeto");  
+            }
             //das listas, preciso fazer um select na tabela, remover e depois inserir... 
-            
+
             int idOrcamento = orcamentoController.InsereOrcamento(orcamento, iniciativa.Id_Iniciativa);
 
             iniciativa.cod_orcamento = idOrcamento;

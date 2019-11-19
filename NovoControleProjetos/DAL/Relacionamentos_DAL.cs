@@ -20,7 +20,7 @@ namespace NovoControleProjetos.DAL
 
                 var cmd = new SqlCommand("producao.UP_Controle_Projetos_Cria_Relacionamento", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-               
+
                 cmd.Parameters.AddWithValue("@OPER", "I");
                 cmd.Parameters.AddWithValue("@IdUm", idProjeto);
                 cmd.Parameters.AddWithValue("@IdDois", idOrcamento);
@@ -53,8 +53,10 @@ namespace NovoControleProjetos.DAL
                 using (con)
                 {
                     var cmd = new SqlCommand("producao.UP_Controle_Projetos_Cria_Relacionamento", con);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;                    
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@OPER", "Origem");
+                    cmd.Parameters.AddWithValue("@IdUm", idProjeto);
+                    cmd.Parameters.AddWithValue("@Tabela", tabela);
                     cmd.Parameters.AddWithValue("@String", query.ToString());
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -67,7 +69,38 @@ namespace NovoControleProjetos.DAL
             {
 
                 throw;
-            }            
+            }
+        }
+
+        public bool DeletaRelacionamento(int idProjeto, string tabela, string campo)
+        {
+            try
+            {
+
+                StringBuilder query = new StringBuilder();
+                                                
+                query.Append("delete from " + tabela + " where " + campo + "= " + idProjeto + "");
+                
+                using (con)
+                {
+                    var cmd = new SqlCommand("producao.UP_Controle_Projetos_Cria_Relacionamento", con);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@OPER", "Deleta");
+                    //cmd.Parameters.AddWithValue("@IdUm", idProjeto);
+                    //cmd.Parameters.AddWithValue("@Tabela", tabela);
+                    cmd.Parameters.AddWithValue("@String", query.ToString());
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
     }
 }
