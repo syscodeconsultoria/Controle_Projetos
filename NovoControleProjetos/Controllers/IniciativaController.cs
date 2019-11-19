@@ -27,28 +27,27 @@ namespace NovoControleProjetos.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create
-            (
-            Iniciativa iniciativa, 
-            Orcamento orcamento, 
-            List<Origem> origens, 
-            List<Etapa> etapas, 
-            List<Vertical> verticais, 
-            List<Canal> canais,
-            Visita visita,
-            Jornada jornada,
-            Ceti ceti,
-            Replanejamento replanejamento
-            )
+        public ActionResult Create(Iniciativa iniciativa, Orcamento orcamento, List<Origem> origens, List<Etapa> etapas,  List<Vertical> verticais, 
+                                  List<Canal> canais, Visita visita, Jornada jornada, Ceti ceti, Replanejamento replanejamento)
         {
 
-            if (origens != null) { 
+            if (origens != null)
+            { 
             bool Ok = relacionamentosController.RelacionamentoOrigensProjeto(iniciativa.Id_Iniciativa, origens.Select(x => x.Id_Origem).ToList());
+                if (!Ok) {
+                    return RedirectToAction("Error", "Home");
+                }
             }
             else
             {
-                bool Ok = relacionamentosController.DeletaRelacionamento(iniciativa.Id_Iniciativa, "projeto_origens", "id_projeto");  
+                bool Ok = relacionamentosController.DeletaRelacionamento(iniciativa.Id_Iniciativa, "projeto_origens", "id_projeto");
+                if (!Ok)
+                {
+                    return RedirectToAction("Error", "Home");
+                }
             }
+
+
             //das listas, preciso fazer um select na tabela, remover e depois inserir... 
 
             int idOrcamento = orcamentoController.InsereOrcamento(orcamento, iniciativa.Id_Iniciativa);

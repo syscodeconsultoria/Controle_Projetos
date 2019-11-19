@@ -12,13 +12,14 @@ namespace NovoControleProjetos.DAL
     {
 
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
+        readonly string proc = "producao.UP_Controle_Projetos_Oper_M_Relacionamentos";
 
         public bool RelacionamentoOrcamentoProjeto(int idProjeto, int idOrcamento)
         {
             using (con)
             {
 
-                var cmd = new SqlCommand("producao.UP_Controle_Projetos_Cria_Relacionamento", con);
+                var cmd = new SqlCommand(proc, con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@OPER", "I");
@@ -52,7 +53,7 @@ namespace NovoControleProjetos.DAL
 
                 using (con)
                 {
-                    var cmd = new SqlCommand("producao.UP_Controle_Projetos_Cria_Relacionamento", con);
+                    var cmd = new SqlCommand(proc, con);
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@OPER", "Origem");
                     cmd.Parameters.AddWithValue("@IdUm", idProjeto);
@@ -79,15 +80,13 @@ namespace NovoControleProjetos.DAL
 
                 StringBuilder query = new StringBuilder();
                                                 
-                query.Append("delete from " + tabela + " where " + campo + "= " + idProjeto + "");
+                query.Append("delete from Tb_Controle_Projetos_" + tabela + " where " + campo + "= " + idProjeto + "");
                 
                 using (con)
                 {
-                    var cmd = new SqlCommand("producao.UP_Controle_Projetos_Cria_Relacionamento", con);
+                    var cmd = new SqlCommand(proc, con);
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@OPER", "Deleta");
-                    //cmd.Parameters.AddWithValue("@IdUm", idProjeto);
-                    //cmd.Parameters.AddWithValue("@Tabela", tabela);
+                    cmd.Parameters.AddWithValue("@OPER", "Deleta");                  
                     cmd.Parameters.AddWithValue("@String", query.ToString());
                     con.Open();
                     cmd.ExecuteNonQuery();
