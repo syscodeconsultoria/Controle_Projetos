@@ -143,8 +143,14 @@
 
             url: "/Iniciativa/Create",
             success: function (data) {
+               
                 window.location.href = "/Home/Index";
+            },
+            error: function (data) {
+
+                window.location.href = "/Iniciativa/ErroAmigavel";
             }
+            
         });
 
     });

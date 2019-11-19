@@ -219,6 +219,7 @@
     <Content Include="Views\Origem\_ListaOrigens.cshtml" />
     <Content Include="Views\Vertical\_ListaVerticais.cshtml" />
     <Content Include="Views\Canal\_ListaCanais.cshtml" />
+    <Content Include="Views\Iniciativa\ErroAmigavel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

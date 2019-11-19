@@ -12,7 +12,7 @@ namespace NovoControleProjetos.Controllers
         DAL.Iniciativa_DAL iniciativa_DAL = new DAL.Iniciativa_DAL();
         OrcamentoController orcamentoController = new OrcamentoController();
         RelacionamentosController relacionamentosController = new RelacionamentosController();
-        
+
 
         // GET: Iniciativa
         public ActionResult Index()
@@ -27,38 +27,99 @@ namespace NovoControleProjetos.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Iniciativa iniciativa, Orcamento orcamento, List<Origem> origens, List<Etapa> etapas,  List<Vertical> verticais, 
+        public ActionResult Create(Iniciativa iniciativa, Orcamento orcamento, List<Origem> origens, List<Etapa> etapas, List<Vertical> verticais,
                                   List<Canal> canais, Visita visita, Jornada jornada, Ceti ceti, Replanejamento replanejamento)
         {
 
-            if (origens != null)
-            { 
-            bool Ok = relacionamentosController.RelacionamentoOrigensProjeto(iniciativa.Id_Iniciativa, origens.Select(x => x.Id_Origem).ToList());
-                if (!Ok) {
-                    return RedirectToAction("Error", "Home");
-                }
-            }
-            else
+            try
             {
-                bool Ok = relacionamentosController.DeletaRelacionamento(iniciativa.Id_Iniciativa, "projeto_origens", "id_projeto");
-                if (!Ok)
+                if (origens != null)
                 {
-                    return RedirectToAction("Error", "Home");
+                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, origens.Select(x => x.Id_Origem).ToList(), "origens" );
+                    if (!Ok)
+                    {
+                        return new HttpStatusCodeResult(404);
+                    }
                 }
+                else
+                {
+                    bool Ok = relacionamentosController.DeletaRelacionamento(iniciativa.Id_Iniciativa, "projeto_origens", "id_projeto");
+                    if (!Ok)
+                    {
+                        return RedirectToAction("Error", "Home");
+                    }
+                }
+
+                if (etapas != null)
+                {
+                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, etapas.Select(x => x.Id_Etapa).ToList(), "etapas" );
+                    if (!Ok)
+                    {
+                        return new HttpStatusCodeResult(404);
+                    }
+                }
+                else
+                {
+                    bool Ok = relacionamentosController.DeletaRelacionamento(iniciativa.Id_Iniciativa, "projeto_etapas", "id_projeto");
+                    if (!Ok)
+                    {
+                        return RedirectToAction("Error", "Home");
+                    }
+                }
+
+                if (verticais != null)
+                {
+                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, verticais.Select(x => x.Id_Vertical).ToList(), "verticais");
+                    if (!Ok)
+                    {
+                        return new HttpStatusCodeResult(404);
+                    }
+                }
+                else
+                {
+                    bool Ok = relacionamentosController.DeletaRelacionamento(iniciativa.Id_Iniciativa, "projeto_verticais", "id_projeto");
+                    if (!Ok)
+                    {
+                        return RedirectToAction("Error", "Home");
+                    }
+                }
+
+                if (canais != null)
+                {
+                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, canais.Select(x => x.Id_Canal).ToList(), "canais");
+                    if (Ok)
+                    {
+                        return new HttpStatusCodeResult(404);
+                    }
+                }
+                else
+                {
+                    bool Ok = relacionamentosController.DeletaRelacionamento(iniciativa.Id_Iniciativa, "projeto_canais", "id_projeto");
+                    if (!Ok)
+                    {
+                        return RedirectToAction("Error", "Home");
+                    }
+                }
+
+
+                int idOrcamento = orcamentoController.InsereOrcamento(orcamento, iniciativa.Id_Iniciativa);
+
+                iniciativa.cod_orcamento = idOrcamento;
+                //relacionamentosController.RelacionamentoOrcamentoProjeto(iniciativa.Id_Iniciativa, idOrcamento);          
+
+                iniciativa_DAL.UpdateIniciativa(iniciativa);
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
+           
 
-            //das listas, preciso fazer um select na tabela, remover e depois inserir... 
-
-            int idOrcamento = orcamentoController.InsereOrcamento(orcamento, iniciativa.Id_Iniciativa);
-
-            iniciativa.cod_orcamento = idOrcamento;
-            //relacionamentosController.RelacionamentoOrcamentoProjeto(iniciativa.Id_Iniciativa, idOrcamento);          
-            
-            iniciativa_DAL.UpdateIniciativa(iniciativa);
-            
-            return RedirectToAction("Index", "Home");
-        }
+        }           
+           
 
         public ActionResult _InsertIniciativa()
         {
@@ -76,5 +137,11 @@ namespace NovoControleProjetos.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult ErroAmigavel()
+        {
+            return View();
+        }
     }
 }
+

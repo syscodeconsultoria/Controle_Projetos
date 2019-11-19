@@ -24,9 +24,9 @@ namespace NovoControleProjetos.Controllers
             return true;
         }
 
-        public bool RelacionamentoOrigensProjeto(int idProjeto, List<int> idsOrigens) {
+        public bool RelacionamentosProjetoComListas(int idProjeto, List<int> ids, string tabelapath) {
 
-            relacionamentos_DAL.RelacionamenoOrigensProjeto(idProjeto, idsOrigens);
+            relacionamentos_DAL.RelacionamentosProjetoComListas(idProjeto, ids, tabelapath );
 
             return true;
         }

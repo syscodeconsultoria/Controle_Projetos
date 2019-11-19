@@ -37,16 +37,15 @@ namespace NovoControleProjetos.DAL
             }
         }
 
-        public bool RelacionamenoOrigensProjeto(int idProjeto, List<int> idsOrigens)
+        public bool RelacionamentosProjetoComListas(int idProjeto, List<int> ids, string tabelapath)
         {
-            var tabela = "producao.TB_Controle_Projetos_Projeto_Origens";
+            var tabela = "producao.TB_Controle_Projetos_Projeto_" + tabelapath;
 
             try
             {
                 StringBuilder query = new StringBuilder();
-                foreach (var item in idsOrigens)
-                {
-                    var idOrigem = idsOrigens.FirstOrDefault();
+                foreach (var item in ids)
+                {                    
                     query.Append("insert into " + tabela + " values(" + idProjeto + ", " + item + ")");
                     query.Append("\n");
                 }
@@ -55,7 +54,7 @@ namespace NovoControleProjetos.DAL
                 {
                     var cmd = new SqlCommand(proc, con);
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@OPER", "Origem");
+                    cmd.Parameters.AddWithValue("@OPER", tabelapath);
                     cmd.Parameters.AddWithValue("@IdUm", idProjeto);
                     cmd.Parameters.AddWithValue("@Tabela", tabela);
                     cmd.Parameters.AddWithValue("@String", query.ToString());
