@@ -10,7 +10,7 @@
 @if (ViewBag.tipoLista == "drop")
 {
 
-    @Html.DropDownList("id_etapa", new SelectList(ViewBag.etapasInDrop, "id_etapa", "ds_etapa"), String.Empty, new { @class = "form-control" })
+    @Html.DropDownList("id-etapa", new SelectList(ViewBag.etapasInDrop, "id_etapa", "ds_etapa"), String.Empty, new { @class = "form-control" })
 }
 else
 {

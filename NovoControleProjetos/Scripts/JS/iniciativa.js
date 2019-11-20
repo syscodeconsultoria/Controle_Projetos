@@ -39,19 +39,19 @@
             Id_Iniciativa: $("#nome-projeto").attr("data-id"),
             Nome_Iniciativa: $("#nome-projeto").val(),
             Num_Iniciativa: $("#num-iniciativa").val(),
-            cod_departamento: $("#id-departamento").val(),
-            data_aprovacao: $("#data-aprovacao").val(),
-            cod_farol: $("#farol").val().split(' ')[0],
-            cod_esteira: $("#cod_esteira").val(),            
-            cod_etapa: $("#id_etapa").val(),
-            comentario: $('#comentario').val(),
+            id_departamento: $("#id-departamento").val(),
+            //data_aprovacao: $("#data-aprovacao").val(),
+            id_farol: $("#farol").val().split(' ')[0],
+            id_esteira: $("#id-esteira").val(),            
+            id_etapa: $("#id-etapa").val(),
+           
             CPF: $("#cpf-iniciativa").val(),
             //VPL: $("#vpl").val(),
             //cod_orcamento: 1,
             //cod_CETI: 1,
             //cod_comissao_varejo: 1,
             //cod_jornada: 1,
-            cod_mega: $("#mega").val(),
+            id_mega: $("#mega").val(),
             //cod_visita: 1,
             //cod_canal: 1,
             TF_versao_agencia: $("#tf-versao-agencia").val(),
@@ -61,7 +61,15 @@
             //cod_replanejamento: 1,
             responsavel_neg: $("#responsavel-neg").val(),
             responsavel_DS: $("#responsavel-ds").val(),
-            resumo_iniciativa: $("#resumo-iniciativa").val()
+            resumo_iniciativa: $("#resumo-iniciativa").val(),
+            usabilidade: $("#usabilidade").val(),
+            beneficio_iniciativa: $("#beneficio-iniciativa").val()
+        };
+
+        var _farol = {
+
+            comentario: $('#comentario-farol').val()
+
         };
 
 

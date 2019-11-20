@@ -7,7 +7,7 @@ namespace NovoControleProjetos.Models
 {
     public class Orcamento
     {
-        public int? cod_orcamento { get; set; }
+        public int? id_orcamento { get; set; }
         public decimal total_aprovado { get; set; }
         public decimal total_realizado { get; set; }
         public decimal total_contratado { get; set; }

@@ -26,7 +26,7 @@ namespace NovoControleProjetos.DAL
                 {
                     etapas.Add(new Etapa
                     {
-                        Id_Etapa = Convert.ToInt32(sdr["cod_etapa"]),
+                        Id_Etapa = Convert.ToInt32(sdr["id_etapa"]),
                         Ds_Etapa = sdr["ds_etapa"] as string,
                         Ativo = Convert.ToBoolean(sdr["ativo"])
                     });

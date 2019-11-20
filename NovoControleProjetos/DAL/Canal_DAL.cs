@@ -27,7 +27,7 @@ namespace NovoControleProjetos.DAL
                 {
                     canais.Add(new Canal
                     {
-                        Id_Canal = Convert.ToInt32(sdr["cod_canal"]),
+                        Id_Canal = Convert.ToInt32(sdr["id_canal"]),
                         Ds_Canal = sdr["ds_canal"] as string,
                         Ativo = Convert.ToBoolean(sdr["ativo"])
                     });

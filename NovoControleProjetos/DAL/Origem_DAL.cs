@@ -26,7 +26,7 @@ namespace NovoControleProjetos.DAL
                 {
                     origens.Add(new Origem
                     {
-                        Id_Origem = Convert.ToInt32(sdr["cod_origem"]),
+                        Id_Origem = Convert.ToInt32(sdr["id_origem"]),
                         Ds_Origem = sdr["ds_origem"] as string
                     });
                 }

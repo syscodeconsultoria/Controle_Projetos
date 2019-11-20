@@ -27,7 +27,7 @@ namespace NovoControleProjetos.DAL
                 {
                     esteiras.Add(new Esteira
                     {
-                        Id_Esteira = Convert.ToInt32(sdr["cod_esteira"]),
+                        Id_Esteira = Convert.ToInt32(sdr["id_esteira"]),
                         Ds_Esteira = sdr["ds_esteira"] as string                        
                     });
                 }

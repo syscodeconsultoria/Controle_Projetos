@@ -26,7 +26,7 @@ namespace NovoControleProjetos.DAL
                 {
                     verticais.Add(new Vertical
                     {
-                        Id_Vertical = Convert.ToInt32(sdr["cod_vertical"]),
+                        Id_Vertical = Convert.ToInt32(sdr["id_vertical"]),
                         Ds_Vertical = sdr["ds_vertical"] as string
                     });
                 }

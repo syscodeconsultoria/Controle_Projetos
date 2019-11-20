@@ -7,7 +7,7 @@ namespace NovoControleProjetos.Models
 {
     public class Replanejamento
     {
-        public int? cod_replanejamento { get; set; }
+        public int? id_replanejamento { get; set; }
         public DateTime data_replanejamento { get; set; }
         public string motivo_replanejamento { get; set; }
     }
