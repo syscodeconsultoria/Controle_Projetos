@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NovoControleProjetos.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -37,6 +38,13 @@ namespace NovoControleProjetos.Controllers
             return true;
         }
 
+        public List<Checkados> BuscaCheckados(int? idProjeto, string tabelapath, string campo, string campoRetorno) 
+        {
+            var checkados = relacionamentos_DAL.BuscaCheckadas(idProjeto, tabelapath, campo, campoRetorno);
+            return checkados;
+        
+        }
+
         public bool DeletaRelacionamento(int idProjeto, string tabela, string campo)
         {
             try
@@ -52,5 +60,7 @@ namespace NovoControleProjetos.Controllers
 
             return true;
         }
+
+
     }
 }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 
@@ -34,6 +36,33 @@ namespace NovoControleProjetos.DAL
             con.Close();
 
             return origens;
+
+        }
+
+        public List<Checkados> OrigensCheckadas(int? id_iniciativa)
+        {
+            
+            List<Checkados> checkadas = new List<Checkados>();            
+
+            SqlCommand command = new SqlCommand("producao.UP_Controle_Projetos_Lista_Origens", con);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@id_iniciativa", id_iniciativa);
+            command.Parameters.AddWithValue(" @oper", "checkados");
+
+            con.Open();
+            using (SqlDataReader sdr = command.ExecuteReader())
+            {
+                while (sdr.Read())
+                {                   
+                    checkadas.Add(new Checkados
+                    {
+                        id_checkado = Convert.ToInt32(sdr["id_origem"])                     
+                    });
+                }
+            }
+            con.Close();
+
+            return checkadas;
 
         }
     }

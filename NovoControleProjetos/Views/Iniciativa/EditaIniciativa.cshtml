@@ -230,7 +230,7 @@
                 <div style="padding-top:15px;">
                     <label for="form-parcial-etapa" style=" padding-left: 0px; color:brown"> Origens:</label>
                 </div>
-                @{Html.RenderAction("_ListaOrigens", "Origem");}
+                @{Html.RenderAction("_ListaOrigens", "Origem", new { @id_iniciativa = Model.Id_Iniciativa });}
             </div>
         </div>
 
@@ -238,7 +238,7 @@
             <div style="padding-top:15px;">
                 <label for="form-parcial-etapa" style=" padding-left: 0px; color:brown"> Verticais:</label>
             </div>
-            @{Html.RenderAction("_ListaVerticais", "Vertical");}
+            @{Html.RenderAction("_ListaVerticais", "Vertical", new { @id_iniciativa = Model.Id_Iniciativa });}
         </div>
 
         <div class="col-lg-3" style="width: 360px; padding-right: 0px;">

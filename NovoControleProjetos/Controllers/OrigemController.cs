@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NovoControleProjetos.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace NovoControleProjetos.Controllers
     public class OrigemController : Controller
     {
         DAL.Origem_DAL origem_DAL = new DAL.Origem_DAL();
+        RelacionamentosController relacionamentosController = new RelacionamentosController();
         // GET: Origem
         public ActionResult Index()
         {
@@ -16,10 +18,15 @@ namespace NovoControleProjetos.Controllers
         }
 
        
-        public ActionResult _ListaOrigens(string tipoLista)
+        public ActionResult _ListaOrigens(string tipoLista, int? id_iniciativa)
         {
 
+            List<Checkados> checkados = new List<Checkados>();
+            checkados = relacionamentosController.BuscaCheckados(id_iniciativa, "origens", "id_projeto", "id_origem");
+            ViewBag.Checkadas = checkados;
             var origens = origem_DAL.ListaOrigens();
+
+       
             ViewBag.origens = origens;
 
             //if (tipoLista == "drop")

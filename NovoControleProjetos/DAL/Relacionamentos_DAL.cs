@@ -1,6 +1,8 @@
-﻿using System;
+﻿using NovoControleProjetos.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -69,7 +71,7 @@ namespace NovoControleProjetos.DAL
             }
         }
 
-        
+
 
 
         public bool DeletaRelacionamento(int idProjeto, string tabela, string campo)
@@ -96,12 +98,53 @@ namespace NovoControleProjetos.DAL
                     return true;
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 var execp = ex;
                 return false;
             }
 
         }
+
+        public List<Checkados> BuscaCheckadas(int? id_iniciativa, string tabelapath, string campo, string campoRetorno)
+        {
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
+
+            List<Checkados> checkadas = new List<Checkados>();
+
+            var tabela = "producao.TB_Controle_Projetos_Projeto_" + tabelapath;
+            
+            StringBuilder query = new StringBuilder();
+            query.Append("select * from " + tabela + " where " + campo + "= " + id_iniciativa + "");
+            query.Append("\n");
+
+            using (con)
+            {
+                SqlCommand command = new SqlCommand("producao.UP_Controle_Projetos_Oper_M_Relacionamentos", con);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@IdUm", id_iniciativa);
+                command.Parameters.AddWithValue("@oper", "checkados");
+                command.Parameters.AddWithValue("@String", query.ToString());
+
+
+                con.Open();
+                using (SqlDataReader sdr = command.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        checkadas.Add(new Checkados
+                        {
+                            id_checkado = Convert.ToInt32(sdr[campoRetorno])
+                        });
+                    }
+                }
+
+                con.Close();
+            }
+            return checkadas;
+
+        }
+      
     }
 }

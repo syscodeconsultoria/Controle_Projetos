@@ -155,6 +155,7 @@
     </Compile>
     <Compile Include="Models\Canal.cs" />
     <Compile Include="Models\Ceti.cs" />
+    <Compile Include="Models\Checkados.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\Etapa.cs" />
     <Compile Include="Models\Farol.cs" />

@@ -1,12 +1,16 @@
 ﻿@*@Html.CheckBoxList("chkModels", (ViewBag.verticais as MultiSelectList), Position.Vertical, 1)*@
-@{ 
+@{
     Layout = null;
 }
 
 @foreach (var item in ViewBag.verticais)
 {
+    var check = (((List<NovoControleProjetos.Models.Checkados>)ViewBag.Checkadas).Any(x => x.id_checkado == item.Id_Vertical));
+
     <div class="form-inline">
-        <input type="checkbox" name="check-vertical" value="@item.Id_Vertical" />
+        <input  id="verticaisCheck" type="checkbox" name="check-vertical" value="@item.Id_Vertical" checked="@check" />
         <label> @item.Ds_Vertical </label>
     </div>
 }
+
+

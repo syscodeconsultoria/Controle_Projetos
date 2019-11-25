@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NovoControleProjetos.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,16 +10,21 @@ namespace NovoControleProjetos.Controllers
     public class VerticalController : Controller
     {
         DAL.Vertical_DAL vertical_DAL = new DAL.Vertical_DAL();
-        
+        RelacionamentosController relacionamentosController = new RelacionamentosController();
+
         // GET: Vertical
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult _ListaVerticais(string tipoLista)
+        public ActionResult _ListaVerticais(string tipoLista, int? id_iniciativa)
         {
 
+
+            List<Checkados> checkados = new List<Checkados>();
+            checkados = relacionamentosController.BuscaCheckados(id_iniciativa, "verticais", "id_projeto", "id_vertical");
+            ViewBag.Checkadas = checkados;
             var verticais = vertical_DAL.ListaVerticais();
             ViewBag.verticais = verticais;
 
