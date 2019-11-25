@@ -1,15 +1,20 @@
-﻿@{
+﻿@model NovoControleProjetos.Models.Iniciativa
+
+@{
     Layout = null;
 }
 
+    @*<script>
+        var x = mascara(@Model.orcamento.total_aprovado, mvalor);
+    </script>*@
 
-
+<input hidden id="id-orcamento" value="@Model.orcamento.id_orcamento" />
 
 <div class="row">
     <label for="total-aprovado">Total aprovado</label>
     <div class="input-group">
         <div class="input-group-addon">R$</div>
-        <input type="text" style="width: 130px; text-align: right;" id="total-aprovado" name="total-aprovado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />
+        <input type="text" style="width: 130px; text-align: right;" id="total-aprovado" name="total-aprovado" value="@Model.orcamento.total_aprovado"  maxlength="14" class="form-control" />
     </div>
 </div>
 
@@ -18,7 +23,7 @@
     <label for="total-realizado">Total realizado</label>
     <div class="input-group">
         <div class="input-group-addon">R$</div>
-        <input type="text" style="width: 130px; text-align: right;" id="total-realizado" name="total-realizado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />
+        <input type="text" style="width: 130px; text-align: right;" id="total-realizado" name="total-realizado" value="@Model.orcamento.total_realizado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />
     </div>
 </div>
 
@@ -26,12 +31,11 @@
     <label for="total-contratado">Total contratado</label>
     <div class="input-group">
         <div class="input-group-addon">R$</div>
-        <input type="text" style="width: 130px; text-align: right;" id="total-contratado" name="total-contratado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control">
+        <input type="text" style="width: 130px; text-align: right;" id="total-contratado" name="total-contratado" value="@Model.orcamento.total_contratado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control">
     </div>
 
 </div>
-@*<label for="total_contratado">Total Contratado</label>
-    <input type="text" id="total_contratado" name="total_contratado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />*@
+
 
 
 

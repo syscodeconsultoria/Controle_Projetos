@@ -18,10 +18,10 @@ namespace NovoControleProjetos.Controllers
         }
 
         [HttpPost]
-        public int InsereOrcamento(Orcamento orcamento, int? id_iniciativa)
+        public bool InsereOrcamento(Orcamento orcamento, int? id_iniciativa)
         {
             var idOrcamento = orcamento_DAL.InsereOrcamento(orcamento, id_iniciativa);
-            return idOrcamento;
+            return true;
         }
 
         [HttpPost]
@@ -31,9 +31,16 @@ namespace NovoControleProjetos.Controllers
             return idOrcamento;
         }
 
-        public ActionResult _Create()
+        public ActionResult _Create(Orcamento orcamento)
         {
-            return PartialView();
+            if(orcamento != null) { 
+            
+            return PartialView(orcamento);
+            }
+            else
+            {
+                return PartialView();
+            }
         }
 
         public ActionResult _Details(int cod_orcamento)

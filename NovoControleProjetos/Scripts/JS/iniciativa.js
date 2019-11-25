@@ -1,10 +1,35 @@
-﻿$(document).ready(function () {
+﻿
+var background = $('#farol :selected').data('cor');
+var font = "";
+var title = $("#farol option:selected").text();
+
+if (background === 'yellow' || background === 'white') {
+    font = 'black';
+} else if (title === "") {
+    background = 'white';
+
+}
+else {
+    font = 'white';
+}
 
 
+$("#farol").css("background", background).css("color", font);
+$("#farol option").css("background", "white").css("color", "black");
+
+$(document).ready(function () {
+
+ 
 
     $("#farol").change(function () {
 
-        var background = $("#farol option:selected").val().split(' ')[1];
+       
+        $('#farol option[selected]').remove();
+    
+
+        var background = $('#farol :selected').data('cor');
+
+            //$("#farol option:selected").val().split(' ')[1];
         var font = "";
         var title = $("#farol option:selected").text();
 
@@ -27,7 +52,7 @@
 
         $.post("/Iniciativa/_InsertIniciativa", { nome: nome }, function (data) {
             var id = data;
-            window.location.href = "/Iniciativa/Create/" + id;
+            window.location.href = "/Iniciativa/EditaIniciativa?id=" + id;
         });
 
     });
@@ -46,6 +71,8 @@
             id_etapa: $("#id-etapa").val(),
            
             CPF: $("#cpf-iniciativa").val(),
+
+          
             //VPL: $("#vpl").val(),
             //cod_orcamento: 1,
             //cod_CETI: 1,
@@ -91,7 +118,12 @@
             data_ceti: $("#data-ceti").val()
         };
 
+
         var _orcamento = {
+
+            
+            
+            id_orcamento: $("#id-orcamento").val(),
             total_aprovado: $("#total-aprovado").val(),
             total_realizado: $("#total-realizado").val(),
             total_contratado: $("#total-contratado").val()

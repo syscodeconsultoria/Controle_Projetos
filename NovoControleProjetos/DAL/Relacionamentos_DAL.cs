@@ -96,8 +96,9 @@ namespace NovoControleProjetos.DAL
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex )
             {
+                var execp = ex;
                 return false;
             }
 

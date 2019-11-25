@@ -17,10 +17,11 @@ namespace NovoControleProjetos.Controllers
             return View();
         }
 
-        public ActionResult _ListaEsteiras()
+        public ActionResult _ListaEsteiras(int? id_esteira)
         {
             var esteiras = esteira_DAL.ListaEsteira();
             ViewBag.esteiras = esteiras;
+            ViewBag.id_esteira = id_esteira;
             return PartialView(esteiras);
         }
     }

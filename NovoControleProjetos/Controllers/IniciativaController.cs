@@ -22,7 +22,10 @@ namespace NovoControleProjetos.Controllers
 
         public ActionResult Create(int id)
         {
-            var projeto = iniciativa_DAL.GetIniciativa(id);
+            Iniciativa projeto = iniciativa_DAL.GetIniciativa(id);
+            Orcamento orcamento = new Orcamento();
+            projeto.orcamento = orcamento;
+
             return View(projeto);
         }
 
@@ -104,15 +107,17 @@ namespace NovoControleProjetos.Controllers
                 }
 
 
-                int idOrcamento = orcamentoController.InsereOrcamento(orcamento, iniciativa.Id_Iniciativa);
+                //int idOrcamento = 
+                    orcamentoController.InsereOrcamento(orcamento, iniciativa.Id_Iniciativa);
 
-                iniciativa.id_orcamento = idOrcamento;
+                //iniciativa.id_orcamento = idOrcamento;
                 //relacionamentosController.RelacionamentoOrcamentoProjeto(iniciativa.Id_Iniciativa, idOrcamento);          
 
                 iniciativa_DAL.UpdateIniciativa(iniciativa);
+                   
                 return RedirectToAction("Index", "Home");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 
@@ -122,7 +127,15 @@ namespace NovoControleProjetos.Controllers
            
 
         }           
-           
+        
+        
+        public ActionResult BuscaIniciativa(int? id_iniciativa)
+        {
+            Iniciativa iniciativa = new Iniciativa();
+            iniciativa = iniciativa_DAL.Buscainiciativa(id_iniciativa);
+
+            return View(iniciativa);
+        }
 
         public ActionResult _InsertIniciativa()
         {
@@ -134,6 +147,16 @@ namespace NovoControleProjetos.Controllers
         {
             var id = iniciativa_DAL.RetornaIdIniciativa(nome);
             return Json(id,JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult EditaIniciativa(int id)
+        {
+           
+            Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(id);
+
+
+            return View(iniciativa);
         }
 
         public ActionResult _DetalhesIniciativa()

@@ -4,13 +4,15 @@
     var _count = ViewBag.total;
     Layout = null;
 
+    var id_etapa = ViewBag.id_etapa;
+
 }
 
 
 @if (ViewBag.tipoLista == "drop")
 {
 
-    @Html.DropDownList("id-etapa", new SelectList(ViewBag.etapasInDrop, "id_etapa", "ds_etapa"), String.Empty, new { @class = "form-control" })
+    @Html.DropDownList("id-etapa", new SelectList(ViewBag.etapasInDrop, "id_etapa", "ds_etapa", id_etapa != null ? id_etapa : null ), String.Empty, new { @class = "form-control" })
 }
 else
 {

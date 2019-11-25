@@ -11,9 +11,9 @@ namespace NovoControleProjetos.Controllers
     public class EtapaController : Controller
     {
         DAL.Etapa_DAL etapa_DAL = new DAL.Etapa_DAL();
-        public ActionResult _ListaEtapas(string tipoLista)
+        public ActionResult _ListaEtapas(string tipoLista, int? id_etapa)
         {
-
+            ViewBag.id_etapa = id_etapa;
             var etapas = etapa_DAL.ListaEtapas().Where(x => x.Ativo == true).OrderBy(x => x.Ds_Etapa);
             //var etapas = _etapas.Where(x => x.Ativo == true).OrderBy(x => x.Ds_Etapa);
 
@@ -21,6 +21,7 @@ namespace NovoControleProjetos.Controllers
             {
                 ViewBag.tipoLista = tipoLista;
                 ViewBag.etapasInDrop = etapas;
+
             }
             else
             {

@@ -1,4 +1,9 @@
 ﻿@model IEnumerable<NovoControleProjetos.Models.Esteira>
 
-@Html.DropDownList("id-esteira", new SelectList(ViewBag.esteiras, "id_esteira", "ds_esteira"), String.Empty, new { @class = "form-control" })
+@{
+    var id_esteira = ViewBag.id_esteira;
+
+}
+
+@Html.DropDownList("id-esteira", new SelectList(ViewBag.esteiras, "id_esteira", "ds_esteira", id_esteira != null ? id_esteira : null), String.Empty, new { @class = "form-control" })
 

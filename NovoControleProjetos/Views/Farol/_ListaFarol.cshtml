@@ -1,7 +1,30 @@
-﻿@{
+﻿@model IEnumerable<NovoControleProjetos.Models.Farol>
+
+@{
     Layout = null;
+    var id_farol = ViewBag.id_farol;
+    var cor_farol = ViewBag.cor_farol;
+    var ds_farol = ViewBag.ds_farol;
 }
 
-@model IEnumerable<NovoControleProjetos.Models.Farol>
 
-@Html.DropDownList("IdFarol", new SelectList(Model, "IdFarol_CorFarol", "ds_farol"),String.Empty, new { @class = "form-control", id="farol"})
+
+@*@if (id_farol == null)
+    {
+        @Html.DropDownList("IdFarol", new SelectList(ViewBag.farois, "IdFarol", "ds_farol", id_farol != null ? id_farol : null), String.Empty, new { @class = "form-control", id = "farol", })
+    }
+    else
+    {
+        @Html.DropDownList("IdFarol", new SelectList(ViewBag.farois, "IdFarol_CorFarol", "ds_farol"), String.Empty, new { @class = "form-control", id = "farol" })
+    }*@
+
+
+    <select id="farol" class="form-control">
+        <option value="null" data-cor="white" > </option>
+        <option id="selectedValue" selected="@id_farol" value="@id_farol" data-cor="@cor_farol"> @ds_farol </option>
+        @foreach (var item in Model)
+
+        {
+            <option data-cor="@item.Cor_Farol" value="@item.IdFarol"> @item.Ds_Farol  </option>
+        }
+    </select>

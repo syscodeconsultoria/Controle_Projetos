@@ -1,30 +1,49 @@
 ﻿@model NovoControleProjetos.Models.Iniciativa
 
 
+@{
+    // Layout = null;
+
+    var usab = Model.usabilidade;
+   
+}
 
 
-<form id="form-iniciativa" style="margin-top:15px;">
+
+@*<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Create</title>
+    </head>
+    <body>*@
+
+@*<div class="container" style="padding-top:15px">*@
+
+
+
+
+<form id="form-edit-iniciativa" style="margin-top:15px;">
 
     <div class="row">
 
         <div class="col-md-2" style="padding-right: 0px; padding-left: 0px;">
 
             <label for="num-iniciativa">Nº iniciativa</label>
-            <input type="text" id="num-iniciativa" name="num-iniciativa" class="form-control" />
+            <input type="text" id="num-iniciativa" name="num-iniciativa" value="@Model.num_iniciativa" class="form-control" />
 
         </div>
 
         <div class="col-md-6">
             <label for="nome-projeto">Nome Projeto</label>
             @*<input id="nome-projeto" type="text" class="form-control" style="min-width: 100%;" />*@
-            <input type="text" id="nome-projeto" name="nome-projeto" data-id="@Model.Id_Iniciativa" class="form-control" value="@Model.nome_iniciativa"  style="min-width: 100%;" />
+            <input type="text" id="nome-projeto" name="nome-projeto" data-id="@Model.Id_Iniciativa" class="form-control" value="@Model.nome_iniciativa" style="min-width: 100%;" />
         </div>
 
         <div class="col-md-2" style="padding-left:0">
 
             <label for="inpuDepartamento">Departamento</label>
-            @*@{Html.RenderAction("_ListaDepartamentos", "Departamento");}*@
-
             @{Html.RenderAction("_ListaDepartamentos", "Departamento", new { @id_departamento = Model.id_departamento });}
 
         </div>
@@ -32,7 +51,7 @@
         <div class="col-md-2">
 
             <label for="data-aprovacao">Data Aprovação</label>
-            <input type="text" id="data-aprovacao" name="data-aprovacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
+            <input type="text" value="@Model.data_aprovacao" id="data-aprovacao" name="data-aprovacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
 
         </div>
     </div>
@@ -43,17 +62,17 @@
 
             <div class="row">
                 <label for="cores">Farol</label>
-                @{ Html.RenderAction("_ListaFarol", "Farol");}
+                @{ Html.RenderAction("_ListaFarol", "Farol", new { @id_farol = Model.id_farol, @cor_farol = Model.cor_farol, @ds_farol = Model.ds_farol });}
 
             </div>
             <div class="row">
                 <label for="esteira">Esteira</label>
-                @{Html.RenderAction("_ListaEsteiras", "Esteira");}
+                @{Html.RenderAction("_ListaEsteiras", "Esteira", new { @id_esteira = Model.id_esteira });}
             </div>
 
             <div class="row">
                 <label for="etapa">Etapa</label>
-                @{Html.RenderAction("_ListaEtapas", "Etapa", new { tipoLista = "drop" });}
+                @{Html.RenderAction("_ListaEtapas", "Etapa", new { tipoLista = "drop", @id_etapa = Model.id_etapa });}
             </div>
 
         </div>
@@ -62,22 +81,17 @@
 
             <div class="row">
                 <label style="margin-left:18px">Comentário</label>
+                @*@Html.TextAreaFor(model => model)*@
                 <textarea id="comentario-farol" rows="8" class="form-control" style="margin-left: 17px; min-width: 90%;"></textarea>
             </div>
 
         </div>
 
-
         <div class="col-md-2" style="padding-left: 0px; margin-left: 0px;">
             @*<label for="form-parcial-orcamento" style=" padding-left: 15px; color:brown" data-toggle="tooltip" data-placement="left" title="@texto"> Orçamento:</label>*@
-            @*@{Html.RenderAction("_Create", "Orcamento");}*@
-           
-        
+            @*@{Html.RenderAction("_Create", "Orcamento", new { @orcamento = Model.orcamento });}*@
 
-
-                @Html.Partial("~/Views/Orcamento/_Create.cshtml", Model)
-
-
+            @Html.Partial("~/Views/Orcamento/_Create.cshtml", Model)
 
         </div>
 
@@ -85,7 +99,7 @@
 
             <div class="row">
                 <label for="cpf-iniciativa">CPF</label>
-                <input type="text" id="cpf-iniciativa" name="cpf-iniciativa" class="form-control" />
+                <input type="text" id="cpf-iniciativa" name="cpf-iniciativa" value="@Model.CPF" class="form-control" />
             </div>
 
             <div class="row">
@@ -113,12 +127,12 @@
 
         <div class="col-sm-2">
             <label for="tf-versao-agencia">TF Agencia</label>
-            <input type="text" id="tf-versao-agencia" name="tf-versao-agencia" class="form-control" />
+            <input type="text" id="tf-versao-agencia" name="tf-versao-agencia" value="@Model.TF_versao_agencia" class="form-control" />
         </div>
 
         <div class="col-sm-2">
             <label for="tf-versao-pa">TF PA</label>
-            <input type="text" id="tf-versao-pa" name="tf-versao-pa" class="form-control" />
+            <input type="text" id="tf-versao-pa" name="tf-versao-pa" value="@Model.TF_versao_PA" class="form-control" />
         </div>
 
         <div class="col-md-2">
@@ -133,7 +147,7 @@
         <div class="col-md-2">
             <label for="jornada-analisada">Jornada foi analisada?</label>
             <select id="jornada-analisada" class="form-control">
-                <option value="none"> - </option>
+                <option value="null"> </option>
                 <option value="true">Sim</option>
                 <option value="false">Não</option>
             </select>
@@ -142,7 +156,7 @@
         <div class="col-md-2">
             <label for="inputEsteira">Mega</label>
             <select id="mega" class="form-control">
-                <option value="none"> - </option>
+                <option value="null"> </option>
                 <option value="1">Mega XPTO</option>
                 <option value="2">Mega XYZ</option>
             </select>
@@ -176,12 +190,12 @@
 
         <div class="col-sm-2">
             <label for="responsavel-neg">Contato Negócio</label>
-            <input type="text" id="responsavel-neg" name="responsavel-neg" class="form-control" />
+            <input type="text" id="responsavel-neg" name="responsavel-neg" value="@Model.responsavel_neg" class="form-control" />
         </div>
 
         <div class="col-sm-2">
             <label for="responsavel-ds">Contato DS</label>
-            <input type="text" id="responsavel-ds" name="responsavel-ds" class="form-control" />
+            <input type="text" id="responsavel-ds" name="responsavel-ds" value="@Model.responsavel_DS" class="form-control" />
         </div>
 
     </div>
@@ -205,7 +219,8 @@
             <div class="row">
                 <label for="usabilidade">Usabilidade</label>
                 <select id="usabilidade" class="form-control" style="width: 211.5px;">
-                    <option value="none"> - </option>
+                    <option selected="@Model.usabilidade"> </option>
+                    <option value="null"> </option>
                     <option value="true">Sim</option>
                     <option value="false">Não</option>
                 </select>
@@ -228,12 +243,16 @@
 
         <div class="col-lg-3" style="width: 360px; padding-right: 0px;">
             <label style="margin-left:18px">Benefício:</label>
-            <textarea id="beneficio-iniciativa" rows="10" class="form-control" style="height:179px; min-width: 100%; padding-top:0px;"></textarea>
+            @Html.TextAreaFor(model => model.beneficio_iniciativa, new { @id = "beneficio-iniciativa", @class = "form-control", @rows = "10", @style = "height:179px; min-width: 100%; padding-top:0px;" })
+
+            @*<textarea id="beneficio-iniciativa" rows="10" value="@Model.beneficio_iniciativa" class="form-control" style="height:179px; min-width: 100%; padding-top:0px;"></textarea>*@
         </div>
 
         <div class="col-lg-3" style="width: 372px;">
             <label style="margin-left:18px">Resumo:</label>
-            <textarea id="resumo-iniciativa" rows="10" class="form-control" style="height:179px; min-width: 100%; padding-top:0px;"></textarea>
+            @Html.TextAreaFor(model => model.resumo_iniciativa, new { @id = "resumo-iniciativa", @class = "form-control", @rows = "10", @style = "height:179px; min-width: 100%; padding-top:0px;" })
+
+            @*<textarea id="resumo-iniciativa" rows="10" class="form-control" value="@Model.resumo_iniciativa" style="height:179px; min-width: 100%; padding-top:0px;"></textarea>*@
         </div>
 
     </div>
@@ -244,13 +263,70 @@
     </div>
 
 </form>
-
+@*</div>
+    </body>
+    </html>*@
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/JS/iniciativa.js"></script>
 <script src="~/Scripts/JS/maskaras.js"></script>
+@Scripts.Render("~/bundles/inputmask")
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha256-Kg2zTcFO9LXOc7IwcBx1YeUBJmekycsnTsq2RuFHSZU=" crossorigin="anonymous"></script>
 
 <script>
+
+  
+
+
+   
+
+    //$("#farol option:selected").val().split(' ')[1];
+    //var font = "";
+    //var title = $("#farol option:selected").text();
+
+    //if (background === 'yellow' || background === 'white') {
+    //    font = 'black';
+    //} else if (title === "") {
+    //    background = 'white';
+
+    //}
+    //else {
+    //    font = 'white';
+    //}
+    //$("#farol option").css("background", background).css("color", font);
+    //$("#farol option").css("background", "white").css("color", "black");
+
+
+
+
+    $("#cpf-iniciativa").inputmask(
+        {
+            "mask": "99.999.999/9999-99",
+            "numericInput": true,
+            "autoUnmask": true
+
+        });
+
+    //$("#total-aprovado").inputmask('decimal', {
+    //        'alias': 'numeric',
+    //        'groupSeparator': '.',
+    //        'autoGroup': true,
+    //        'digits': 2,
+    //        'radixPoint': ".",
+    //        'digitsOptional': false,
+    //    'allowMinus': false,
+    //            'removeMaskOnSubmit': true,
+
+    //    'placeholder': ''
+
+
+    //});
+
+    $("#total-aprovado").mask("#.##0.00", { reverse: true });
+    $("#total-realizado").mask("#.##0.00", { reverse: true });
+    $("#total-contratado").mask("#.##0.00", { reverse: true });
+
 
 
 
