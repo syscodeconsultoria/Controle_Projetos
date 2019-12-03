@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -41,7 +42,7 @@ namespace NovoControleProjetos.DAL
             }
         }
 
-        public bool RelacionamentosProjetoComListas(int idProjeto, List<int> ids, string tabelapath)
+        public bool RelacionamentosProjetoComListas(int idProjeto, List<int> ids, string tabelapath, List<Etapa> etapas)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
 
@@ -49,11 +50,33 @@ namespace NovoControleProjetos.DAL
 
 
             StringBuilder query = new StringBuilder();
-            foreach (var item in ids)
+
+            if (tabelapath != "Etapas")
             {
-                query.Append("insert into " + tabela + " values(" + idProjeto + ", " + item + ")");
-                query.Append("\n");
+                foreach (var item in ids)
+                {
+                    query.Append("insert into " + tabela + " values(" + idProjeto + ", " + item + ")");
+                    query.Append("\n");
+                }
             }
+            else
+            {
+                foreach (var item in etapas)
+                {
+
+                    var dtinicio = item.dt_inicio != null ? item.dt_inicio : (DateTime?)SqlDateTime.Null;
+                    var dtfim = item.dt_fim != null ? item.dt_fim : (DateTime?)SqlDateTime.Null;
+
+                    var teste = dtinicio.Value.ToOADate();
+                    var teste2 = dtinicio.Value.Date;
+                    var teste3 = dtinicio.Value.ToString("dd-MM-yyyy");
+
+
+                    query.Append("insert into " + tabela + " values(" + idProjeto + ", " + item.Id_Etapa + ", " + " ' " + dtinicio.Value.ToString("yyyy-MM-dd") + " ' " + ", " + " ' " + dtfim.Value.ToString("yyyy-MM-dd") + " ' " + "  )");
+                    query.Append("\n");
+                }
+            }
+
 
             using (con)
             {
@@ -114,7 +137,7 @@ namespace NovoControleProjetos.DAL
             List<Checkados> checkadas = new List<Checkados>();
 
             var tabela = "producao.TB_Controle_Projetos_Projeto_" + tabelapath;
-            
+
             StringBuilder query = new StringBuilder();
             query.Append("select * from " + tabela + " where " + campo + "= " + id_iniciativa + "");
             query.Append("\n");
@@ -145,6 +168,6 @@ namespace NovoControleProjetos.DAL
             return checkadas;
 
         }
-      
+
     }
 }

@@ -29,9 +29,9 @@ namespace NovoControleProjetos.Models
         public Orcamento orcamento { get; set; }
 
         public List<int> idsOrigens { get; set; }
-
+        public int? id_orcamento { get; set; }
         //public decimal VPL { get; set; }
-        //public int? id_orcamento { get; set; }
+
         //public int id_CETI { get; set; }
         //public int id_comissao_varejo { get; set; }
         //public int id_jornada { get; set; }

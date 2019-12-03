@@ -39,7 +39,7 @@ namespace NovoControleProjetos.Controllers
 
                 if (verticais != null)
                 {
-                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, verticais.Select(x => x.Id_Vertical).ToList(), "Verticais");
+                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, verticais.Select(x => x.Id_Vertical).ToList(), "Verticais", null);
                     if (!Ok)
                     {
                         return new HttpStatusCodeResult(404);
@@ -56,7 +56,7 @@ namespace NovoControleProjetos.Controllers
 
                 if (origens != null)
                 {
-                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, origens.Select(x => x.Id_Origem).ToList(), "Origens" );
+                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, origens.Select(x => x.Id_Origem).ToList(), "Origens", null );
                     if (!Ok)
                     {
                         return new HttpStatusCodeResult(404);
@@ -73,7 +73,7 @@ namespace NovoControleProjetos.Controllers
 
                 if (etapas != null)
                 {
-                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, etapas.Select(x => x.Id_Etapa).ToList(), "Etapas" );
+                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, null, "Etapas", etapas );
                     if (!Ok)
                     {
                         return new HttpStatusCodeResult(404);
@@ -91,7 +91,7 @@ namespace NovoControleProjetos.Controllers
 
                 if (canais != null)
                 {
-                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, canais.Select(x => x.Id_Canal).ToList(), "Canais");
+                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, canais.Select(x => x.Id_Canal).ToList(), "Canais", null);
                     if (Ok)
                     {
                         return new HttpStatusCodeResult(404);
@@ -108,8 +108,10 @@ namespace NovoControleProjetos.Controllers
 
 
                 //int idOrcamento = 
+                if (orcamento != null) { 
+                 
                     orcamentoController.InsereOrcamento(orcamento, iniciativa.Id_Iniciativa);
-
+                }
                 //iniciativa.id_orcamento = idOrcamento;
                 //relacionamentosController.RelacionamentoOrcamentoProjeto(iniciativa.Id_Iniciativa, idOrcamento);          
 
@@ -154,7 +156,7 @@ namespace NovoControleProjetos.Controllers
         {
            
             Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(id);
-
+            //iniciativa.data_aprovacao.Value.ToString("dd/MM/yyyy");
 
             return View(iniciativa);
         }

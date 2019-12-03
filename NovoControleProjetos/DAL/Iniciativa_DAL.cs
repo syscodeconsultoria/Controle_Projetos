@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Web;
 
@@ -79,14 +81,17 @@ namespace NovoControleProjetos.DAL
                     iniciativa.TF_versao_PA = reader["tf_versao_pa"] as string;
                     iniciativa.resumo_iniciativa = reader["resumo_iniciativa"] as string;
                     iniciativa.beneficio_iniciativa = reader["beneficio_iniciativa"] as string;
+
                     iniciativa.id_departamento = reader["id_departamento"] != DBNull.Value ? Convert.ToInt32(reader["id_departamento"]) : (int?)null;
+
+                    iniciativa.data_aprovacao = reader["dt_aprovacao"] != DBNull.Value ? Convert.ToDateTime(reader["dt_aprovacao"]) : (DateTime?)null;
                     iniciativa.id_esteira = reader["id_esteira"] != DBNull.Value ? Convert.ToInt32(reader["id_esteira"]) : (int?)null;
                     iniciativa.id_etapa = reader["id_etapa"] != DBNull.Value ? Convert.ToInt32(reader["id_etapa"]) : (int?)null;
                     iniciativa.id_farol = reader["id_farol"] != DBNull.Value ? Convert.ToInt32(reader["id_farol"]) : (int?)null;
                     iniciativa.id_mega = reader["id_mega"] != DBNull.Value ? Convert.ToInt32(reader["id_mega"]) : (int?)null;
                     iniciativa.cor_farol = reader["cor_farol"] as string;
                     iniciativa.ds_farol = reader["ds_farol"] as string;
-                    iniciativa.usabilidade = Convert.ToBoolean(reader["usabilidade"]);
+                    //iniciativa.usabilidade = Convert.ToBoolean(reader["usabilidade"]);
 
 
 
@@ -132,6 +137,16 @@ namespace NovoControleProjetos.DAL
                 cmd.Parameters.AddWithValue("@nome_iniciativa", iniciativa.nome_iniciativa);
                 cmd.Parameters.AddWithValue("@num_iniciativa", iniciativa.num_iniciativa);
                 cmd.Parameters.AddWithValue("@id_departamento", iniciativa.id_departamento);
+                
+                if (iniciativa.data_aprovacao != null)
+                {
+                    cmd.Parameters.AddWithValue("@dt_aprovacao", iniciativa.data_aprovacao);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@dt_aprovacao", SqlDbType.DateTime).Value = SqlDateTime.Null;
+                }
+
                 //cmd.Parameters.AddWithValue("@esteira", iniciativa.Esteira);
                 cmd.Parameters.AddWithValue("@id_esteira", iniciativa.id_esteira);
                 cmd.Parameters.AddWithValue("@id_farol", iniciativa.id_farol);

@@ -19,6 +19,10 @@ $("#farol option").css("background", "white").css("color", "black");
 
 $(document).ready(function () {
 
+    $("#id-etapa").change(function () {
+        //criar inteligencia para quando alterar
+        //etapa atual, checkar no etapas, dentro de detalhes
+    });
  
 
     $("#farol").change(function () {
@@ -65,7 +69,7 @@ $(document).ready(function () {
             Nome_Iniciativa: $("#nome-projeto").val(),
             Num_Iniciativa: $("#num-iniciativa").val(),
             id_departamento: $("#id-departamento").val(),
-            //data_aprovacao: $("#data-aprovacao").val(),
+            data_aprovacao: $("#data-aprovacao").val(),
             id_farol: $("#farol").val().split(' ')[0],
             id_esteira: $("#id-esteira").val(),            
             id_etapa: $("#id-etapa").val(),
@@ -95,6 +99,7 @@ $(document).ready(function () {
 
         var _farol = {
 
+            
             comentario: $('#comentario-farol').val()
 
         };

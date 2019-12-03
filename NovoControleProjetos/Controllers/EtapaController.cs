@@ -1,5 +1,6 @@
 ﻿
 
+using NovoControleProjetos.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,19 @@ namespace NovoControleProjetos.Controllers
     public class EtapaController : Controller
     {
         DAL.Etapa_DAL etapa_DAL = new DAL.Etapa_DAL();
-        public ActionResult _ListaEtapas(string tipoLista, int? id_etapa)
+        RelacionamentosController relacionamentosController = new RelacionamentosController();
+
+        public ActionResult _ListaEtapas(string tipoLista, int? id_etapa, int? id_iniciativa)
         {
+
+            List<Checkados> checkados = new List<Checkados>();
+            checkados = relacionamentosController.BuscaCheckados(id_iniciativa, "etapas", "id_projeto", "id_etapa");
+            ViewBag.Checkadas = checkados;
+           
+
+
+
+
             ViewBag.id_etapa = id_etapa;
             var etapas = etapa_DAL.ListaEtapas().Where(x => x.Ativo == true).OrderBy(x => x.Ds_Etapa);
             //var etapas = _etapas.Where(x => x.Ativo == true).OrderBy(x => x.Ds_Etapa);

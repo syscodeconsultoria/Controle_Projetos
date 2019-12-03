@@ -51,7 +51,7 @@
         <div class="col-md-2">
 
             <label for="data-aprovacao">Data Aprovação</label>
-            <input type="text" value="@Model.data_aprovacao" id="data-aprovacao" name="data-aprovacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
+            <input type="text" value="@Model.data_aprovacao.Value.ToShortDateString()" id="data-aprovacao" name="data-aprovacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
 
         </div>
     </div>
