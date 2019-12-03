@@ -138,7 +138,7 @@ $(document).ready(function () {
             var searchIDs = $("input[name='check-etapa']:checked").map(function () {
                 var _data_inicio = $("#inicio-" + $(this).val()).val();
                 var _data_fim = $("#fim-" + $(this).val()).val();
-                return { id_etapa: $(this).val(), data_inicio: _data_inicio, data_fim: _data_fim };
+                return { id_etapa: $(this).val(), dt_inicio: _data_inicio, dt_fim: _data_fim};
             });
             return searchIDs.get();
         }
