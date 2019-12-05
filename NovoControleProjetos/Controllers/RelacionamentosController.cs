@@ -38,9 +38,10 @@ namespace NovoControleProjetos.Controllers
             return true;
         }
 
-        public List<Checkados> BuscaCheckados(int? idProjeto, string tabelapath, string campo, string campoRetorno) 
+        public List<Checkados> BuscaCheckados(int? idProjeto, string tabelapath, string campo, string campoRetorno, string dataRetornoInicio, string dataRetornoFim) 
         {
-            var checkados = relacionamentos_DAL.BuscaCheckadas(idProjeto, tabelapath, campo, campoRetorno);
+            var checkados = relacionamentos_DAL.BuscaCheckadas(idProjeto, tabelapath, campo, campoRetorno, dataRetornoInicio, dataRetornoFim);
+            //checkados.Select(x => x.dt_Inicio.Value.Date).ToList();
             return checkados;
         
         }

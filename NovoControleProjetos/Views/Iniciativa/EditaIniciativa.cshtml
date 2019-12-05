@@ -51,7 +51,7 @@
         <div class="col-md-2">
 
             <label for="data-aprovacao">Data Aprovação</label>
-            <input type="text" value="@Model.data_aprovacao.Value.ToShortDateString()" id="data-aprovacao" name="data-aprovacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
+            <input type="text" value="@Model.data_aprovacao" id="data-aprovacao" name="data-aprovacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
 
         </div>
     </div>
@@ -72,7 +72,7 @@
 
             <div class="row">
                 <label for="etapa">Etapa</label>
-                @{Html.RenderAction("_ListaEtapas", "Etapa", new { tipoLista = "drop", @id_etapa = Model.id_etapa });}
+                @{Html.RenderAction("_ListaEtapas", "Etapa", new { tipoLista = "drop" });}
             </div>
 
         </div>
@@ -208,7 +208,7 @@
     </div>
 
     <div id="detalhesDiv" class="row" style="padding-top:15px; display:none">
-        @{Html.RenderAction("_DetalhesIniciativa", "Iniciativa");}
+        @{Html.RenderAction("_DetalhesIniciativa", "Iniciativa", new { @id_iniciativa = Model.Id_Iniciativa});}
     </div>
 
 

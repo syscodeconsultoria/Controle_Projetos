@@ -22,7 +22,7 @@ namespace NovoControleProjetos.Controllers
         {
 
             List<Checkados> checkados = new List<Checkados>();
-            checkados = relacionamentosController.BuscaCheckados(id_iniciativa, "origens", "id_projeto", "id_origem");
+            checkados = relacionamentosController.BuscaCheckados(id_iniciativa, "origens", "id_projeto", "id_origem", null, null);
             ViewBag.Checkadas = checkados;
             var origens = origem_DAL.ListaOrigens();
 

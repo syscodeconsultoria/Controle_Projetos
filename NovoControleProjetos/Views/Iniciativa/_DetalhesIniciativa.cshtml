@@ -1,5 +1,7 @@
 ﻿@{
     Layout = null;
+    var id = ViewBag.id_Iniciativa;
+
 }
 
 
@@ -18,7 +20,7 @@
 
     </div>
 
-    @{Html.RenderAction("_ListaEtapas", "Etapa");}
+    @{Html.RenderAction("_ListaEtapas", "Etapa", new { @id_iniciativa = id } );}
    <br />
 
 </div>

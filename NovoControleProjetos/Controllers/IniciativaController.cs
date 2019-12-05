@@ -161,9 +161,13 @@ namespace NovoControleProjetos.Controllers
             return View(iniciativa);
         }
 
-        public ActionResult _DetalhesIniciativa()
+        public ActionResult _DetalhesIniciativa(int? id_iniciativa)
         {
+            
+            ViewBag.id_Iniciativa = id_iniciativa;
+            
             return PartialView();
+
         }
 
         public ActionResult ErroAmigavel()

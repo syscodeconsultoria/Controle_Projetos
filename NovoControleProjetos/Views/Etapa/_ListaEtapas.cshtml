@@ -17,24 +17,52 @@
 else
 {
 
-    foreach (var item in Model)
+    foreach (var item in ViewBag.etapas)
     {
+        var check = (((List<NovoControleProjetos.Models.Checkados>)ViewBag.Checkadas).Any(x => x.id_checkado == item.Id_Etapa));
+        var obj = new NovoControleProjetos.Models.Checkados();
+        obj.dt_Inicio = ((List<NovoControleProjetos.Models.Checkados>)ViewBag.Checkadas).Where(y => y.id_checkado == item.Id_Etapa).Select(y => y.dt_Inicio).FirstOrDefault();
+        obj.dt_Fim = ((List<NovoControleProjetos.Models.Checkados>)ViewBag.Checkadas).Where(y => y.id_checkado == item.Id_Etapa).Select(y => y.dt_Fim).FirstOrDefault();
+        var nulo = Convert.ToDateTime("1900-01-01");
+        var dtIni = obj.dt_Inicio != nulo ? obj.dt_Inicio : null;
+        var dtFim = obj.dt_Fim != nulo ? obj.dt_Fim : null;
 
         var iddata = item.Id_Etapa;
 
         <div class="row">
             <div class="col-md-3">
-                <input type="checkbox" name="check-etapa" value="@item.Id_Etapa" />
+                <input type="checkbox" name="check-etapa" value="@item.Id_Etapa" checked="@check"/>
                 <label> @item.Ds_Etapa </label>
             </div>
             <div class='col-md-3'>
-                <input id="inicio-@iddata" type="text" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
+                <input id="inicio-@iddata" type="text" value="@dtIni" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
             </div>
             <div class='col-md-3'>
-                <input id="fim-@iddata" type="text" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
+                <input id="fim-@iddata" type="text" value="@dtFim" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
             </div>
         </div>
+        
     }
+
+
+    @*foreach (var item in Model)
+        {
+
+            var iddata = item.Id_Etapa;
+
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="checkbox" name="check-etapa" value="@item.Id_Etapa" />
+                    <label> @item.Ds_Etapa </label>
+                </div>
+                <div class='col-md-3'>
+                    <input id="inicio-@iddata" type="text" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
+                </div>
+                <div class='col-md-3'>
+                    <input id="fim-@iddata" type="text" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
+                </div>
+            </div>
+        }*@
 
     @*@Html.CheckBoxList("chkModelsEtapas", (ViewBag.etapas as MultiSelectList), Position.Vertical, new { @class = "form-control" }, 2)*@
 }
@@ -44,17 +72,7 @@ else
 
 @*@Html.CheckBoxList("chkModelsOrigem", (ViewBag.origens as MultiSelectList), Position.Vertical, new { @class = "form-control" }, 1)*@
 
-@foreach (var item in ViewBag.origens)
-{
-    var check = (((List<NovoControleProjetos.Models.Checkados>)ViewBag.Checkadas).Any(x => x.id_checkado == item.Id_Origem));
 
-    <div class="form-inline">
-
-        <input id="origensCheck" type="checkbox" name="check-origem" value="@item.Id_Origem" checked="@check" />
-        <label> @item.Ds_Origem </label>
-      
-    </div>
-}
 
 
 

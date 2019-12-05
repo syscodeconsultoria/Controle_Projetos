@@ -23,7 +23,7 @@ namespace NovoControleProjetos.Controllers
 
 
             List<Checkados> checkados = new List<Checkados>();
-            checkados = relacionamentosController.BuscaCheckados(id_iniciativa, "verticais", "id_projeto", "id_vertical");
+            checkados = relacionamentosController.BuscaCheckados(id_iniciativa, "verticais", "id_projeto", "id_vertical", null, null);
             ViewBag.Checkadas = checkados;
             var verticais = vertical_DAL.ListaVerticais();
             ViewBag.verticais = verticais;

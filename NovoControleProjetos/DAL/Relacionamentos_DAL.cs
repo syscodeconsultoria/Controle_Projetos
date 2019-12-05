@@ -64,15 +64,11 @@ namespace NovoControleProjetos.DAL
                 foreach (var item in etapas)
                 {
 
-                    var dtinicio = item.dt_inicio != null ? item.dt_inicio : (DateTime?)SqlDateTime.Null;
-                    var dtfim = item.dt_fim != null ? item.dt_fim : (DateTime?)SqlDateTime.Null;
+                    var dtinicio = item.dt_inicio != null ? item.dt_inicio.Value.ToString("yyyy-MM-dd") : null;
+                    var dtfim = item.dt_fim != null ? item.dt_fim.Value.ToString("yyyy-MM-dd") : null;
+                    
 
-                    var teste = dtinicio.Value.ToOADate();
-                    var teste2 = dtinicio.Value.Date;
-                    var teste3 = dtinicio.Value.ToString("dd-MM-yyyy");
-
-
-                    query.Append("insert into " + tabela + " values(" + idProjeto + ", " + item.Id_Etapa + ", " + " ' " + dtinicio.Value.ToString("yyyy-MM-dd") + " ' " + ", " + " ' " + dtfim.Value.ToString("yyyy-MM-dd") + " ' " + "  )");
+                    query.Append("insert into " + tabela + " values(" + idProjeto + ", " + item.Id_Etapa + ", " + " ' " + dtinicio + " ' " + ", " + " ' " + dtfim + " ' " + "  )");
                     query.Append("\n");
                 }
             }
@@ -129,13 +125,13 @@ namespace NovoControleProjetos.DAL
 
         }
 
-        public List<Checkados> BuscaCheckadas(int? id_iniciativa, string tabelapath, string campo, string campoRetorno)
+        public List<Checkados> BuscaCheckadas(int? id_iniciativa, string tabelapath, string campo, string campoRetorno, string dataRetornoInicio, string dataRetornoFim)
         {
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
 
             List<Checkados> checkadas = new List<Checkados>();
-
+            var oper = dataRetornoInicio != null ? "checkCDatas" : "checkadas";
             var tabela = "producao.TB_Controle_Projetos_Projeto_" + tabelapath;
 
             StringBuilder query = new StringBuilder();
@@ -147,19 +143,39 @@ namespace NovoControleProjetos.DAL
                 SqlCommand command = new SqlCommand("producao.UP_Controle_Projetos_Oper_M_Relacionamentos", con);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@IdUm", id_iniciativa);
-                command.Parameters.AddWithValue("@oper", "checkados");
+                command.Parameters.AddWithValue("@oper", oper);
                 command.Parameters.AddWithValue("@String", query.ToString());
 
-
-                con.Open();
-                using (SqlDataReader sdr = command.ExecuteReader())
+                if (tabelapath == "etapas")
                 {
-                    while (sdr.Read())
+                    con.Open();
+                    using (SqlDataReader sdr = command.ExecuteReader())
                     {
-                        checkadas.Add(new Checkados
+                        while (sdr.Read())
                         {
-                            id_checkado = Convert.ToInt32(sdr[campoRetorno])
-                        });
+                            checkadas.Add(new Checkados
+                            {
+                                id_checkado = Convert.ToInt32(sdr[campoRetorno]),
+                                dt_Inicio = sdr[dataRetornoInicio] != DBNull.Value ? Convert.ToDateTime(sdr[dataRetornoInicio]) : (DateTime?)null,
+                                dt_Fim = sdr[dataRetornoFim] != DBNull.Value ? Convert.ToDateTime(sdr[dataRetornoFim]) : (DateTime?)null,
+                            });
+                        }
+                    }
+                }
+                else
+                {
+                    con.Open();
+                    using (SqlDataReader sdr = command.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            checkadas.Add(new Checkados
+                            {
+                                id_checkado = Convert.ToInt32(sdr[campoRetorno])
+                                //dt_Inicio = sdr[dataRetornoInicio] != DBNull.Value ? Convert.ToDateTime(sdr[dataRetornoInicio]) : (DateTime?)null,
+                                //dt_Fim = sdr[dataRetornoFim] != DBNull.Value ? Convert.ToDateTime(sdr[dataRetornoFim]) : (DateTime?)null,
+                            });
+                        }
                     }
                 }
 

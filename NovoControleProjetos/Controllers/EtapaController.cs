@@ -18,9 +18,12 @@ namespace NovoControleProjetos.Controllers
         {
 
             List<Checkados> checkados = new List<Checkados>();
-            checkados = relacionamentosController.BuscaCheckados(id_iniciativa, "etapas", "id_projeto", "id_etapa");
+            if(id_iniciativa != null) { 
+            checkados = relacionamentosController.BuscaCheckados(id_iniciativa, "etapas", "id_projeto", "id_etapa", "dt_inicio", "dt_fim");
+                
             ViewBag.Checkadas = checkados;
-           
+            }
+
 
 
 
