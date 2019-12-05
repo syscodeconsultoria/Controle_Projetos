@@ -42,7 +42,7 @@ namespace NovoControleProjetos.DAL
             }
         }
 
-        public bool RelacionamentosProjetoComListas(int idProjeto, List<int> ids, string tabelapath, List<Etapa> etapas)
+        public bool RelacionamentosProjetoComListas(int idProjeto, List<int> ids, string tabelapath, List<Etapa> etapas, List<Canal> canais)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
 
@@ -51,7 +51,7 @@ namespace NovoControleProjetos.DAL
 
             StringBuilder query = new StringBuilder();
 
-            if (tabelapath != "Etapas")
+            if (tabelapath != "Etapas" && tabelapath != "Canais")
             {
                 foreach (var item in ids)
                 {
@@ -59,16 +59,25 @@ namespace NovoControleProjetos.DAL
                     query.Append("\n");
                 }
             }
-            else
+            else if (tabelapath == "Etapas")
             {
                 foreach (var item in etapas)
                 {
 
                     var dtinicio = item.dt_inicio != null ? item.dt_inicio.Value.ToString("yyyy-MM-dd") : null;
                     var dtfim = item.dt_fim != null ? item.dt_fim.Value.ToString("yyyy-MM-dd") : null;
-                    
+
 
                     query.Append("insert into " + tabela + " values(" + idProjeto + ", " + item.Id_Etapa + ", " + " ' " + dtinicio + " ' " + ", " + " ' " + dtfim + " ' " + "  )");
+                    query.Append("\n");
+                }
+            }
+            else if (tabelapath == "Canais") {
+                foreach (var item in canais)
+                {
+                    var dtinicio = item.Data_Canal != null ? item.Data_Canal.Value.ToString("yyyy-MM-dd") : null;
+                    //var dtfim = item.dt_fim != null ? item.dt_fim.Value.ToString("yyyy-MM-dd") : null;                    
+                    query.Append("insert into " + tabela + " values(" + idProjeto + ", " + item.Id_Canal + ", " + " ' " + dtinicio + " ' " + ")");
                     query.Append("\n");
                 }
             }
@@ -161,6 +170,23 @@ namespace NovoControleProjetos.DAL
                             });
                         }
                     }
+                }
+                else if (tabelapath == "canais")
+                {
+                    con.Open();
+                    using (SqlDataReader sdr = command.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            checkadas.Add(new Checkados
+                            {
+                                id_checkado = Convert.ToInt32(sdr[campoRetorno]),
+                                dt_Inicio = sdr[dataRetornoInicio] != DBNull.Value ? Convert.ToDateTime(sdr[dataRetornoInicio]) : (DateTime?)null,
+                                //dt_Fim = sdr[dataRetornoFim] != DBNull.Value ? Convert.ToDateTime(sdr[dataRetornoFim]) : (DateTime?)null,
+                            });
+                        }
+                    }
+
                 }
                 else
                 {

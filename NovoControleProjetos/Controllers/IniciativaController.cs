@@ -12,6 +12,7 @@ namespace NovoControleProjetos.Controllers
         DAL.Iniciativa_DAL iniciativa_DAL = new DAL.Iniciativa_DAL();
         OrcamentoController orcamentoController = new OrcamentoController();
         RelacionamentosController relacionamentosController = new RelacionamentosController();
+        CetiController cetiController = new CetiController();
 
 
         // GET: Iniciativa
@@ -39,7 +40,7 @@ namespace NovoControleProjetos.Controllers
 
                 if (verticais != null)
                 {
-                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, verticais.Select(x => x.Id_Vertical).ToList(), "Verticais", null);
+                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, verticais.Select(x => x.Id_Vertical).ToList(), "Verticais", null, null);
                     if (!Ok)
                     {
                         return new HttpStatusCodeResult(404);
@@ -56,7 +57,7 @@ namespace NovoControleProjetos.Controllers
 
                 if (origens != null)
                 {
-                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, origens.Select(x => x.Id_Origem).ToList(), "Origens", null );
+                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, origens.Select(x => x.Id_Origem).ToList(), "Origens", null, null);
                     if (!Ok)
                     {
                         return new HttpStatusCodeResult(404);
@@ -73,7 +74,7 @@ namespace NovoControleProjetos.Controllers
 
                 if (etapas != null)
                 {
-                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, null, "Etapas", etapas );
+                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, null, "Etapas", etapas, null);
                     if (!Ok)
                     {
                         return new HttpStatusCodeResult(404);
@@ -87,12 +88,12 @@ namespace NovoControleProjetos.Controllers
                         return RedirectToAction("Error", "Home");
                     }
                 }
-                
+
 
                 if (canais != null)
                 {
-                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, canais.Select(x => x.Id_Canal).ToList(), "Canais", null);
-                    if (Ok)
+                    bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, canais.Select(x => x.Id_Canal).ToList(), "Canais", null, canais);
+                    if (!Ok)
                     {
                         return new HttpStatusCodeResult(404);
                     }
@@ -108,29 +109,47 @@ namespace NovoControleProjetos.Controllers
 
 
                 //int idOrcamento = 
-                if (orcamento != null) { 
-                 
+                if (orcamento != null)
+                {
+
                     orcamentoController.InsereOrcamento(orcamento, iniciativa.Id_Iniciativa);
+                }
+
+                if (ceti != null)
+                {
+                    Ceti objCeti = new Ceti();
+                    if (iniciativa.id_CETI != null)
+                    {
+                        objCeti = cetiController.BuscaCeti(null, iniciativa.id_CETI);
+                    }
+                    //buscar a data ceti no banco
+                    // se a data ceti no banco for igual a que está vindo no objeto ceti
+                    // faço update, se for diferente, faço insert
+
+                    var oper = ceti.Data_Ceti != objCeti.Data_Ceti ? "I" : "U";
+
+                    cetiController.InsereCeti(ceti, iniciativa.Id_Iniciativa, oper );
+
                 }
                 //iniciativa.id_orcamento = idOrcamento;
                 //relacionamentosController.RelacionamentoOrcamentoProjeto(iniciativa.Id_Iniciativa, idOrcamento);          
 
                 iniciativa_DAL.UpdateIniciativa(iniciativa);
-                   
+
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
 
-                
+
                 throw;
             }
 
-           
 
-        }           
-        
-        
+
+        }
+
+
         public ActionResult BuscaIniciativa(int? id_iniciativa)
         {
             Iniciativa iniciativa = new Iniciativa();
@@ -148,25 +167,24 @@ namespace NovoControleProjetos.Controllers
         public JsonResult _InsertIniciativa(string nome)
         {
             var id = iniciativa_DAL.RetornaIdIniciativa(nome);
-            return Json(id,JsonRequestBehavior.AllowGet);
+            return Json(id, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public ActionResult EditaIniciativa(int id)
         {
-           
-            Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(id);
-           
 
-         
+            Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(id);
+
+
             return View(iniciativa);
         }
 
         public ActionResult _DetalhesIniciativa(int? id_iniciativa)
         {
-            
+
             ViewBag.id_Iniciativa = id_iniciativa;
-            
+
             return PartialView();
 
         }

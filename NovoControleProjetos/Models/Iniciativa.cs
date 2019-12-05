@@ -27,12 +27,12 @@ namespace NovoControleProjetos.Models
         public bool usabilidade { get; set; }
         public string beneficio_iniciativa { get; set; }
         public Orcamento orcamento { get; set; }
-
+        public Ceti ceti { get; set; }
         public List<int> idsOrigens { get; set; }
         public int? id_orcamento { get; set; }
         //public decimal VPL { get; set; }
 
-        //public int id_CETI { get; set; }
+        public int? id_CETI { get; set; }
         //public int id_comissao_varejo { get; set; }
         //public int id_jornada { get; set; }
         //public int id_origem { get; set; }

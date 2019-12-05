@@ -105,6 +105,14 @@ namespace NovoControleProjetos.DAL
 
                     };
 
+                    iniciativa.ceti = new Ceti
+                    {
+                        id_CETI = reader["id_CETI"] != DBNull.Value ? Convert.ToInt32(reader["id_CETI"]) : (int?)null,
+                        Total_Aprovado_Ceti = reader["tot_aprovado_ceti"] != null ? Convert.ToString(reader["tot_aprovado_ceti"]) : null,
+                        Data_Ceti = reader["dt_CETI"] != DBNull.Value ? Convert.ToDateTime(reader["dt_CETI"]) : (DateTime?)null,
+
+                    };
+
                     //iniciativa.idsOrigens = new List<int>();
 
                     //if (!idsOrigs.Exists(i => i.Id_Origem.ToString().Equals(reader["id_origem"])))
@@ -118,7 +126,6 @@ namespace NovoControleProjetos.DAL
 
 
                 }
-
 
 
                 return iniciativa;
@@ -137,7 +144,7 @@ namespace NovoControleProjetos.DAL
                 cmd.Parameters.AddWithValue("@nome_iniciativa", iniciativa.nome_iniciativa);
                 cmd.Parameters.AddWithValue("@num_iniciativa", iniciativa.num_iniciativa);
                 cmd.Parameters.AddWithValue("@id_departamento", iniciativa.id_departamento);
-                
+
                 if (iniciativa.data_aprovacao != null)
                 {
                     cmd.Parameters.AddWithValue("@dt_aprovacao", iniciativa.data_aprovacao);

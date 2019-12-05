@@ -7,6 +7,7 @@
     var usab = Model.usabilidade;
     var dtNulo = Convert.ToDateTime("1900-01-01");
     string dtAprovacao = Model.data_aprovacao != null ? Model.data_aprovacao.Value.ToShortDateString() : null;
+    string dtCeti = Model.ceti.Data_Ceti != null ? Model.ceti.Data_Ceti.Value.ToShortDateString() : null;
 
 }
 
@@ -108,12 +109,12 @@
                 <label for="total-aprovado-ceti">Total Aprovado CETI</label>
                 <div class="input-group">
                     <div class="input-group-addon">R$</div>
-                    <input type="text" id="total-aprovado-ceti" name="total-aprovado-ceti" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />
+                    <input type="text" id="total-aprovado-ceti" @*value="@Model.ceti.Total_Aprovado_Ceti"*@ name="total-aprovado-ceti" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />
                 </div>
             </div>
             <div class="row">
                 <label for="data-ceti">Data CETI</label>
-                <input type="text" id="data-ceti" data-date="data" name="data-ceti" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
+                <input type="text" id="data-ceti" value="@dtCeti" data-date="data" name="data-ceti" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
             </div>
 
         </div>
@@ -328,6 +329,8 @@
     $("#total-aprovado").mask("#.##0.00", { reverse: true });
     $("#total-realizado").mask("#.##0.00", { reverse: true });
     $("#total-contratado").mask("#.##0.00", { reverse: true });
+
+    $("#total-aprovado-ceti").mask("#.##0.00", { reverse: true });
 
 
 

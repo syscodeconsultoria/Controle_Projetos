@@ -7,7 +7,8 @@ namespace NovoControleProjetos.Models
 {
     public class Ceti
     {
-        public decimal Total_Aprovado_Ceti { get; set; }
-        public DateTime Data_Ceti { get; set; }
+        public int? id_CETI { get; set; }
+        public string Total_Aprovado_Ceti { get; set; }
+        public DateTime? Data_Ceti { get; set; }
     }
 }
