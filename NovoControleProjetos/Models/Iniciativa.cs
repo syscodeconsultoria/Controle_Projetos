@@ -12,7 +12,7 @@ namespace NovoControleProjetos.Models
         public int? num_iniciativa { get; set; }
         public int? id_departamento { get; set; }
         public DateTime? data_aprovacao { get; set; }
-        public int? id_esteira { get; set; }        
+        public int? id_esteira { get; set; }  
         public int? id_farol { get; set; }
         public string cor_farol { get; set; }
         public string ds_farol { get; set; }

@@ -131,7 +131,7 @@ namespace NovoControleProjetos.DAL
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
 
             List<Checkados> checkadas = new List<Checkados>();
-            var oper = dataRetornoInicio != null ? "checkCDatas" : "checkadas";
+            var oper = dataRetornoInicio != null ? "checkCDatas" : "checkados";
             var tabela = "producao.TB_Controle_Projetos_Projeto_" + tabelapath;
 
             StringBuilder query = new StringBuilder();

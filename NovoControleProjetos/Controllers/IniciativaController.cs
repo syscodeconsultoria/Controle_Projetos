@@ -156,8 +156,9 @@ namespace NovoControleProjetos.Controllers
         {
            
             Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(id);
-            //iniciativa.data_aprovacao.Value.ToString("dd/MM/yyyy");
+           
 
+         
             return View(iniciativa);
         }
 

@@ -26,6 +26,8 @@ else
         var nulo = Convert.ToDateTime("1900-01-01");
         var dtIni = obj.dt_Inicio != nulo ? obj.dt_Inicio : null;
         var dtFim = obj.dt_Fim != nulo ? obj.dt_Fim : null;
+        var dtInicio = dtIni != null ? dtIni.Value.ToShortDateString() : null;
+        var dt_Fim = dtFim != null ? dtFim.Value.ToShortDateString() : null;
 
         var iddata = item.Id_Etapa;
 
@@ -35,10 +37,10 @@ else
                 <label> @item.Ds_Etapa </label>
             </div>
             <div class='col-md-3'>
-                <input id="inicio-@iddata" type="text" value="@dtIni" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
+                <input id="inicio-@iddata" type="text" value="@dtInicio" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
             </div>
             <div class='col-md-3'>
-                <input id="fim-@iddata" type="text" value="@dtFim" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
+                <input id="fim-@iddata" type="text" value="@dt_Fim" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
             </div>
         </div>
         
