@@ -17,10 +17,11 @@ namespace NovoControleProjetos.Controllers
             return View();
         }
 
-        public ActionResult _ListaDepartamentos()
+        public ActionResult _ListaDepartamentos(int? id_departamento)
         {
             var departamentos = departamento_DAL.ListaDepartamentos();
             ViewBag.departamentos = departamentos;
+            ViewBag.id_departamento = id_departamento;
             return PartialView(departamentos);
         }
     }

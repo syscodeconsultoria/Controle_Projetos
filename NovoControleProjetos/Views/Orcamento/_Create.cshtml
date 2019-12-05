@@ -1,21 +1,42 @@
-﻿@{
+﻿@model NovoControleProjetos.Models.Iniciativa
+
+@{
     Layout = null;
 }
 
-<div class="form-create-orcamento">
-    <div class="col-md-3">
-        <label for="total_aprovado">Total Aprovavado</label>
-        <input type="number" id="total_aprovado" name="total_aprovado" class="form-control" />
-    </div>
-    <div class="col-md-3">
-        <label for="total_realizado">Total Aprovado</label>
-        <input type="number" id="total_realizado" name="total_realizado" class="form-control" />
-    </div>
-    <div class="col-md-3">
-        <label for="total_contratado">Total Contratado</label>
-        <input type="number" id="total_contratado" name="total_contratado" class="form-control" />
+    @*<script>
+        var x = mascara(@Model.orcamento.total_aprovado, mvalor);
+    </script>*@
+
+<input hidden id="id-orcamento" value="@Model.orcamento.id_orcamento" />
+
+<div class="row">
+    <label for="total-aprovado">Total aprovado</label>
+    <div class="input-group">
+        <div class="input-group-addon">R$</div>
+        <input type="text" style="width: 130px; text-align: right;" id="total-aprovado" name="total-aprovado" value="@Model.orcamento.total_aprovado"  maxlength="14" class="form-control" />
     </div>
 </div>
+
+<div class="row">
+
+    <label for="total-realizado">Total realizado</label>
+    <div class="input-group">
+        <div class="input-group-addon">R$</div>
+        <input type="text" style="width: 130px; text-align: right;" id="total-realizado" name="total-realizado" value="@Model.orcamento.total_realizado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />
+    </div>
+</div>
+
+<div class="row">
+    <label for="total-contratado">Total contratado</label>
+    <div class="input-group">
+        <div class="input-group-addon">R$</div>
+        <input type="text" style="width: 130px; text-align: right;" id="total-contratado" name="total-contratado" value="@Model.orcamento.total_contratado" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control">
+    </div>
+
+</div>
+
+
 
 
 

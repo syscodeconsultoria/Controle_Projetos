@@ -1,4 +1,9 @@
 ﻿@model IEnumerable<NovoControleProjetos.Models.Departamento>
+@{
+    var id_departamento = ViewBag.id_departamento;
+}
 
-@Html.DropDownList("id_departamento", new SelectList(ViewBag.departamentos, "id_departamento", "ds_departamento"), String.Empty, new { @class = "form-control" })
+
+@Html.DropDownList("id-departamento", new SelectList(ViewBag.departamentos, "id_departamento", "ds_departamento", id_departamento != null ? id_departamento : id_departamento != 0 ? id_departamento : null), String.Empty, new { @class = "form-control" })
+
 

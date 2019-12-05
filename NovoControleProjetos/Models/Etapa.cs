@@ -9,6 +9,9 @@ namespace NovoControleProjetos.Models
     {
         public int Id_Etapa { get; set; }
         public string Ds_Etapa { get; set; }
+        public bool Ativo { get; set; }
+        public DateTime? dt_inicio { get; set; }
+        public DateTime? dt_fim { get; set; }
 
     }
 }

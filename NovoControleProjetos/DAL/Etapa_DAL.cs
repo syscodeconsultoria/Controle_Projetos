@@ -12,7 +12,7 @@ namespace NovoControleProjetos.DAL
     public class Etapa_DAL
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
-        public List<Etapa> ListaEsteira()
+        public List<Etapa> ListaEtapas()
         {
             List<Etapa> etapas = new List<Etapa>();
 
@@ -26,8 +26,9 @@ namespace NovoControleProjetos.DAL
                 {
                     etapas.Add(new Etapa
                     {
-                        Id_Etapa = Convert.ToInt32(sdr["cod_etapa"]),
-                        Ds_Etapa = sdr["ds_etapa"] as string
+                        Id_Etapa = Convert.ToInt32(sdr["id_etapa"]),
+                        Ds_Etapa = sdr["ds_etapa"] as string,
+                        Ativo = Convert.ToBoolean(sdr["ativo"])
                     });
                 }
             }
