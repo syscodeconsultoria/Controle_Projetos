@@ -76,3 +76,4 @@ _[Ss]cripts
 .vs/*
 */sqlite3*
 Web.config
+/NovoControleProjetos/Properties/PublishProfiles/FolderProfile.pubxml
