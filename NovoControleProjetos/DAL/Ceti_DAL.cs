@@ -13,9 +13,12 @@ namespace NovoControleProjetos.DAL
     public class Ceti_DAL
     {
 
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
-        public int InsereCetiRetornaId(Ceti ceti, int? id_iniciativa, string oper)
+        //SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
+        public int InsereCetiRetornaId(Ceti ceti, int? id_iniciativa, int? id_ceti, string oper)
         {
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
+
             using (con)
             {
 
@@ -27,8 +30,14 @@ namespace NovoControleProjetos.DAL
                 var cmd = new SqlCommand("producao.UP_Controle_Projetos_Oper_M_Ceti", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 con.Open();
+                if(id_ceti != null)
+                {
+                    cmd.Parameters.AddWithValue("@id_CETI", id_ceti);
+                }
                 cmd.Parameters.AddWithValue("@OPER", oper);
                 cmd.Parameters.AddWithValue("@total_aprovado_ceti", Convert.ToDecimal(ceti.Total_Aprovado_Ceti));
+                
+
                 if (ceti.Data_Ceti != null)
                 {
                     cmd.Parameters.AddWithValue("@dt_CETI", ceti.Data_Ceti);
@@ -38,12 +47,23 @@ namespace NovoControleProjetos.DAL
                     cmd.Parameters.AddWithValue("@dt_CETI", SqlDbType.DateTime).Value = SqlDateTime.Null;
                 }
 
-                return (int)cmd.ExecuteScalar();
+                if (oper == "U")
+                {
+                    cmd.ExecuteNonQuery();
+
+                    return (int)id_ceti;
+                }
+                else
+                {
+                    return (int)cmd.ExecuteScalar();
+                }
             }
         }
 
         public Ceti BuscaCeti(int? id_ceti, int? id_iniciativa, string oper)
         {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
+
             Ceti ceti = new Ceti();
 
             using (con)

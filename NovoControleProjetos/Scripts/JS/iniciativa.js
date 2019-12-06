@@ -73,6 +73,8 @@ $(document).ready(function () {
             id_farol: $("#farol").val().split(' ')[0],
             id_esteira: $("#id-esteira").val(),            
             id_etapa: $("#id-etapa").val(),
+            data_piloto: $("#data-piloto").val(),
+            data_plenouso: $("#pleno-uso").val(),
            
             CPF: $("#cpf-iniciativa").val(),
 

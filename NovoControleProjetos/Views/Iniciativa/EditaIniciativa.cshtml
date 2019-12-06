@@ -8,6 +8,8 @@
     var dtNulo = Convert.ToDateTime("1900-01-01");
     string dtAprovacao = Model.data_aprovacao != null ? Model.data_aprovacao.Value.ToShortDateString() : null;
     string dtCeti = Model.ceti.Data_Ceti != null ? Model.ceti.Data_Ceti.Value.ToShortDateString() : null;
+    string dtPiloto = Model.data_piloto != null ? Model.data_piloto.Value.ToShortDateString() : null;
+    string dtPlenoUso = Model.data_plenouso != null ? Model.data_plenouso.Value.ToShortDateString() : null;
 
 }
 
@@ -109,15 +111,17 @@
                 </div>
 
             <div class="row">
+
+                <input hidden id="id-ceti" value="@Model.id_ceti" />
                 <label for="total-aprovado-ceti">Total Aprovado CETI</label>
                 <div class="input-group">
                     <div class="input-group-addon">R$</div>
-                    <input type="text" id="total-aprovado-ceti" name="total-aprovado-ceti" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />
+                    <input type="text" id="total-aprovado-ceti" value="@Model.ceti.Total_Aprovado_Ceti" name="total-aprovado-ceti" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />
                 </div>
             </div>
             <div class="row">
                 <label for="data-ceti">Data CETI</label>
-                <input type="text" id="data-ceti" data-date="data" name="data-ceti" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
+                <input type="text" id="data-ceti" data-date="data" value="@dtCeti" name="data-ceti" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
             </div>
 
             </div>
@@ -128,7 +132,7 @@
 
             <div class="col-sm-2" style="padding-left:0">
                 <label for="data-piloto">Piloto</label>
-                <input type="text" id="data-piloto" name="data-piloto" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
+                <input type="text" id="data-piloto" name="data-piloto" value="@dtPiloto" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
             </div>
 
             <div class="col-sm-2">
@@ -176,7 +180,7 @@
 
             <div class="col-sm-2" style="padding-left:0">
                 <label for="data-plenouso">Pleno Uso</label>
-                <input type="text" id="pleno-uso" name="pleno-uso" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
+                <input type="text" id="pleno-uso" name="pleno-uso" value="@dtPlenoUso" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
             </div>
 
             <div class="col-sm-2">

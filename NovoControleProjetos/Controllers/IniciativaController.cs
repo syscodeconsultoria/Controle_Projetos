@@ -116,20 +116,21 @@ namespace NovoControleProjetos.Controllers
                     orcamentoController.InsereOrcamento(orcamento, iniciativa.Id_Iniciativa);
                 }
 
-                if (ceti != null)
+                
+                if (ceti.Data_Ceti != null || ceti.Total_Aprovado_Ceti != null || iniciativa.id_ceti != null)
                 {
                     Ceti objCeti = new Ceti();
+                    string oper = null;
                     if (iniciativa.id_ceti != null)
                     {
                         objCeti = cetiController.BuscaCeti(null, iniciativa.id_ceti);
+                        oper = ceti.Data_Ceti != objCeti.Data_Ceti ? "I" : "U";
                     }
                     //buscar a data ceti no banco
                     // se a data ceti no banco for igual a que está vindo no objeto ceti
                     // faço update, se for diferente, faço insert
-
-                    var oper = ceti.Data_Ceti != objCeti.Data_Ceti ? "I" : "U";
-
-                   var id_ceti = cetiController.InsereCeti(ceti, iniciativa.Id_Iniciativa, oper );
+ 
+                   var id_ceti = cetiController.InsereCeti(ceti, iniciativa.Id_Iniciativa, iniciativa.id_ceti, oper ?? "I");
 
                     iniciativa.id_ceti = id_ceti;
 
