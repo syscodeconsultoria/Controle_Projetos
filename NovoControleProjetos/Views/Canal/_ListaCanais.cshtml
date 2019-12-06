@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     Layout = null;
 }
 
@@ -9,16 +9,56 @@
 
     var iddata = item.Id_Canal;
 
+     var check = (((List<NovoControleProjetos.Models.Checkados>)ViewBag.Checkadas).Any(x => x.id_checkado == item.Id_Canal));
 
+    var obj = new NovoControleProjetos.Models.Checkados();
+    obj.dt_Inicio = ((List<NovoControleProjetos.Models.Checkados>)ViewBag.Checkadas).Where(y => y.id_checkado == item.Id_Canal).Select(y => y.dt_Inicio).FirstOrDefault();
+       
+            var nulo = Convert.ToDateTime("1900-01-01");
+            var dtIni = obj.dt_Inicio != nulo ? obj.dt_Inicio : null;          
+            var dtInicio = dtIni != null ? dtIni.Value.ToShortDateString() : null;
+            
 
     <div class="col-md-3">
-        <input type="checkbox" name="check-canal" value="@item.Id_Canal" />
+        <input type="checkbox" name="check-canal" value="@item.Id_Canal" checked="@check"/>
         <label> @item.Ds_Canal </label>
     </div>
     <div class='col-md-3'>
-        <input id="datacanal-@iddata" type="text" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
+        <input id="datacanal-@iddata" value="@dtInicio" type="text" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
     </div>
 
 
 }
 
+
+
+ @*@foreach (var item in ViewBag.etapas)
+    {
+        var check = (((List<NovoControleProjetos.Models.Checkados>)ViewBag.Checkadas).Any(x => x.id_checkado == item.Id_Etapa));
+    var obj = new NovoControleProjetos.Models.Checkados();
+    obj.dt_Inicio = ((List<NovoControleProjetos.Models.Checkados>
+        )ViewBag.Checkadas).Where(y => y.id_checkado == item.Id_Etapa).Select(y => y.dt_Inicio).FirstOrDefault();
+        obj.dt_Fim = ((List<NovoControleProjetos.Models.Checkados>
+            )ViewBag.Checkadas).Where(y => y.id_checkado == item.Id_Etapa).Select(y => y.dt_Fim).FirstOrDefault();
+            var nulo = Convert.ToDateTime("1900-01-01");
+            var dtIni = obj.dt_Inicio != nulo ? obj.dt_Inicio : null;
+            var dtFim = obj.dt_Fim != nulo ? obj.dt_Fim : null;
+            var dtInicio = dtIni != null ? dtIni.Value.ToShortDateString() : null;
+            var dt_Fim = dtFim != null ? dtFim.Value.ToShortDateString() : null;
+
+            var iddata = item.Id_Etapa;
+
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="checkbox" name="check-etapa" value="@item.Id_Etapa" checked="@check" />
+                    <label> @item.Ds_Etapa </label>
+                </div>
+                <div class='col-md-3'>
+                    <input id="inicio-@iddata" type="text" value="@dtInicio" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
+                </div>
+                <div class='col-md-3'>
+                    <input id="fim-@iddata" type="text" value="@dt_Fim" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="MM/DD/AAAA" />
+                </div>
+            </div>
+
+            }*@

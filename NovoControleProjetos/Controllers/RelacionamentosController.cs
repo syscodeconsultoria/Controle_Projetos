@@ -25,15 +25,15 @@ namespace NovoControleProjetos.Controllers
             return true;
         }
 
-        public bool RelacionamentosProjetoComListas(int idProjeto, List<int> ids, string tabelapath, List<Etapa> etapas) {
+        public bool RelacionamentosProjetoComListas(int idProjeto, List<int> ids, string tabelapath, List<Etapa> etapas, List<Canal> canais) {
             
-            return relacionamentos_DAL.RelacionamentosProjetoComListas(idProjeto, ids, tabelapath, etapas != null ? etapas : null);
+            return relacionamentos_DAL.RelacionamentosProjetoComListas(idProjeto, ids, tabelapath, etapas != null ? etapas : null, canais != null ? canais : null);
         }
 
         public bool RelacionamentosProjetoComListasVerticais(int idProjeto, List<int> ids, string tabelapath)
         {
 
-            relacionamentos_DAL.RelacionamentosProjetoComListas(idProjeto, ids, tabelapath, null);
+            relacionamentos_DAL.RelacionamentosProjetoComListas(idProjeto, ids, tabelapath, null, null);
 
             return true;
         }

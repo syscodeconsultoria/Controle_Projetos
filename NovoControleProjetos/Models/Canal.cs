@@ -10,7 +10,7 @@ namespace NovoControleProjetos.Models
         public int Id_Canal { get; set; }
         public string Ds_Canal { get; set; }
         public bool Ativo { get; set; }
-        public DateTime Data_Canal { get; set; }
+        public DateTime? Data_Canal { get; set; }
         
     }
 }

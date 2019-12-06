@@ -24,10 +24,6 @@ namespace NovoControleProjetos.Controllers
             ViewBag.Checkadas = checkados;
             }
 
-
-
-
-
             ViewBag.id_etapa = id_etapa;
             var etapas = etapa_DAL.ListaEtapas().Where(x => x.Ativo == true).OrderBy(x => x.Ds_Etapa);
             //var etapas = _etapas.Where(x => x.Ativo == true).OrderBy(x => x.Ds_Etapa);
