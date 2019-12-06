@@ -79,7 +79,7 @@ $(document).ready(function () {
           
             //VPL: $("#vpl").val(),
             //cod_orcamento: 1,
-            //cod_CETI: 1,
+            id_ceti: $("#id-ceti").val(),
             //cod_comissao_varejo: 1,
             //cod_jornada: 1,
             id_mega: $("#mega").val(),

@@ -32,7 +32,7 @@ namespace NovoControleProjetos.Models
         public int? id_orcamento { get; set; }
         //public decimal VPL { get; set; }
 
-        public int? id_CETI { get; set; }
+        public int? id_ceti { get; set; }
         //public int id_comissao_varejo { get; set; }
         //public int id_jornada { get; set; }
         //public int id_origem { get; set; }

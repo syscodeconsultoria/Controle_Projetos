@@ -106,10 +106,13 @@
             </div>
 
             <div class="row">
+
+                <input hidden id="id-ceti" value="@Model.id_ceti" />
+
                 <label for="total-aprovado-ceti">Total Aprovado CETI</label>
                 <div class="input-group">
                     <div class="input-group-addon">R$</div>
-                    <input type="text" id="total-aprovado-ceti" @*value="@Model.ceti.Total_Aprovado_Ceti"*@ name="total-aprovado-ceti" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />
+                    <input type="text" id="total-aprovado-ceti" style="text-align:right;" value="@Model.ceti.Total_Aprovado_Ceti" name="total-aprovado-ceti" onkeypress="mascara( this, mvalor );" maxlength="14" class="form-control" />
                 </div>
             </div>
             <div class="row">

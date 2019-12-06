@@ -118,9 +118,9 @@ namespace NovoControleProjetos.Controllers
                 if (ceti != null)
                 {
                     Ceti objCeti = new Ceti();
-                    if (iniciativa.id_CETI != null)
+                    if (iniciativa.id_ceti != null)
                     {
-                        objCeti = cetiController.BuscaCeti(null, iniciativa.id_CETI);
+                        objCeti = cetiController.BuscaCeti(null, iniciativa.id_ceti);
                     }
                     //buscar a data ceti no banco
                     // se a data ceti no banco for igual a que está vindo no objeto ceti
@@ -128,7 +128,10 @@ namespace NovoControleProjetos.Controllers
 
                     var oper = ceti.Data_Ceti != objCeti.Data_Ceti ? "I" : "U";
 
-                    cetiController.InsereCeti(ceti, iniciativa.Id_Iniciativa, oper );
+                   var id_ceti = cetiController.InsereCeti(ceti, iniciativa.Id_Iniciativa, oper );
+
+                    iniciativa.id_ceti = id_ceti;
+
 
                 }
                 //iniciativa.id_orcamento = idOrcamento;

@@ -81,7 +81,7 @@ namespace NovoControleProjetos.DAL
                     iniciativa.TF_versao_PA = reader["tf_versao_pa"] as string;
                     iniciativa.resumo_iniciativa = reader["resumo_iniciativa"] as string;
                     iniciativa.beneficio_iniciativa = reader["beneficio_iniciativa"] as string;
-
+                    iniciativa.id_ceti = reader["id_CETI"] != DBNull.Value ? Convert.ToInt32(reader["id_CETI"]) : (int?)null;
                     iniciativa.id_departamento = reader["id_departamento"] != DBNull.Value ? Convert.ToInt32(reader["id_departamento"]) : (int?)null;
 
                     iniciativa.data_aprovacao = reader["dt_aprovacao"] != DBNull.Value ? Convert.ToDateTime(reader["dt_aprovacao"]) : (DateTime?)null;

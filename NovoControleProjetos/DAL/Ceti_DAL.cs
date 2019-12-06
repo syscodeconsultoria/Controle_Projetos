@@ -14,13 +14,20 @@ namespace NovoControleProjetos.DAL
     {
 
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["NovoControleProjetos"].ConnectionString);
-        public int InsereCetiRetornaId(Ceti ceti, int? id_iniciativa)
+        public int InsereCetiRetornaId(Ceti ceti, int? id_iniciativa, string oper)
         {
             using (con)
             {
+
+                if (ceti.Total_Aprovado_Ceti != null && ceti.Total_Aprovado_Ceti.Contains("."))
+                {
+                    ceti.Total_Aprovado_Ceti.Replace(".", "");
+                }
+
                 var cmd = new SqlCommand("producao.UP_Controle_Projetos_Oper_M_Ceti", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 con.Open();
+                cmd.Parameters.AddWithValue("@OPER", oper);
                 cmd.Parameters.AddWithValue("@total_aprovado_ceti", Convert.ToDecimal(ceti.Total_Aprovado_Ceti));
                 if (ceti.Data_Ceti != null)
                 {
@@ -35,7 +42,7 @@ namespace NovoControleProjetos.DAL
             }
         }
 
-        public Ceti BuscaCeti(int? id_iniciativa, int? id_ceti, string oper)
+        public Ceti BuscaCeti(int? id_ceti, int? id_iniciativa, string oper)
         {
             Ceti ceti = new Ceti();
 
@@ -44,8 +51,8 @@ namespace NovoControleProjetos.DAL
                 var cmd = new SqlCommand("producao.UP_Controle_Projetos_Oper_M_Ceti", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 con.Open();
-                cmd.Parameters.AddWithValue("@ID", id_ceti);
-                cmd.Parameters.AddWithValue("@OPER", oper);
+                cmd.Parameters.AddWithValue("@id_CETI", id_ceti);
+                cmd.Parameters.AddWithValue("@OPER", "S");
 
                 var reader = cmd.ExecuteReader();
 

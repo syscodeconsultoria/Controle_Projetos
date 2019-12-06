@@ -23,7 +23,7 @@ namespace NovoControleProjetos.Controllers
         [HttpPost]
         public int InsereCeti(Ceti ceti, int? id_iniciativa, string oper)
         {
-            var idCeti = ceti_DAL.InsereCetiRetornaId(ceti, id_iniciativa);
+            var idCeti = ceti_DAL.InsereCetiRetornaId(ceti, id_iniciativa, oper);
             return idCeti;
         }
 
