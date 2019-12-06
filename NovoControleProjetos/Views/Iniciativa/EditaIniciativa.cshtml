@@ -29,7 +29,7 @@
 <form id="form-edit-iniciativa" class="form-horizontal">
 
     <fieldset>
-        <legend>SEÇÃO DE EDIÇÃO DO PROJETO</legend>
+        <legend>SEÇÃO DE EDIÇÃO DO PROJETO: @ViewBag.NomeProjeto</legend>
         <div class="form-group">
 
             <div class="col-md-2" style="padding-right: 0px; padding-left: 0px;">
@@ -87,12 +87,11 @@
                     <label style="margin-left:18px">Comentário</label>
                     @*@Html.TextAreaFor(model => model)*@
                     <textarea id="comentario-farol" rows="9" class="form-control" style="margin-left: 17px; min-width: 90%;"></textarea>
-                    
                 </div>
 
             </div>
 
-            <div class="col-md-2" style="padding-left: 0px; margin-left: 0px;">
+            <div class="col-md-2" >
                 @*<label for="form-parcial-orcamento" style=" padding-left: 15px; color:brown" data-toggle="tooltip" data-placement="left" title="@texto"> Orçamento:</label>*@
                 @*@{Html.RenderAction("_Create", "Orcamento", new { @orcamento = Model.orcamento });}*@
 
@@ -123,25 +122,25 @@
 
         </div>
 
-        <div class="row" style="padding-top:15px;">
+        <div class="form-group">
 
             <div class="col-sm-2" style="padding-left:0">
-                <label for="data-piloto">Piloto</label>
+                <label for="data-piloto" class="control-label">Piloto</label>
                 <input type="text" id="data-piloto" name="data-piloto" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
             </div>
 
             <div class="col-sm-2">
-                <label for="tf-versao-agencia">TF Agencia</label>
+                <label for="tf-versao-agencia" class="control-label">TF Agencia</label>
                 <input type="text" id="tf-versao-agencia" name="tf-versao-agencia" value="@Model.TF_versao_agencia" class="form-control" />
             </div>
 
             <div class="col-sm-2">
-                <label for="tf-versao-pa">TF PA</label>
+                <label for="tf-versao-pa" class="control-label">TF PA</label>
                 <input type="text" id="tf-versao-pa" name="tf-versao-pa" value="@Model.TF_versao_PA" class="form-control" />
             </div>
 
             <div class="col-md-2">
-                <label for="ux">UX</label>
+                <label for="ux" class="control-label">UX</label>
                 <select id="ux" class="form-control">
                     <option value="none"> - </option>
                     <option value="true">Sim</option>
@@ -150,7 +149,7 @@
             </div>
 
             <div class="col-md-2">
-                <label for="jornada-analisada">Jornada foi analisada?</label>
+                <label for="jornada-analisada" class="control-label">Jornada foi analisada?</label>
                 <select id="jornada-analisada" class="form-control">
                     <option value="null"> </option>
                     <option value="true">Sim</option>
@@ -159,7 +158,7 @@
             </div>
 
             <div class="col-md-2">
-                <label for="inputEsteira">Mega</label>
+                <label for="inputEsteira" class="control-label">Mega</label>
                 <select id="mega" class="form-control">
                     <option value="null"> </option>
                     <option value="1">Mega XPTO</option>
@@ -171,35 +170,35 @@
 
         </div>
 
-        <div class="row" style="padding-top:15px;">
+        <div class="form-group">
 
             <div class="col-sm-2" style="padding-left:0">
-                <label for="data-plenouso">Pleno Uso</label>
+                <label for="data-plenouso" class="control-label">Pleno Uso</label>
                 <input type="text" id="pleno-uso" name="pleno-uso" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
             </div>
 
             <div class="col-sm-2">
-                <label for="data-comunicacao">Data Comunicação</label>
+                <label for="data-comunicacao" class="control-label">Data Comunicação</label>
                 <input type="text" id="data-comunicacao" name="data-comunicacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
             </div>
 
             <div class="col-sm-2">
-                <label for="data-visita">Data visita</label>
+                <label for="data-visita" class="control-label">Data visita</label>
                 <input type="text" id="data-visita" name="data-visita" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
             </div>
 
             <div class="col-sm-2">
-                <label for="agencia-visitada">Agência visitada</label>
+                <label for="agencia-visitada" class="control-label">Agência visitada</label>
                 <input type="text" id="agencia-visitada" name="agencia-visitada" class="form-control" />
             </div>
 
             <div class="col-sm-2">
-                <label for="responsavel-neg">Contato Negócio</label>
+                <label for="responsavel-neg" class="control-label">Contato Negócio</label>
                 <input type="text" id="responsavel-neg" name="responsavel-neg" value="@Model.responsavel_neg" class="form-control" />
             </div>
 
             <div class="col-sm-2">
-                <label for="responsavel-ds">Contato DS</label>
+                <label for="responsavel-ds" class="control-label">Contato DS</label>
                 <input type="text" id="responsavel-ds" name="responsavel-ds" value="@Model.responsavel_DS" class="form-control" />
             </div>
 
