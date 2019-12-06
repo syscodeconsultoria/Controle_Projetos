@@ -24,6 +24,7 @@ namespace NovoControleProjetos.DAL
         {
             var projetos = new List<ProjetoEditarModelView>();
 
+
             var cmd = new SqlCommand("producao.UP_Controle_Projetos_Oper_M_Iniciativa", con);
 
             cmd.Parameters.AddWithValue("@Oper", parametro);
