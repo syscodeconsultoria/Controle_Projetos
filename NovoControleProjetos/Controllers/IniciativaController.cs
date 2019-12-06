@@ -1,4 +1,5 @@
 ﻿using NovoControleProjetos.Models;
+using NovoControleProjetos.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -176,10 +177,11 @@ namespace NovoControleProjetos.Controllers
         [HttpGet]
         public ActionResult EditaIniciativa(int id)
         {
-
+           
             Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(id);
+           
 
-
+         
             return View(iniciativa);
         }
 
@@ -195,6 +197,22 @@ namespace NovoControleProjetos.Controllers
         public ActionResult ErroAmigavel()
         {
             return View();
+        }
+        /// <summary>
+        /// Método para receber os dados da comboBox Da view Index na controller Home e com isso acionar a pagina de editar
+        /// </summary>
+        /// <param name="projetoEditarModelView"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult EditaProjeto(ProjetoEditarModelView projetoEditarModelView)
+        {
+            if (projetoEditarModelView.IdProjeto == 0)
+            {
+                return RedirectToAction("Index","Home");
+            }
+            Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(projetoEditarModelView.IdProjeto);
+            ViewBag.NomeProjeto = projetoEditarModelView.NomeProjeto;
+            return View(nameof(EditaIniciativa), iniciativa);
         }
     }
 }
