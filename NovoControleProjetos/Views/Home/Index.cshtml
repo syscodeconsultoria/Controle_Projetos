@@ -1,32 +1,51 @@
-﻿@{
+﻿@model IEnumerable<NovoControleProjetos.Models.ViewModel.ProjetoEditarModelView>
+
+@{
     ViewBag.Title = "Home Page";
     Html.RenderPartial("~/Views/Iniciativa/_InsertIniciativa.cshtml");
 }
 
 <div class="jumbotron">
-    <h1>NOVO CONTROLE DE PROJETOS</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h2>Painel administrativo</h2>
+    <p class="lead">Acesso para manutenção e inclusão de novos projetos</p>
+    <div class="btn-group">
+        @Html.ActionLink("Inserir novo projeto", "Create", "Iniciativa", new { data_toggle = "modal", data_target = "#modalIniciativa", @class = "btn btn-primary btn-lg", @style = "margin: 0 15px" }) <font style="alinhamento vertical: herdar;"> <font style="alinhamento vertical: herdar;"></font></font>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="margin:0 15px"><font style="alinhamento vertical: herdar;"> <font style="alinhamento vertical: herdar;">Editar projeto</font></font></button>
+        <a href=@Url.Action("","") , type="button" class="btn btn-primary btn-lg" style="margin:0 15px"><font style="alinhamento vertical: herdar;"> <font style="alinhamento vertical: herdar;">Listar todos Projetos</font></font></a>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+<div class="jumbotron">
+    <h2>Relatórios</h2>
+    <p class="lead">Acesso de relatórios e gráficos dos projetos</p>
+    <p><a href="#" class="btn btn-primary btn-lg">Acessar</a></p>
+</div>
+
+
+
+
+<div class="modal fade" tabindex="-1" id="myModal" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                @using (Html.BeginForm("EditaProjeto", "Iniciativa"))
+                {
+                    @Html.DropDownList("idProjeto", new SelectList(Model, "IdProjeto", "NomeProjeto"), "Selecione um projeto...", new { style = "width:500px;", @class = "form-control" })
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+
+                        <button type="button" class="btn btn-default " data-dismiss="modal">Cancelar</button>
+
+                    </div>
+                }
+            </div>
+
+        </div>
     </div>
 </div>
+
+
+<script src="~/Scripts/JS/iniciativa.js"></script>
+

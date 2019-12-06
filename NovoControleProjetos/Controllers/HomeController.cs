@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NovoControleProjetos.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,12 +7,23 @@ using System.Web.Mvc;
 
 namespace NovoControleProjetos.Controllers
 {
+
     public class HomeController : Controller
     {
+
+        //Instanciando classes de conexão com o banco de dados
+        private DAL.Projeto_DAL Projeto_DAL = new DAL.Projeto_DAL();
+
         public ActionResult Index()
         {
-            return View();
+            var projetos = Projeto_DAL.ListaProjetosParaCombo(5);
+
+            var model = projetos.GroupBy(p => p.IdProjeto).Select(i => i.First());
+
+            return View(model);
         }
+
+
 
         public ActionResult About()
         {
@@ -32,6 +44,9 @@ namespace NovoControleProjetos.Controllers
             return View("~Views/Shared/Error.cshtml");
 
         }
-        
+
+        #region Métodos
+
+        #endregion
     }
 }

@@ -146,6 +146,7 @@
     <Compile Include="DAL\Jornada_DAL.cs" />
     <Compile Include="DAL\Orcamento_DAL.cs" />
     <Compile Include="DAL\Origem_DAL.cs" />
+    <Compile Include="DAL\Projeto_DAL.cs" />
     <Compile Include="DAL\Relacionamentos_DAL.cs" />
     <Compile Include="DAL\Replanejamento_DAL.cs" />
     <Compile Include="DAL\Vertical_DAL.cs" />
@@ -166,10 +167,13 @@
     <Compile Include="Models\Origem.cs" />
     <Compile Include="Models\Replanejamento.cs" />
     <Compile Include="Models\Vertical.cs" />
+    <Compile Include="Models\ViewModel\ProjetoEditarModelView.cs" />
     <Compile Include="Models\Visita.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-flatly.css" />
+    <Content Include="Content\bootstrap-Journal.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
