@@ -144,6 +144,7 @@
     <Compile Include="DAL\Esteira_DAL.cs" />
     <Compile Include="DAL\Iniciativa_DAL.cs" />
     <Compile Include="DAL\Jornada_DAL.cs" />
+    <Compile Include="DAL\Mvp_DAL.cs" />
     <Compile Include="DAL\Orcamento_DAL.cs" />
     <Compile Include="DAL\Origem_DAL.cs" />
     <Compile Include="DAL\Projeto_DAL.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Models\Esteira.cs" />
     <Compile Include="Models\Iniciativa.cs" />
     <Compile Include="Models\Jornada.cs" />
+    <Compile Include="Models\Mvp.cs" />
     <Compile Include="Models\Orcamento.cs" />
     <Compile Include="Models\Origem.cs" />
     <Compile Include="Models\Replanejamento.cs" />

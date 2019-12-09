@@ -1,4 +1,5 @@
-﻿using NovoControleProjetos.Models;
+﻿using NovoControleProjetos.DAL;
+using NovoControleProjetos.Models;
 using NovoControleProjetos.Models.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace NovoControleProjetos.Controllers
         JornadaController jornadaController = new JornadaController();
         ReplanejamentoController replanejamentoController = new ReplanejamentoController();
         FarolController farolController = new FarolController();
+        Mvp_DAL Mvp_DAL = new Mvp_DAL();
 
 
         // GET: Iniciativa
@@ -36,12 +38,19 @@ namespace NovoControleProjetos.Controllers
 
         [HttpPost]
         public ActionResult Create(Iniciativa iniciativa, Orcamento orcamento, List<Origem> origens, List<Etapa> etapas, List<Vertical> verticais,
-                                  List<Canal> canais, Visita visita, Jornada jornada, Ceti ceti, Replanejamento replanejamento, Farol farol)
+                                  List<Canal> canais, Visita visita, Jornada jornada, Ceti ceti, Replanejamento replanejamento, Farol farol, Mvp mvp)
         {
 
             try
             {
-
+                if (mvp != null)
+                {
+                    Mvp_DAL.InsereMvpNoBanco(mvp, iniciativa.Id_Iniciativa);
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(404);
+                }
                 if (verticais != null)
                 {
                     bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, verticais.Select(x => x.Id_Vertical).ToList(), "Verticais", null, null);
