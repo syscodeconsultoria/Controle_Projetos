@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AgenciasController.cs" />
     <Compile Include="Controllers\CanalController.cs" />
     <Compile Include="Controllers\CetiController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
@@ -128,11 +129,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JornadaController.cs" />
     <Compile Include="Controllers\ListControlExtensionsController.cs" />
+    <Compile Include="Controllers\MegaController.cs" />
     <Compile Include="Controllers\OrigemController.cs" />
     <Compile Include="Controllers\RelacionamentosController.cs" />
     <Compile Include="Controllers\ReplanejamentoController.cs" />
     <Compile Include="Controllers\VerticalController.cs" />
     <Compile Include="Controllers\VisitaController.cs" />
+    <Compile Include="DAL\Agencias_DAL.cs" />
     <Compile Include="DAL\Canal_DAL.cs" />
     <Compile Include="DAL\Ceti_DAL.cs" />
     <Compile Include="DAL\Etapa_DAL.cs" />
@@ -144,6 +147,7 @@
     <Compile Include="DAL\Esteira_DAL.cs" />
     <Compile Include="DAL\Iniciativa_DAL.cs" />
     <Compile Include="DAL\Jornada_DAL.cs" />
+    <Compile Include="DAL\Mega_DAL.cs" />
     <Compile Include="DAL\Orcamento_DAL.cs" />
     <Compile Include="DAL\Origem_DAL.cs" />
     <Compile Include="DAL\Projeto_DAL.cs" />
@@ -154,6 +158,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Agencias.cs" />
     <Compile Include="Models\Canal.cs" />
     <Compile Include="Models\Ceti.cs" />
     <Compile Include="Models\Checkados.cs" />
@@ -163,6 +168,7 @@
     <Compile Include="Models\Esteira.cs" />
     <Compile Include="Models\Iniciativa.cs" />
     <Compile Include="Models\Jornada.cs" />
+    <Compile Include="Models\Mega.cs" />
     <Compile Include="Models\Orcamento.cs" />
     <Compile Include="Models\Origem.cs" />
     <Compile Include="Models\Replanejamento.cs" />
@@ -233,6 +239,8 @@
     <Content Include="Views\Canal\_ListaCanais.cshtml" />
     <Content Include="Views\Iniciativa\ErroAmigavel.cshtml" />
     <Content Include="Views\Iniciativa\EditaIniciativa.cshtml" />
+    <Content Include="Views\Mega\_ListaMegas.cshtml" />
+    <Content Include="Views\Agencias\_ListaAgencias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

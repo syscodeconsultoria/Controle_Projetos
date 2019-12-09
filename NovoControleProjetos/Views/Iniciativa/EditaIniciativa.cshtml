@@ -170,12 +170,19 @@
             </div>
 
             <div class="col-md-2">
-                <label for="inputEsteira" class="control-label">Mega</label>
+
+                
+                    <label for="esteira">Mega</label>
+                    @{Html.RenderAction("_ListaMegas", "Mega", new { @id_mega = Model.id_mega });}
+                
+
+
+                @*<label for="inputEsteira" class="control-label">Mega</label>
                 <select id="mega" class="form-control">
                     <option value="null"> </option>
                     <option value="1">Mega XPTO</option>
                     <option value="2">Mega XYZ</option>
-                </select>
+                </select>*@
 
                 @*@{Html.RenderAction("_ListaEsteiras", "Esteira");}*@
             </div>
@@ -200,8 +207,12 @@
             </div>
 
             <div class="col-sm-2">
-                <label for="agencia-visitada" class="control-label">Agência visitada</label>
-                <input type="text" id="agencia-visitada" name="agencia-visitada" class="form-control" />
+
+                <label for="agencia">Agência Visitada</label>
+                @{Html.RenderAction("_ListaAgencias", "Agencias" @*new { @cod_agencia = Model. }*@);}
+
+                @*<label for="agencia-visitada" class="control-label">Agência visitada</label>
+                <input type="text" id="agencia-visitada" name="agencia-visitada" class="form-control" />*@
             </div>
 
             <div class="col-sm-2">

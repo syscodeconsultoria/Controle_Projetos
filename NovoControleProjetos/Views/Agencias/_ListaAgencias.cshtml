@@ -1,0 +1,10 @@
+﻿@model IEnumerable<NovoControleProjetos.Models.Agencias>
+
+@{
+    var cod_agencia = ViewBag.cod_agencia;
+
+}
+
+@Html.DropDownList("cod-agencia", new SelectList(ViewBag.agencias, "id_agencia", "nome_agencia", cod_agencia != null ? cod_agencia : null), String.Empty, new { @class = "form-control" })
+
+

@@ -17,8 +17,8 @@ namespace NovoControleProjetos.Controllers
         JornadaController jornadaController = new JornadaController();
         ReplanejamentoController replanejamentoController = new ReplanejamentoController();
         FarolController farolController = new FarolController();
-
-
+        VisitaController visitaController = new VisitaController();
+        
         // GET: Iniciativa
         public ActionResult Index()
         {
@@ -158,9 +158,7 @@ namespace NovoControleProjetos.Controllers
 
                     iniciativa.id_replanejamento = replanejamentoController.InsereReplanejamento(replanejamento, iniciativa.Id_Iniciativa, iniciativa.id_replanejamento, oper ?? "I");
                                                          
-                }
-
-                
+                }               
 
 
                 if (farol.Comentario_Farol != null)
@@ -175,6 +173,21 @@ namespace NovoControleProjetos.Controllers
                     }
 
                     farolController.InsereComentarioFarol(farol, iniciativa.Id_Iniciativa, iniciativa.id_farol, farol.Id_Comentario_Farol != null ? farol.Id_Comentario_Farol : null, oper);
+                }
+
+                if(visita.Data_Visita != null || visita.Cod_Agencia != null)
+                {
+                    string oper = null;
+                    Visita _visita = new Visita();
+
+                    if(iniciativa.id_visita != null)
+                    {
+                        var objVisita = visitaController.BuscaVisita(iniciativa.id_visita, null);
+                        oper = objVisita.Data_Visita != visita.Data_Visita || objVisita.Cod_Agencia != visita.Cod_Agencia ? "I" : "U";
+                    }
+
+                    iniciativa.id_visita = visitaController.InsereVisita(visita, iniciativa.Id_Iniciativa, oper ?? "I");
+
                 }
 
 
