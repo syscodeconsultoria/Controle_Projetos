@@ -14,6 +14,8 @@ namespace NovoControleProjetos.Models
         public DateTime? data_aprovacao { get; set; }
         public DateTime? data_piloto { get; set; }
         public DateTime? data_plenouso { get; set; }
+
+        public DateTime? data_comunicacao { get; set; }
         public int? id_esteira { get; set; }  
         public int? id_farol { get; set; }
         public string cor_farol { get; set; }
@@ -26,20 +28,23 @@ namespace NovoControleProjetos.Models
         public string responsavel_neg { get; set; }
         public string responsavel_DS { get; set; }
         public string resumo_iniciativa { get; set; }
-        public bool usabilidade { get; set; }
+        public bool? usabilidade { get; set; }
         public string beneficio_iniciativa { get; set; }
         public Orcamento orcamento { get; set; }
         public Ceti ceti { get; set; }
         public List<int> idsOrigens { get; set; }
         public int? id_orcamento { get; set; }
         //public decimal VPL { get; set; }
-
+        public Jornada jornada { get; set; }    
+        public int id_jornada { get; set; }
         public int? id_ceti { get; set; }
+        public int? id_replanejamento { get; set; }
+        public Replanejamento replanejamento { get; set; }
         //public int id_comissao_varejo { get; set; }
-        //public int id_jornada { get; set; }
+
         //public int id_origem { get; set; }
         //public int id_dt { get; set; }
-        //public int id_replanejamento { get; set; }
+
         //public int id_visita { get; set; }
         //public int id_canal { get; set; }
         //public string Esteira { get; set; }

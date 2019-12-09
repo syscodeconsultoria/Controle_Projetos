@@ -23,7 +23,18 @@ $(document).ready(function () {
         //criar inteligencia para quando alterar
         //etapa atual, checkar no etapas, dentro de detalhes
     });
- 
+
+    $("#ux").change(function () {
+        $('#ux option[selected]').remove();
+    });
+
+    $("#jornada-analisada").change(function () {
+        $('#jornada-analisada option[selected]').remove();
+    });
+
+    $("#usabilidade").change(function () {
+        $('#usabilidade option[selected]').remove();
+    });
 
     $("#farol").change(function () {
 
@@ -75,6 +86,7 @@ $(document).ready(function () {
             id_etapa: $("#id-etapa").val(),
             data_piloto: $("#data-piloto").val(),
             data_plenouso: $("#pleno-uso").val(),
+            data_comunicacao: $("#data-comunicacao").val(),
            
             CPF: $("#cpf-iniciativa").val(),
 
@@ -96,7 +108,8 @@ $(document).ready(function () {
             responsavel_DS: $("#responsavel-ds").val(),
             resumo_iniciativa: $("#resumo-iniciativa").val(),
             usabilidade: $("#usabilidade").val(),
-            beneficio_iniciativa: $("#beneficio-iniciativa").val()
+            beneficio_iniciativa: $("#beneficio-iniciativa").val(),
+            id_replanejamento: $("#id-replanejamento").val()
         };
 
         var _farol = {
@@ -116,7 +129,7 @@ $(document).ready(function () {
 
         var _jornada = {
             ux: $("#ux").val(),
-            jornada_analisada: $("#jornada-analisada").val(),
+            varejo_acompanhou: $("#jornada-analisada").val(),
             comentario_jornada: $("#comentario-jornada").val()
         };
 
@@ -137,6 +150,7 @@ $(document).ready(function () {
         };
 
         var _replanejamento = {
+            id_replanejamento: $("#id-replanejamento").val(),
             data_replanejamento: $("#data-replanejamento").val(),
             motivo_replanejamento: $("#motivo-replanejamento").val()
         };

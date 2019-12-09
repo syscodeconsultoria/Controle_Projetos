@@ -93,7 +93,9 @@ namespace NovoControleProjetos.DAL
                     iniciativa.id_mega = reader["id_mega"] != DBNull.Value ? Convert.ToInt32(reader["id_mega"]) : (int?)null;
                     iniciativa.cor_farol = reader["cor_farol"] as string;
                     iniciativa.ds_farol = reader["ds_farol"] as string;
-                    //iniciativa.usabilidade = Convert.ToBoolean(reader["usabilidade"]);
+                    iniciativa.data_comunicacao = reader["dt_comunicacao"] != DBNull.Value ? Convert.ToDateTime(reader["dt_comunicacao"]) : (DateTime?)null;
+                    iniciativa.usabilidade = reader["usabilidade"] != DBNull.Value ? Convert.ToBoolean(reader["usabilidade"]) : (bool?)null;
+                    iniciativa.id_replanejamento = reader["id_replanejamento"] != DBNull.Value ? Convert.ToInt32(reader["id_replanejamento"]) : (int?)null;
 
 
 
@@ -114,6 +116,21 @@ namespace NovoControleProjetos.DAL
                         Data_Ceti = reader["dt_CETI"] != DBNull.Value ? Convert.ToDateTime(reader["dt_CETI"]) : (DateTime?)null,
 
                     };
+
+                    iniciativa.jornada = new Jornada
+                    {
+                        id_jornada = reader["id_jornada"] != DBNull.Value ? Convert.ToInt32(reader["id_jornada"]) : (int?)null,
+                        UX = reader["ux"] != DBNull.Value ? Convert.ToBoolean(reader["ux"]) : (bool?)null,
+                        varejo_acompanhou = reader["varejo_acompanhou"] != DBNull.Value ? Convert.ToBoolean(reader["varejo_acompanhou"]) : (bool?)null,
+                    };
+
+                    iniciativa.replanejamento = new Replanejamento
+                    {
+                        id_replanejamento = reader["id_replanejamento"] != DBNull.Value ? Convert.ToInt32(reader["id_replanejamento"]) : (int?)null,
+                        motivo_replanejamento = reader["motivo_replanejamento"] as string,
+                        data_replanejamento = reader["dt_replanejamento"] != DBNull.Value ? Convert.ToDateTime(reader["dt_replanejamento"]) : (DateTime?)null,
+                    };
+                    
 
                     //iniciativa.idsOrigens = new List<int>();
 
@@ -174,7 +191,16 @@ namespace NovoControleProjetos.DAL
                     cmd.Parameters.AddWithValue("@dt_plenouso", SqlDbType.DateTime).Value = SqlDateTime.Null;
                 }
 
-                
+                if (iniciativa.data_comunicacao != null)
+                {
+                    cmd.Parameters.AddWithValue("@dt_comunicacao", iniciativa.data_comunicacao);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@dt_comunicacao", SqlDbType.DateTime).Value = SqlDateTime.Null;
+                }
+
+
                 cmd.Parameters.AddWithValue("@id_esteira", iniciativa.id_esteira);
                 cmd.Parameters.AddWithValue("@id_farol", iniciativa.id_farol);
                 cmd.Parameters.AddWithValue("@id_etapa", iniciativa.id_etapa);                
@@ -188,14 +214,16 @@ namespace NovoControleProjetos.DAL
                 cmd.Parameters.AddWithValue("@usabilidade", iniciativa.usabilidade);
                 cmd.Parameters.AddWithValue("@beneficio_iniciativa", iniciativa.beneficio_iniciativa);
                 cmd.Parameters.AddWithValue("@resumo_iniciativa", iniciativa.resumo_iniciativa);
+                cmd.Parameters.AddWithValue("@id_jornada", iniciativa.id_jornada);
+                cmd.Parameters.AddWithValue("@id_replanejamento", iniciativa.id_replanejamento);
 
                 //cmd.Parameters.AddWithValue("@id_origem", iniciativa.id_origem);
                 //cmd.Parameters.AddWithValue("@id_dt", iniciativa.id_dt);
-                //cmd.Parameters.AddWithValue("@id_replanejamento", iniciativa.id_replanejamento);
+
                 //cmd.Parameters.AddWithValue("@id_visita", iniciativa.id_visita);
                 //cmd.Parameters.AddWithValue("@id_canal", iniciativa.id_canal);
                 //cmd.Parameters.AddWithValue("@id_comissao_varejo", iniciativa.id_comissao_varejo);
-                //cmd.Parameters.AddWithValue("@id_jornada", iniciativa.id_jornada);
+
                 //cmd.Parameters.AddWithValue("@VPL", iniciativa.VPL);
                 //cmd.Parameters.AddWithValue("@id_orcamento", iniciativa.id_orcamento);
                 //cmd.Parameters.AddWithValue("@esteira", iniciativa.Esteira);

@@ -1,6 +1,10 @@
-﻿@{
+﻿@model NovoControleProjetos.Models.Replanejamento
+
+@{
     Layout = null;
     var id = ViewBag.id_Iniciativa;
+
+    var dtReplanejamento = Model.data_replanejamento != null ? Model.data_replanejamento.Value.ToShortDateString() : null;
 
 }
 
@@ -20,21 +24,24 @@
 
     </div>
 
-    @{Html.RenderAction("_ListaEtapas", "Etapa", new { @id_iniciativa = id } );}
-   <br />
+    @{Html.RenderAction("_ListaEtapas", "Etapa", new { @id_iniciativa = id });}
+    <br />
 
 </div>
 
 <div class="col-md-5" style=" border: 1px solid #ccc; margin-left: 5px;">
 
+    <input hidden id="id_replanejamento" value="@Model.id_replanejamento" />
+
     <div class="row" style="padding: 15px">
         <label style="display:inline-block" for="data-replanejamento">Replanejamento</label>
-        <input style="display:inline-block" type="text" id="data-replanejamento" name="data-replanejamento" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
+        <input style="display:inline-block" type="text" id="data-replanejamento" value="@dtReplanejamento" name="data-replanejamento" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
     </div>
 
     <div class="row" style="padding: 15px">
         <label>Motivo:</label>
-        <textarea id="motivo-replanejamento" rows="6" class="form-control" style="min-width: 90%;"></textarea>
+        @*<textarea id="motivo-replanejamento" value="@Model.motivo_replanejamento" rows="6" class="form-control" style="min-width: 90%;"></textarea>*@
+        @Html.TextAreaFor(model => model.motivo_replanejamento, new { @id = "motivo-replanejamento", @class = "form-control", @rows = "6", @style = " min-width: 90%;" })
     </div>
 
 </div>
@@ -50,7 +57,7 @@
         @{Html.RenderAction("_ListaCanais", "Canal");}
 
     </div>
-       
+
     <div class="form-group col-md-5" style="  margin-left: 15px; border: 1px solid #ccc;  width: 487.32px; margin-left:5px; margin-top: 15px ">
 
         <div class="row" style="padding: 15px; padding-bottom:5px; padding-top:11px;">
@@ -78,7 +85,7 @@
 
             <div class="col-md-6">
                 <label for="mvp-entrega">Entrega</label>
-                <input type="text" id="mvp-entrega-um" name="mvp-entrega" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA"/>
+                <input type="text" id="mvp-entrega-um" name="mvp-entrega" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
             </div>
 
         </div>
@@ -92,7 +99,7 @@
 
             <div class="col-md-6">
                 <label for="mvp-entrega">Entrega</label>
-                <input type="text" id="mvp-entrega-dois" name="mvp-entrega" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA"/>
+                <input type="text" id="mvp-entrega-dois" name="mvp-entrega" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
             </div>
 
         </div>

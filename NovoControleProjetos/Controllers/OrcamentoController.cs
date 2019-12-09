@@ -23,13 +23,13 @@ namespace NovoControleProjetos.Controllers
             var idOrcamento = orcamento_DAL.InsereOrcamento(orcamento, id_iniciativa);
             return true;
         }
-
-        [HttpPost]
+ [HttpPost]
         public int _CriaOrcamento(Orcamento orcamento)
         {
             var idOrcamento = orcamento_DAL.InsereOrcamentoRetornaId(orcamento);
             return idOrcamento;
         }
+       
 
         public ActionResult _Create(Orcamento orcamento)
         {

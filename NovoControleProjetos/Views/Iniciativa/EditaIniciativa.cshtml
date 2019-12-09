@@ -10,7 +10,13 @@
     string dtCeti = Model.ceti.Data_Ceti != null ? Model.ceti.Data_Ceti.Value.ToShortDateString() : null;
     string dtPiloto = Model.data_piloto != null ? Model.data_piloto.Value.ToShortDateString() : null;
     string dtPlenoUso = Model.data_plenouso != null ? Model.data_plenouso.Value.ToShortDateString() : null;
-
+    var textoUx = Model.jornada.UX == true ? "Sim" : Model.jornada.UX == false ? "Não" : null;
+    var textoJA = Model.jornada.varejo_acompanhou == true ? "Sim" : Model.jornada.varejo_acompanhou == false ? "Não" : null;
+    var valUx = Model.jornada.UX == true ? "true" : Model.jornada.UX ==  false ? "false" : null;
+    var valJA = Model.jornada.varejo_acompanhou == true ? "true" : Model.jornada.varejo_acompanhou == false ?  "false" : null;
+    var dtComunicacao = Model.data_comunicacao != null ? Model.data_comunicacao.Value.ToShortDateString() : null;
+    var valUsabilidade = Model.usabilidade == true ? "true" : Model.usabilidade ==  false ? "false" : null;
+    var textoUsabilidade = Model.usabilidade == true ? "Sim" : Model.usabilidade == false ? "Não" : null;
 }
 
 
@@ -143,11 +149,11 @@
                 <label for="tf-versao-pa" class="control-label">TF PA</label>
                 <input type="text" id="tf-versao-pa" name="tf-versao-pa" value="@Model.TF_versao_PA" class="form-control" />
             </div>
-
+            
             <div class="col-md-2">
                 <label for="ux" class="control-label">UX</label>
                 <select id="ux" class="form-control">
-                    <option value="none"> - </option>
+                    <option selected="@Model.jornada.UX" value="@valUx"> @textoUx </option>
                     <option value="true">Sim</option>
                     <option value="false">Não</option>
                 </select>
@@ -156,7 +162,7 @@
             <div class="col-md-2">
                 <label for="jornada-analisada" class="control-label">Jornada foi analisada?</label>
                 <select id="jornada-analisada" class="form-control">
-                    <option value="null"> </option>
+                    <option selected="@Model.jornada.varejo_acompanhou" value="@valJA"> @textoJA </option>
                     <option value="true">Sim</option>
                     <option value="false">Não</option>
                 </select>
@@ -184,7 +190,7 @@
 
             <div class="col-sm-2">
                 <label for="data-comunicacao" class="control-label">Data Comunicação</label>
-                <input type="text" id="data-comunicacao" name="data-comunicacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
+                <input type="text" id="data-comunicacao" name="data-comunicacao" value="@dtComunicacao" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
             </div>
 
             <div class="col-sm-2">
@@ -217,7 +223,8 @@
         </div>
 
         <div id="detalhesDiv" class="row" style="padding-top:15px; display:none">
-            @{Html.RenderAction("_DetalhesIniciativa", "Iniciativa", new { @id_iniciativa = Model.Id_Iniciativa });}
+            <input hidden id="id-replanejamento" value="@Model.id_replanejamento" />
+            @{Html.RenderAction("_DetalhesIniciativa", "Iniciativa", new { @id_iniciativa = Model.Id_Iniciativa, @replanejamento = Model.replanejamento, });}
         </div>
 
 
@@ -228,8 +235,8 @@
                 <div class="row">
                     <label for="usabilidade">Usabilidade</label>
                     <select id="usabilidade" class="form-control" style="width: 211.5px;">
-                        <option selected="@Model.usabilidade"> </option>
-                        <option value="null"> </option>
+                        <option selected="@Model.usabilidade" value="@valUsabilidade"> @textoUsabilidade </option>                        
+                        
                         <option value="true">Sim</option>
                         <option value="false">Não</option>
                     </select>
