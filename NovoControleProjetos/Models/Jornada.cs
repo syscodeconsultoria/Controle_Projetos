@@ -7,8 +7,8 @@ namespace NovoControleProjetos.Models
 {
     public class Jornada
     {
-        public int id_jornada { get; set; }
-        public bool UX { get; set; }
-        public bool varejo_acompanhou { get; set; }
+        public int? id_jornada { get; set; }
+        public bool? UX { get; set; }
+        public bool? varejo_acompanhou { get; set; }
     }
 }

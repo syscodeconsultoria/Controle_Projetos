@@ -14,6 +14,9 @@ namespace NovoControleProjetos.Controllers
         OrcamentoController orcamentoController = new OrcamentoController();
         RelacionamentosController relacionamentosController = new RelacionamentosController();
         CetiController cetiController = new CetiController();
+        JornadaController jornadaController = new JornadaController();
+        ReplanejamentoController replanejamentoController = new ReplanejamentoController();
+        FarolController farolController = new FarolController();
 
 
         // GET: Iniciativa
@@ -33,7 +36,7 @@ namespace NovoControleProjetos.Controllers
 
         [HttpPost]
         public ActionResult Create(Iniciativa iniciativa, Orcamento orcamento, List<Origem> origens, List<Etapa> etapas, List<Vertical> verticais,
-                                  List<Canal> canais, Visita visita, Jornada jornada, Ceti ceti, Replanejamento replanejamento)
+                                  List<Canal> canais, Visita visita, Jornada jornada, Ceti ceti, Replanejamento replanejamento, Farol farol)
         {
 
             try
@@ -116,7 +119,12 @@ namespace NovoControleProjetos.Controllers
                     orcamentoController.InsereOrcamento(orcamento, iniciativa.Id_Iniciativa);
                 }
 
-                
+                if (jornada != null)
+                {
+                 iniciativa.id_jornada =  jornadaController.InsereJornada(jornada, iniciativa.Id_Iniciativa);
+                }
+         
+
                 if (ceti.Data_Ceti != null || ceti.Total_Aprovado_Ceti != null || iniciativa.id_ceti != null)
                 {
                     Ceti objCeti = new Ceti();
@@ -136,6 +144,40 @@ namespace NovoControleProjetos.Controllers
 
 
                 }
+
+                if (replanejamento.data_replanejamento != null || replanejamento.motivo_replanejamento != null)
+                {
+
+                    Replanejamento objReplan = new Replanejamento();
+                    string oper = null;
+                    if (iniciativa.id_replanejamento != null)
+                    {
+                        objReplan = replanejamentoController.BuscaReplanejamento(null, iniciativa.id_replanejamento);
+                        oper = replanejamento.data_replanejamento != objReplan.data_replanejamento ? "I" : "U";
+                    }
+
+                    iniciativa.id_replanejamento = replanejamentoController.InsereReplanejamento(replanejamento, iniciativa.Id_Iniciativa, iniciativa.id_replanejamento, oper ?? "I");
+                                                         
+                }
+
+                
+
+
+                if (farol.Comentario_Farol != null)
+                {
+                    string oper = null;
+                    Farol _farol = new Farol();
+
+                    if (iniciativa.id_farol != null)
+                    {
+                        var objfarol = farolController.BuscaFarol(iniciativa.Id_Iniciativa, iniciativa.id_farol);
+                        oper = objfarol.Id_Comentario_Farol != null ? "U" : "I";
+                    }
+
+                    farolController.InsereComentarioFarol(farol, iniciativa.Id_Iniciativa, iniciativa.id_farol, farol.Id_Comentario_Farol != null ? farol.Id_Comentario_Farol : null, oper);
+                }
+
+
                 //iniciativa.id_orcamento = idOrcamento;
                 //relacionamentosController.RelacionamentoOrcamentoProjeto(iniciativa.Id_Iniciativa, idOrcamento);          
 
@@ -186,12 +228,12 @@ namespace NovoControleProjetos.Controllers
             return View(iniciativa);
         }
 
-        public ActionResult _DetalhesIniciativa(int? id_iniciativa)
+        public ActionResult _DetalhesIniciativa(int? id_iniciativa, Replanejamento replanejamento)
         {
 
             ViewBag.id_Iniciativa = id_iniciativa;
 
-            return PartialView();
+            return PartialView(replanejamento);
 
         }
 
