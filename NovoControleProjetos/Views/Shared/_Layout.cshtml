@@ -4,12 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
+    <title>Novo controle de projetos</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    <nav class="navbar navbar-inverse">
+<body style="padding-top: 8px;">
+    <nav class="navbar navbar-default" >
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
@@ -23,10 +23,10 @@
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">                    
                     <li>@Html.ActionLink("Página Inicial", "Index", "Home")</li>
                     <li>@Html.ActionLink("Novo Projeto", "Create", "Iniciativa", new { data_toggle = "modal", data_target = "#modalIniciativa" })</li>
-                    <li><a href="#">Editar</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModal">Editar</a></li>
                     <!-- <li class="dropdown">
          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
          <ul class="dropdown-menu" role="menu">
@@ -60,3 +60,4 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+

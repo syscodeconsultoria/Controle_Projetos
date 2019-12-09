@@ -212,7 +212,7 @@ namespace NovoControleProjetos.Controllers
                 return RedirectToAction("Index","Home");
             }
             Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(projetoEditarModelView.IdProjeto);
-            ViewBag.NomeProjeto = projetoEditarModelView.NomeProjeto;
+            ViewBag.NomeProjeto = iniciativa.nome_iniciativa;
             return View(nameof(EditaIniciativa), iniciativa);
         }
     }
