@@ -8,26 +8,37 @@
 
 }
 
+<head>
+    <style>
+        label {font-size: 15px; 
+               font-weight:normal; 
+        }
+        input{font-size: 14px;
+              font-family:'Calisto MT';
 
-<div class="form-group col-md-5" style=" border: 1px solid #ccc;  width: 661.32px; ">
+        }
+    </style>
+</head>
+<body>
+    <div class="form-group col-md-5" style=" border: 1px solid #ccc;  width: 650px;  margin: 5px;">
 
-    <div class="row" style="padding-top:15px;">
-        <div class="col-md-4" style="width: 152.75px; padding-left: 0px;">
-            <label for="form-parcial-etapa" style=" padding-left: 15px; color:brown"> Etapas:</label>
+        <div class="row" style="padding-top:15px;">
+            <div class="col-md-4" style="width: 152.75px; padding-left: 0px;">
+                <label for="form-parcial-etapa" style=" padding-left: 15px; color:brown"> Etapas:</label>
+            </div>
+            <div class="col-md-3">
+                <label for="form-parcial-etapa-inicio" style=" padding-left: 15px; color:brown;  margin-left:90px"> Início:</label>
+            </div>
+            <div class="col-md-3">
+                <label for="form-parcial-etapa-fim" style=" padding-left: 15px; color:brown; margin-left:90px"> Fim:</label>
+            </div>
+
         </div>
-        <div class="col-md-3">
-            <label for="form-parcial-etapa-inicio" style=" padding-left: 15px; color:brown"> Início:</label>
-        </div>
-        <div class="col-md-3">
-            <label for="form-parcial-etapa-fim" style=" padding-left: 15px; color:brown"> Fim:</label>
-        </div>
+
+        @{Html.RenderAction("_ListaEtapas", "Etapa", new { @id_iniciativa = id });}
+        <br />
 
     </div>
-
-    @{Html.RenderAction("_ListaEtapas", "Etapa", new { @id_iniciativa = id });}
-    <br />  
-
-</div>
 
 <div class="col-md-5" style=" border: 1px solid #ccc;  margin-left: 20px; ">
 
@@ -44,69 +55,69 @@
         @Html.TextAreaFor(model => model.motivo_replanejamento, new { @id = "motivo-replanejamento", @class = "form-control", @rows = "6", @style = " min-width: 90%;" })
     </div>
 
-</div>
-
-<div class="row">
-
-    <div class="form-group col-md-5" style="padding-right:0px; padding-left:0px; padding-top: 15px; padding-bottom: 15px; margin-left: 15px; margin-top: 15px; border: 1px solid #ccc;  width: 661.32px; ">
-
-        <div>
-            <label for="form-parcial-etapa" style=" color: brown; padding-bottom: 8px; padding-left: 15px;"> Canais:</label>
-        </div>
-
-        @{Html.RenderAction("_ListaCanais", "Canal");}
-
     </div>
 
-    <div class="form-group col-md-5" style="  margin-left: 15px; border: 1px solid #ccc;  width: 487.32px; margin-left:5px; margin-top: 15px ">
+    <div class="row" style="margin-left:0px;">
 
-        <div class="row" style="padding: 15px; padding-bottom:5px; padding-top:11px;">
+        <div class="form-group col-md-4" style="padding-right:0px; padding-left:0px; padding-top: 15px; padding-bottom: 15px; margin-left: 15px; margin-top: 15px; border: 1px solid #ccc;  width: 650px; margin: 5px">
+
             <div>
-                <label style=" color: brown;">MVP:</label>
-            </div>
-            <div class="col-md-6" style="padding-left:0;">
-                <label for="mvp-nome">Nome</label>
-                <input type="text" id="mvp-nome" name="mvp-nome" class="form-control" />
+                <label for="form-parcial-etapa" style=" color: brown; padding-bottom: 8px; padding-left: 15px;"> Canais:</label>
             </div>
 
-            <div class="col-md-6">
-                <label for="mvp-entrega">Entrega</label>
-                <input type="text" id="mvp-entrega" name="mvp-entrega" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
-            </div>
+            @{Html.RenderAction("_ListaCanais", "Canal");}
 
         </div>
 
-        <div class="row" style="padding: 15px; padding-top:2px; padding-bottom:5px;">
+        <div class="form-group col-md-5" style="  margin-left: 15px; border: 1px solid #ccc;  margin-left:5px; margin-top: 10px ">
 
-            <div class="col-md-6" style="padding-left:0;">
-                <label for="mvp-nome">Nome</label>
-                <input type="text" id="mvp-nome-um" name="mvp-nome" class="form-control" />
+            <div class="row" style="padding: 15px; padding-bottom:5px; padding-top:11px;">
+                <div>
+                    <label style=" color: brown;">MVP:</label>
+                </div>
+                <div class="col-md-6" style="padding-left:0;">
+                    <label for="mvp-nome">Nome</label>
+                    <input type="text" id="mvp-nome" name="mvp-nome" class="form-control" />
+                </div>
+
+                <div class="col-md-6">
+                    <label for="mvp-entrega">Entrega</label>
+                    <input type="text" id="mvp-entrega" name="mvp-entrega" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
+                </div>
+
             </div>
+
+            <div class="row" style="padding: 15px; padding-top:2px; padding-bottom:5px;">
+
+                <div class="col-md-6" style="padding-left:0;">
+                    <label for="mvp-nome">Nome</label>
+                    <input type="text" id="mvp-nome-um" name="mvp-nome" class="form-control" />
+                </div>
 
             <div class="col-md-6">
                 <label for="mvp-entrega">Entrega</label>
                 <input type="text" id="mvp-entrega-um" name="mvp-entrega" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
             </div>
 
-        </div>
-
-        <div class="row" style="padding: 15px; padding-top:2px; padding-bottom:5px;">
-
-            <div class="col-md-6" style="padding-left:0;">
-                <label for="mvp-nome">Nome</label>
-                <input type="text" id="mvp-nome-dois" name="mvp-nome" class="form-control" />
             </div>
+
+            <div class="row" style="padding: 15px; padding-top:2px; padding-bottom:5px;">
+
+                <div class="col-md-6" style="padding-left:0;">
+                    <label for="mvp-nome">Nome</label>
+                    <input type="text" id="mvp-nome-dois" name="mvp-nome" class="form-control" />
+                </div>
 
             <div class="col-md-6">
                 <label for="mvp-entrega">Entrega</label>
                 <input type="text" id="mvp-entrega-dois" name="mvp-entrega" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
             </div>
 
+            </div>
+
         </div>
 
     </div>
-
-</div>
-
+</body>
 
 

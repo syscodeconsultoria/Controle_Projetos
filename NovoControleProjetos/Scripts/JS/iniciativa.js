@@ -133,6 +133,7 @@ $(document).ready(function () {
             usabilidade: $("#usabilidade").val(),
             beneficio_iniciativa: $("#beneficio-iniciativa").val(),
             id_replanejamento: $("#id-replanejamento").val()
+
         };
 
         var _farol = {
@@ -182,7 +183,17 @@ $(document).ready(function () {
         };
 
         var _mvp = {
+            Nome_Mvp: $('#mvp-nome').val(),
+            Dt_Mvp: $('#mvp-entrega').val(),
+            Id_Iniciativa: $("#nome-projeto").attr("data-id"),
 
+            Nome_Mvp1: $('#mvp-nome-um').val(),
+            Dt_Mvp1: $('#mvp-entrega-um').val(),
+            Id_Iniciativa1: $("#nome-projeto").attr("data-id"),
+
+            Nome_Mvp2: $('#mvp-nome-dois').val(),
+            Dt_Mvp2: $('#mvp-entrega-dois').val(),
+            Id_Iniciativa2: $("#nome-projeto").attr("data-id")
         };
 
         function getEtapas() {
@@ -230,7 +241,8 @@ $(document).ready(function () {
                 jornada: _jornada,
                 ceti: _ceti,
                 replanejamento: _replanejamento,
-                farol: _farol
+                farol: _farol,
+                mvp: _mvp
             },
 
             url: "/Iniciativa/Create",

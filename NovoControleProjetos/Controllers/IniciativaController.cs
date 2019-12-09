@@ -1,4 +1,5 @@
-﻿using NovoControleProjetos.Models;
+﻿using NovoControleProjetos.DAL;
+using NovoControleProjetos.Models;
 using NovoControleProjetos.Models.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,9 @@ namespace NovoControleProjetos.Controllers
         FarolController farolController = new FarolController();
         VisitaController visitaController = new VisitaController();
         
+        Mvp_DAL Mvp_DAL = new Mvp_DAL();
+
+
         // GET: Iniciativa
         public ActionResult Index()
         {
@@ -36,12 +40,19 @@ namespace NovoControleProjetos.Controllers
 
         [HttpPost]
         public ActionResult Create(Iniciativa iniciativa, Orcamento orcamento, List<Origem> origens, List<Etapa> etapas, List<Vertical> verticais,
-                                  List<Canal> canais, Visita visita, Jornada jornada, Ceti ceti, Replanejamento replanejamento, Farol farol)
+                                  List<Canal> canais, Visita visita, Jornada jornada, Ceti ceti, Replanejamento replanejamento, Farol farol, Mvp mvp)
         {
 
             try
             {
-
+                if (mvp != null)
+                {
+                    Mvp_DAL.InsereMvpNoBanco(mvp, iniciativa.Id_Iniciativa);
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(404);
+                }
                 if (verticais != null)
                 {
                     bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, verticais.Select(x => x.Id_Vertical).ToList(), "Verticais", null, null);
@@ -267,7 +278,7 @@ namespace NovoControleProjetos.Controllers
                 return RedirectToAction("Index","Home");
             }
             Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(projetoEditarModelView.IdProjeto);
-            ViewBag.NomeProjeto = projetoEditarModelView.NomeProjeto;
+            ViewBag.NomeProjeto = iniciativa.nome_iniciativa;
             return View(nameof(EditaIniciativa), iniciativa);
         }
     }

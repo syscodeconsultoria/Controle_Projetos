@@ -31,7 +31,7 @@ namespace NovoControleProjetos
             "~/Scripts/jquery.inputmask/inputmask.numeric.extensions.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-Journal.css",
+                      "~/Content/bootstrap-spacelab.css",
                       "~/Content/site.css"));
         }
     }

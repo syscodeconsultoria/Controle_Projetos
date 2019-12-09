@@ -9,9 +9,9 @@
     <h2>Painel administrativo</h2>
     <p class="lead">Acesso para manutenção e inclusão de novos projetos</p>
     <div class="btn-group">
-        @Html.ActionLink("Inserir novo projeto", "Create", "Iniciativa", new { data_toggle = "modal", data_target = "#modalIniciativa", @class = "btn btn-primary btn-lg", @style = "margin: 0 15px" }) <font style="alinhamento vertical: herdar;"> <font style="alinhamento vertical: herdar;"></font></font>
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="margin:0 15px"><font style="alinhamento vertical: herdar;"> <font style="alinhamento vertical: herdar;">Editar projeto</font></font></button>
-        <a href=@Url.Action("","") , type="button" class="btn btn-primary btn-lg" style="margin:0 15px"><font style="alinhamento vertical: herdar;"> <font style="alinhamento vertical: herdar;">Listar todos Projetos</font></font></a>
+        @Html.ActionLink("Inserir novo projeto", "Create", "Iniciativa", new { data_toggle = "modal", data_target = "#modalIniciativa", @class = "btn btn-primary btn-lg", @style = "margin: 0 15px" })
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Editar projeto</button>
+        <a href=@Url.Action("","") , type="button" class="btn btn-primary btn-lg" style="margin:0 15px">Listar todos Projetos</a>
     </div>
 </div>
 
@@ -32,13 +32,13 @@
                 @using (Html.BeginForm("EditaProjeto", "Iniciativa"))
                 {
                     @Html.DropDownList("idProjeto", new SelectList(Model, "IdProjeto", "NomeProjeto"), "Selecione um projeto...", new { style = "width:500px;", @class = "form-control" })
-                    <div class="modal-footer">
+                <div class="modal-footer">
+                    
+                    <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancelar</button>
 
-                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
 
-                        <button type="button" class="btn btn-default " data-dismiss="modal">Cancelar</button>
-
-                    </div>
+                </div>
                 }
             </div>
 
@@ -47,5 +47,5 @@
 </div>
 
 
-<script src="~/Scripts/JS/iniciativa.js"></script>
+@*<script src="~/Scripts/JS/iniciativa.js"></script>*@
 

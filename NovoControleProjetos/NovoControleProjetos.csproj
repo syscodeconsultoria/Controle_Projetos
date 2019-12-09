@@ -147,6 +147,7 @@
     <Compile Include="DAL\Esteira_DAL.cs" />
     <Compile Include="DAL\Iniciativa_DAL.cs" />
     <Compile Include="DAL\Jornada_DAL.cs" />
+    <Compile Include="DAL\Mvp_DAL.cs" />
     <Compile Include="DAL\Mega_DAL.cs" />
     <Compile Include="DAL\Orcamento_DAL.cs" />
     <Compile Include="DAL\Origem_DAL.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="Models\Esteira.cs" />
     <Compile Include="Models\Iniciativa.cs" />
     <Compile Include="Models\Jornada.cs" />
+    <Compile Include="Models\Mvp.cs" />
     <Compile Include="Models\Mega.cs" />
     <Compile Include="Models\Orcamento.cs" />
     <Compile Include="Models\Origem.cs" />
@@ -180,6 +182,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap-flatly.css" />
     <Content Include="Content\bootstrap-Journal.css" />
+    <Content Include="Content\bootstrap-spacelab.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
