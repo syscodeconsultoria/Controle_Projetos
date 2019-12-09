@@ -91,11 +91,12 @@
             </div>
 
             <div class="col-md-6">
-
+                <input hidden id="id-comentario-farol" value="@Model.farol.Id_Comentario_Farol" />
                 <div class="form-group">
-                    <label style="margin-left:18px">Comentário</label>
+                    <label style="margin-left:18px">Comentário Farol</label>
                     @*@Html.TextAreaFor(model => model)*@
-                    <textarea id="comentario-farol" rows="9" class="form-control" style="margin-left: 17px; min-width: 90%;"></textarea>
+                    @*<textarea id="comentario-farol" rows="9" class="form-control" style="margin-left: 17px; min-width: 90%;"></textarea>*@
+                    @Html.TextAreaFor(model => model.farol.Comentario_Farol, new { @id = "comentario-farol", @class = "form-control", @rows = "9", @style = "margin-left: 17px; min-width: 90%;" })
                 </div>
 
             </div>

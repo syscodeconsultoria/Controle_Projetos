@@ -19,6 +19,9 @@ $("#farol option").css("background", "white").css("color", "black");
 
 $(document).ready(function () {
 
+
+    var id_comentario_farol = null;
+
     $("#id-etapa").change(function () {
         //criar inteligencia para quando alterar
         //etapa atual, checkar no etapas, dentro de detalhes
@@ -38,13 +41,13 @@ $(document).ready(function () {
 
     $("#farol").change(function () {
 
-       
+
         $('#farol option[selected]').remove();
-    
+
 
         var background = $('#farol :selected').data('cor');
 
-            //$("#farol option:selected").val().split(' ')[1];
+        //$("#farol option:selected").val().split(' ')[1];
         var font = "";
         var title = $("#farol option:selected").text();
 
@@ -59,6 +62,26 @@ $(document).ready(function () {
         }
         $(this).css("background", background).css("color", font);
         $("#farol option").css("background", "white").css("color", "black");
+
+        var id_farol = $("#farol").val().split(' ')[0];
+        var id_iniciativa = $("#nome-projeto").attr("data-id");
+
+        //$("#comentario-farol").val().remove();
+
+        $.get("/Farol/BuscaFarolJS", { id_iniciativa: id_iniciativa, id_farol: id_farol }, function (data) {
+                 
+          
+            id_comentario_farol = $("#id-comentario-farol").val();
+
+            if (data.Comentario_Farol === "null") {
+                $('#comentario-farol').val("");
+            }
+            
+            $('#comentario-farol').val(data.Comentario_Farol);
+           
+            
+        });
+
     });
 
     $("#cad-iniciativa").click(function () {
@@ -82,15 +105,15 @@ $(document).ready(function () {
             id_departamento: $("#id-departamento").val(),
             data_aprovacao: $("#data-aprovacao").val(),
             id_farol: $("#farol").val().split(' ')[0],
-            id_esteira: $("#id-esteira").val(),            
+            id_esteira: $("#id-esteira").val(),
             id_etapa: $("#id-etapa").val(),
             data_piloto: $("#data-piloto").val(),
             data_plenouso: $("#pleno-uso").val(),
             data_comunicacao: $("#data-comunicacao").val(),
-           
+
             CPF: $("#cpf-iniciativa").val(),
 
-          
+
             //VPL: $("#vpl").val(),
             //cod_orcamento: 1,
             id_ceti: $("#id-ceti").val(),
@@ -102,7 +125,7 @@ $(document).ready(function () {
             TF_versao_agencia: $("#tf-versao-agencia").val(),
             TF_versao_PA: $("#tf-versao-pa").val(),
             //cod_prioritario: 1,
-            
+
             //cod_replanejamento: 1,
             responsavel_neg: $("#responsavel-neg").val(),
             responsavel_DS: $("#responsavel-ds").val(),
@@ -114,8 +137,9 @@ $(document).ready(function () {
 
         var _farol = {
 
-            
-            comentario: $('#comentario-farol').val()
+            id_farol: $("#farol").val().split(' ')[0],
+            comentario_farol: $('#comentario-farol').val(),
+            id_comentario_farol: id_comentario_farol
 
         };
 
@@ -141,8 +165,8 @@ $(document).ready(function () {
 
         var _orcamento = {
 
-            
-            
+
+
             id_orcamento: $("#id-orcamento").val(),
             total_aprovado: $("#total-aprovado").val(),
             total_realizado: $("#total-realizado").val(),
@@ -155,11 +179,15 @@ $(document).ready(function () {
             motivo_replanejamento: $("#motivo-replanejamento").val()
         };
 
+        var _mvp = {
+
+        };
+
         function getEtapas() {
             var searchIDs = $("input[name='check-etapa']:checked").map(function () {
                 var _data_inicio = $("#inicio-" + $(this).val()).val();
                 var _data_fim = $("#fim-" + $(this).val()).val();
-                return { id_etapa: $(this).val(), dt_inicio: _data_inicio, dt_fim: _data_fim};
+                return { id_etapa: $(this).val(), dt_inicio: _data_inicio, dt_fim: _data_fim };
             });
             return searchIDs.get();
         }
@@ -173,7 +201,7 @@ $(document).ready(function () {
         }
 
         function getOrigens() {
-            var searchIDs = $("input[name='check-origem']:checked").map(function () { 
+            var searchIDs = $("input[name='check-origem']:checked").map(function () {
                 return { id_origem: $(this).val() };
             });
             return searchIDs.get();
@@ -184,7 +212,7 @@ $(document).ready(function () {
                 return { id_vertical: $(this).val() };
             });
             return searchIDs.get();
-        }               
+        }
 
         $.ajax({
             type: "POST",
@@ -199,19 +227,21 @@ $(document).ready(function () {
                 visita: _visita,
                 jornada: _jornada,
                 ceti: _ceti,
-                replanejamento: _replanejamento
+                replanejamento: _replanejamento,
+                farol: _farol
             },
 
             url: "/Iniciativa/Create",
             success: function (data) {
-               
-                window.location.href = "/Home/Index";
+
+                //window.location.href = "/Home/Index";
+                window.location.reload(true);
             },
             error: function (data) {
 
                 window.location.href = "/Iniciativa/ErroAmigavel";
             }
-            
+
         });
 
     });

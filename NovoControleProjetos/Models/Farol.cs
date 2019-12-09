@@ -18,5 +18,12 @@ namespace NovoControleProjetos.Models
             }
             
         }
+
+        public string Comentario_Farol { get; set; }
+
+        public int? Id_Comentario_Farol { get; set; }
+
+        public DateTime? Data_Comentario { get; set; }
+
     }
 }
