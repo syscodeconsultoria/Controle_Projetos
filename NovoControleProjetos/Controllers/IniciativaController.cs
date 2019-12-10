@@ -195,9 +195,7 @@ namespace NovoControleProjetos.Controllers
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
-            {
-
-
+            {                
                 throw;
             }
 
@@ -229,18 +227,48 @@ namespace NovoControleProjetos.Controllers
         [HttpGet]
         public ActionResult EditaIniciativa(int id)
         {
-           
-            Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(id);
-           
 
+            Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(id);
          
             return View(iniciativa);
         }
 
         public ActionResult _DetalhesIniciativa(int? id_iniciativa, Replanejamento replanejamento)
         {
-
+            Mvp mvp = new Mvp();
             ViewBag.id_Iniciativa = id_iniciativa;
+            if (id_iniciativa != null)
+            {
+                mvp = Mvp_DAL.MvpsBuscaNoBanco(ViewBag.id_Iniciativa);
+                ViewBag.NomeMvp = mvp.Nome_Mvp;
+                ViewBag.NomeMvp1 = mvp.Nome_Mvp1;
+                ViewBag.NomeMvp2 = mvp.Nome_Mvp2;
+
+                if (mvp.Dt_Mvp.Ticks == 0)
+                {
+                    ViewBag.DataMvp = null;
+                }
+                else
+                {
+                    ViewBag.DataMvp =  mvp.Dt_Mvp.ToShortDateString();
+                }
+                if (mvp.Dt_Mvp1.Ticks == 0)
+                {
+                    ViewBag.DataMvp1 = null;
+                }
+                else
+                {
+                    ViewBag.DataMvp1 = mvp.Dt_Mvp1.ToShortDateString();
+                }
+                if (mvp.Dt_Mvp2.Ticks == 0)
+                {
+                    ViewBag.DataMvp2 = null;
+                }
+                else
+                {
+                    ViewBag.DataMvp2 = mvp.Dt_Mvp2.ToShortDateString();
+                }
+            }
 
             return PartialView(replanejamento);
 
