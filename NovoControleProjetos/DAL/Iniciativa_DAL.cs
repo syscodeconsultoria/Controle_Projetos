@@ -96,7 +96,7 @@ namespace NovoControleProjetos.DAL
                     iniciativa.data_comunicacao = reader["dt_comunicacao"] != DBNull.Value ? Convert.ToDateTime(reader["dt_comunicacao"]) : (DateTime?)null;
                     iniciativa.usabilidade = reader["usabilidade"] != DBNull.Value ? Convert.ToBoolean(reader["usabilidade"]) : (bool?)null;
                     iniciativa.id_replanejamento = reader["id_replanejamento"] != DBNull.Value ? Convert.ToInt32(reader["id_replanejamento"]) : (int?)null;
-
+                    iniciativa.id_visita = reader["id_visita"] != DBNull.Value ? Convert.ToInt32(reader["id_visita"]) : (int?)null;
 
 
                     //iniciativa.usabilidade = Convert.ToBoolean(reader["usabilidade"]);

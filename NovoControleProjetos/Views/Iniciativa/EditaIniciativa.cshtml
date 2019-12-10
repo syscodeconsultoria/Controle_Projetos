@@ -17,6 +17,7 @@
     var dtComunicacao = Model.data_comunicacao != null ? Model.data_comunicacao.Value.ToShortDateString() : null;
     var valUsabilidade = Model.usabilidade == true ? "true" : Model.usabilidade ==  false ? "false" : null;
     var textoUsabilidade = Model.usabilidade == true ? "Sim" : Model.usabilidade == false ? "Não" : null;
+    var dtVisita = Model.visita.Data_Visita != null ? Model.visita.Data_Visita.Value.ToShortDateString() : null;
 }
 
 
@@ -217,14 +218,15 @@
             </div>
 
                 <div class="col-sm-2">
+                    <input hidden id="id-visita" value="@Model.id_visita" />
                     <label for="data-visita" class="control-label">Data visita</label>
-                    <input type="text" id="data-visita" name="data-visita" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
+                    <input type="text" id="data-visita" value="@dtVisita" name="data-visita" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
                 </div>
 
             <div class="col-sm-2">
 
                 <label for="agencia">Agência Visitada</label>
-                @{Html.RenderAction("_ListaAgencias", "Agencias" @*new { @cod_agencia = Model. }*@);}
+                @{Html.RenderAction("_ListaAgencias", "Agencias", new { @cod_agencia = Model.visita.Cod_Agencia });}
 
                 @*<label for="agencia-visitada" class="control-label">Agência visitada</label>
                 <input type="text" id="agencia-visitada" name="agencia-visitada" class="form-control" />*@

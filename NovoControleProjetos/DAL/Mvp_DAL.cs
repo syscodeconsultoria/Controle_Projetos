@@ -25,7 +25,7 @@ namespace NovoControleProjetos.DAL
                 cmd.Parameters.AddWithValue("@nome_mvp", mvp.Nome_Mvp);
                 cmd.Parameters.AddWithValue("@id_iniciativa", Id_Iniciativa);
 
-                if (mvp.Dt_Mvp != null)
+                if (mvp.Dt_Mvp.Ticks != 0)
                 {
                     cmd.Parameters.AddWithValue("@dt_mvp", mvp.Dt_Mvp);
                 }
@@ -34,8 +34,8 @@ namespace NovoControleProjetos.DAL
                     cmd.Parameters.AddWithValue("@dt_mvp", SqlDbType.DateTime).Value = SqlDateTime.Null;
                 }
 
-                cmd.Parameters.AddWithValue("@nome_mvp1", mvp.Nome_Mvp1);
-                if (mvp.Dt_Mvp1 != null)
+                
+                if (mvp.Dt_Mvp1.Ticks != 0)
                 {
                     cmd.Parameters.AddWithValue("@dt_mvp1", mvp.Dt_Mvp1);
                 }
@@ -44,8 +44,8 @@ namespace NovoControleProjetos.DAL
                     cmd.Parameters.AddWithValue("@dt_mvp1", SqlDbType.DateTime).Value = SqlDateTime.Null;
                 }
 
-                cmd.Parameters.AddWithValue("@nome_mvp2", mvp.Nome_Mvp2);
-                if (mvp.Dt_Mvp2 != null)
+             
+                if (mvp.Dt_Mvp2.Ticks != 0)
                 {
                     cmd.Parameters.AddWithValue("@dt_mvp2", mvp.Dt_Mvp);
                 }

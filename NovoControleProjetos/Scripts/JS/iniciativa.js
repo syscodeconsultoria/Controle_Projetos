@@ -132,7 +132,8 @@ $(document).ready(function () {
             resumo_iniciativa: $("#resumo-iniciativa").val(),
             usabilidade: $("#usabilidade").val(),
             beneficio_iniciativa: $("#beneficio-iniciativa").val(),
-            id_replanejamento: $("#id-replanejamento").val()
+            id_replanejamento: $("#id-replanejamento").val(),
+            id_visita: $("#id-visita").val()
 
         };
 

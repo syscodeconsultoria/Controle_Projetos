@@ -22,10 +22,10 @@ namespace NovoControleProjetos.Controllers
             return visita_DAL.BuscaVisita(id_visita, null);
         }
 
-        public int InsereVisita(Visita visita, int? id_iniciativa, string oper)
+        public int InsereVisita(Visita visita, int? id_iniciativa, int? id_visita, string oper)            
         {
-            var id_visita = visita_DAL.InsereVisita(visita, id_iniciativa, null, oper);
-            return id_visita;
+            var idVisita = visita_DAL.InsereVisita(visita, id_iniciativa, id_visita, oper);
+            return idVisita;
         }
     }
 }

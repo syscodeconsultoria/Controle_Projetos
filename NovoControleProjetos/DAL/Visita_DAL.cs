@@ -29,6 +29,7 @@ namespace NovoControleProjetos.DAL
 
                 while (reader.Read())
                 {
+                    visita.Id_Visita = reader["id_visita"] != DBNull.Value ? Convert.ToInt32(reader["id_visita"]) : (int?)null;
                     visita.Cod_Agencia = reader["cod_agencia"] != DBNull.Value ? Convert.ToInt32(reader["cod_agencia"]) : (int?)null;
                     visita.Data_Visita = reader["dt_visita"] != DBNull.Value ? Convert.ToDateTime(reader["dt_visita"]) : (DateTime?)null;
                     visita.Nome_Agencia = reader["nome_agencia"] as string;
