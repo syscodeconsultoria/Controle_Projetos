@@ -48,5 +48,6 @@ namespace NovoControleProjetos.Models
         //}
 
         public Farol farol { get; set; }
+
     }
 }

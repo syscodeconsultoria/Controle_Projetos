@@ -1,4 +1,5 @@
-﻿using NovoControleProjetos.Models;
+﻿using NovoControleProjetos.DAL;
+using NovoControleProjetos.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,9 @@ namespace NovoControleProjetos.Controllers
     {
 
         DAL.Replanejamento_DAL replanejamento_DAL = new DAL.Replanejamento_DAL();
+        Mvp_DAL Mvp_DAL = new Mvp_DAL();
 
-   
+
         // GET: Replanejamento
         public ActionResult Index()
         {
