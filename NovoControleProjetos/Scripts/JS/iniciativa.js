@@ -252,8 +252,8 @@ $(document).ready(function () {
             url: "/Iniciativa/Create",
             success: function (data) {
 
-                //window.location.href = "/Home/Index";
-                window.location.reload(true);
+                window.location.href = "/Home/Index";
+                //window.location.reload(true);
             },
             error: function (data) {
 
