@@ -18,6 +18,8 @@ namespace NovoControleProjetos.Controllers
         JornadaController jornadaController = new JornadaController();
         ReplanejamentoController replanejamentoController = new ReplanejamentoController();
         FarolController farolController = new FarolController();
+        VisitaController visitaController = new VisitaController();
+        
         Mvp_DAL Mvp_DAL = new Mvp_DAL();
 
 
@@ -119,9 +121,7 @@ namespace NovoControleProjetos.Controllers
                         return RedirectToAction("Error", "Home");
                     }
                 }
-
-
-                //int idOrcamento = 
+              
                 if (orcamento != null)
                 {
 
@@ -142,16 +142,11 @@ namespace NovoControleProjetos.Controllers
                     {
                         objCeti = cetiController.BuscaCeti(null, iniciativa.id_ceti);
                         oper = ceti.Data_Ceti != objCeti.Data_Ceti ? "I" : "U";
-                    }
-                    //buscar a data ceti no banco
-                    // se a data ceti no banco for igual a que está vindo no objeto ceti
-                    // faço update, se for diferente, faço insert
+                    }                   
  
                    var id_ceti = cetiController.InsereCeti(ceti, iniciativa.Id_Iniciativa, iniciativa.id_ceti, oper ?? "I");
 
                     iniciativa.id_ceti = id_ceti;
-
-
                 }
 
                 if (replanejamento.data_replanejamento != null || replanejamento.motivo_replanejamento != null)
@@ -167,9 +162,7 @@ namespace NovoControleProjetos.Controllers
 
                     iniciativa.id_replanejamento = replanejamentoController.InsereReplanejamento(replanejamento, iniciativa.Id_Iniciativa, iniciativa.id_replanejamento, oper ?? "I");
                                                          
-                }
-
-                
+                }               
 
 
                 if (farol.Comentario_Farol != null)
@@ -186,6 +179,20 @@ namespace NovoControleProjetos.Controllers
                     farolController.InsereComentarioFarol(farol, iniciativa.Id_Iniciativa, iniciativa.id_farol, farol.Id_Comentario_Farol != null ? farol.Id_Comentario_Farol : null, oper);
                 }
 
+                if(visita.Data_Visita != null || visita.Cod_Agencia != null)
+                {
+                    string oper = null;
+                    Visita _visita = new Visita();
+
+                    if(iniciativa.id_visita != null)
+                    {
+                        var objVisita = visitaController.BuscaVisita(iniciativa.id_visita, null);
+                        oper = objVisita.Data_Visita != visita.Data_Visita || objVisita.Cod_Agencia != visita.Cod_Agencia ? "I" : "U";
+                    }
+
+                    iniciativa.id_visita = visitaController.InsereVisita(visita, iniciativa.Id_Iniciativa, iniciativa.id_visita, oper ?? "I");
+
+                }
 
                 //iniciativa.id_orcamento = idOrcamento;
                 //relacionamentosController.RelacionamentoOrcamentoProjeto(iniciativa.Id_Iniciativa, idOrcamento);          

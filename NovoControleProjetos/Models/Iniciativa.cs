@@ -39,8 +39,10 @@ namespace NovoControleProjetos.Models
         public int id_jornada { get; set; }
         public int? id_ceti { get; set; }
         public int? id_replanejamento { get; set; }
+        public int? id_visita { get; set; }
         public Replanejamento replanejamento { get; set; }
 
+        public Visita visita { get; set; }
         //public Farol farol  { get  { return new Farol(); } set {  }
           
         //}

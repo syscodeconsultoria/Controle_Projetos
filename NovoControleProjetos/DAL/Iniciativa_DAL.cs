@@ -96,7 +96,7 @@ namespace NovoControleProjetos.DAL
                     iniciativa.data_comunicacao = reader["dt_comunicacao"] != DBNull.Value ? Convert.ToDateTime(reader["dt_comunicacao"]) : (DateTime?)null;
                     iniciativa.usabilidade = reader["usabilidade"] != DBNull.Value ? Convert.ToBoolean(reader["usabilidade"]) : (bool?)null;
                     iniciativa.id_replanejamento = reader["id_replanejamento"] != DBNull.Value ? Convert.ToInt32(reader["id_replanejamento"]) : (int?)null;
-
+                    iniciativa.id_visita = reader["id_visita"] != DBNull.Value ? Convert.ToInt32(reader["id_visita"]) : (int?)null;
 
 
                     //iniciativa.usabilidade = Convert.ToBoolean(reader["usabilidade"]);
@@ -139,20 +139,28 @@ namespace NovoControleProjetos.DAL
 
                     };
 
-
-                //iniciativa.idsOrigens = new List<int>();
-
-                //if (!idsOrigs.Exists(i => i.Id_Origem.ToString().Equals(reader["id_origem"])))
-                //{
-                //    idsOrigs.Add(new Origem
-                //    {
-                //        Id_Origem = Convert.ToInt32(reader["id_origem"])
-                //    });
-
-                //}
+                    iniciativa.visita = new Visita
+                    {
+                        Id_Visita = reader["id_visita"] != DBNull.Value ? Convert.ToInt32(reader["id_visita"]) : (int?)null,
+                        Cod_Agencia = reader["cod_agencia"] != DBNull.Value ? Convert.ToInt32(reader["cod_agencia"]) : (int?)null,
+                        Data_Visita = reader["dt_visita"] != DBNull.Value ? Convert.ToDateTime(reader["dt_visita"]) : (DateTime?)null,
+                        Nome_Agencia = reader["nome_agencia"] as string,
+                    };
 
 
-            }
+                    //iniciativa.idsOrigens = new List<int>();
+
+                    //if (!idsOrigs.Exists(i => i.Id_Origem.ToString().Equals(reader["id_origem"])))
+                    //{
+                    //    idsOrigs.Add(new Origem
+                    //    {
+                    //        Id_Origem = Convert.ToInt32(reader["id_origem"])
+                    //    });
+
+                    //}
+
+
+                }
 
 
             return iniciativa;
@@ -224,19 +232,19 @@ namespace NovoControleProjetos.DAL
             cmd.Parameters.AddWithValue("@resumo_iniciativa", iniciativa.resumo_iniciativa);
             cmd.Parameters.AddWithValue("@id_jornada", iniciativa.id_jornada);
             cmd.Parameters.AddWithValue("@id_replanejamento", iniciativa.id_replanejamento);
+            cmd.Parameters.AddWithValue("@id_visita", iniciativa.id_visita);
+                //cmd.Parameters.AddWithValue("@id_origem", iniciativa.id_origem);
+                //cmd.Parameters.AddWithValue("@id_dt", iniciativa.id_dt);
 
-            //cmd.Parameters.AddWithValue("@id_origem", iniciativa.id_origem);
-            //cmd.Parameters.AddWithValue("@id_dt", iniciativa.id_dt);
 
-            //cmd.Parameters.AddWithValue("@id_visita", iniciativa.id_visita);
-            //cmd.Parameters.AddWithValue("@id_canal", iniciativa.id_canal);
-            //cmd.Parameters.AddWithValue("@id_comissao_varejo", iniciativa.id_comissao_varejo);
+                //cmd.Parameters.AddWithValue("@id_canal", iniciativa.id_canal);
+                //cmd.Parameters.AddWithValue("@id_comissao_varejo", iniciativa.id_comissao_varejo);
 
-            //cmd.Parameters.AddWithValue("@VPL", iniciativa.VPL);
-            //cmd.Parameters.AddWithValue("@id_orcamento", iniciativa.id_orcamento);
-            //cmd.Parameters.AddWithValue("@esteira", iniciativa.Esteira);
+                //cmd.Parameters.AddWithValue("@VPL", iniciativa.VPL);
+                //cmd.Parameters.AddWithValue("@id_orcamento", iniciativa.id_orcamento);
+                //cmd.Parameters.AddWithValue("@esteira", iniciativa.Esteira);
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
 
         }

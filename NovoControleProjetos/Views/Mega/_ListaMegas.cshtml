@@ -1,0 +1,12 @@
+﻿@model IEnumerable<NovoControleProjetos.Models.Mega>
+
+@{
+    /**/
+
+    var id_mega = ViewBag.id_mega;
+
+}
+
+@Html.DropDownList("id-mega", new SelectList(ViewBag.megas, "id_mega", "ds_mega", id_mega != null ? id_mega : null), String.Empty, new { @class = "form-control" })
+
+

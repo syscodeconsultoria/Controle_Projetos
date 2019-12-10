@@ -119,7 +119,7 @@ $(document).ready(function () {
             id_ceti: $("#id-ceti").val(),
             //cod_comissao_varejo: 1,
             //cod_jornada: 1,
-            id_mega: $("#mega").val(),
+            id_mega: $("#id-mega").val(),
             //cod_visita: 1,
             //cod_canal: 1,
             TF_versao_agencia: $("#tf-versao-agencia").val(),
@@ -132,7 +132,8 @@ $(document).ready(function () {
             resumo_iniciativa: $("#resumo-iniciativa").val(),
             usabilidade: $("#usabilidade").val(),
             beneficio_iniciativa: $("#beneficio-iniciativa").val(),
-            id_replanejamento: $("#id-replanejamento").val()
+            id_replanejamento: $("#id-replanejamento").val(),
+            id_visita: $("#id-visita").val()
 
         };
 
@@ -146,10 +147,12 @@ $(document).ready(function () {
 
 
         var _visita = {
+            id_visita: $("#id-visita").val(),
             data_visita: $("#data-visita").val(),
-            agencia_visitada: $("#agencia-visitada").val(),
-            responsavel_visita: $("#responsavel-visita").val(),
-            comentario_visita: $("#comentario-visita").val()
+            cod_agencia: $("#cod-agencia").val(),
+            nome_agencia: $("#cod-agencia option:selected").text()
+            //responsavel_visita: $("#responsavel-visita").val(),
+            //comentario_visita: $("#comentario-visita").val()
         };
 
         var _jornada = {
