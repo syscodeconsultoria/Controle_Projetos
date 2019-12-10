@@ -27,10 +27,19 @@ namespace NovoControleProjetos.DAL
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 con.Open();
-                cmd.Parameters.AddWithValue("@nome_mvp", mvp.Nome_Mvp);
                 cmd.Parameters.AddWithValue("@id_iniciativa", Id_Iniciativa);
+
+                cmd.Parameters.AddWithValue("@nome_mvp", mvp.Nome_Mvp);
+                cmd.Parameters.AddWithValue("@opermvp", mvp.Id_Mvp > 0 ? "U" : "I");
+                cmd.Parameters.AddWithValue("@id_mvp", mvp.Id_Mvp > 0 ? mvp.Id_Mvp : (int?)null);
+
                 cmd.Parameters.AddWithValue("@nome_mvp1", mvp.Nome_Mvp1);
+                cmd.Parameters.AddWithValue("@opermvp1", mvp.Id_Mvp1 > 0 ? "U" : "I");
+                cmd.Parameters.AddWithValue("@id_mvp1", mvp.Id_Mvp1 > 0 ? mvp.Id_Mvp1 : (int?)null);
+
                 cmd.Parameters.AddWithValue("@nome_mvp2", mvp.Nome_Mvp2);
+                cmd.Parameters.AddWithValue("@opermvp2", mvp.Id_Mvp2 > 0 ? "U" : "I" );
+                cmd.Parameters.AddWithValue("@id_mvp2", mvp.Id_Mvp2 > 0 ? mvp.Id_Mvp1 : (int?)null);
 
                 if (mvp.Dt_Mvp.Ticks != 0)
                 {

@@ -184,14 +184,17 @@ $(document).ready(function () {
         };
 
         var _mvp = {
+            Id_Mvp: $("#id-mvp").val(),
             Nome_Mvp: $('#mvp-nome').val(),
             Dt_Mvp: $('#mvp-entrega').val(),
             Id_Iniciativa: $("#nome-projeto").attr("data-id"),
 
+            Id_Mvp1: $("#id-mvp1").val(),
             Nome_Mvp1: $('#mvp-nome-um').val(),
             Dt_Mvp1: $('#mvp-entrega-um').val(),
             Id_Iniciativa1: $("#nome-projeto").attr("data-id"),
 
+            Id_Mvp2: $("#id-mvp2").val(),
             Nome_Mvp2: $('#mvp-nome-dois').val(),
             Dt_Mvp2: $('#mvp-entrega-dois').val(),
             Id_Iniciativa2: $("#nome-projeto").attr("data-id")

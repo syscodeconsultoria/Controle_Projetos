@@ -248,8 +248,11 @@ namespace NovoControleProjetos.Controllers
             {
                 mvp = Mvp_DAL.MvpsBuscaNoBanco(ViewBag.id_Iniciativa);
                 ViewBag.NomeMvp = mvp.Nome_Mvp;
+                ViewBag.Id_Mvp = mvp.Id_Mvp;
                 ViewBag.NomeMvp1 = mvp.Nome_Mvp1;
+                ViewBag.Id_Mvp1 = mvp.Id_Mvp1;
                 ViewBag.NomeMvp2 = mvp.Nome_Mvp2;
+                ViewBag.Id_Mvp2 = mvp.Id_Mvp2;
 
                 if (mvp.Dt_Mvp.Ticks == 0)
                 {

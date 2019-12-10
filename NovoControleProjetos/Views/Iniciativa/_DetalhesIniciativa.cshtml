@@ -75,6 +75,7 @@
                 <div>
                     <label style=" color: brown;">MVP:</label>
                 </div>
+                <input hidden id="id-mvp" value="@ViewBag.Id_Mvp" />
                 <div class="col-md-6" style="padding-left:0;">
                     <label for="mvp-nome">Nome</label>
                     <input type="text" id="mvp-nome" name="mvp-nome" class="form-control" value="@ViewBag.NomeMvp" />
@@ -88,21 +89,21 @@
             </div>
 
             <div class="row" style="padding: 15px; padding-top:2px; padding-bottom:5px;">
-
+                <input hidden id="id-mvp1" value="@ViewBag.Id_Mvp1" />
                 <div class="col-md-6" style="padding-left:0;">
                     <label for="mvp-nome">Nome</label>
                     <input type="text" id="mvp-nome-um" name="mvp-nome" value="@ViewBag.NomeMvp1" class="form-control" />
                 </div>
 
-            <div class="col-md-6">
-                <label for="mvp-entrega">Entrega</label>
-                <input type="text" id="mvp-entrega-um" name="mvp-entrega" value="@ViewBag.DataMvp1" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
-            </div>
+                <div class="col-md-6">
+                    <label for="mvp-entrega">Entrega</label>
+                    <input type="text" id="mvp-entrega-um" name="mvp-entrega" value="@ViewBag.DataMvp1" onkeypress="mascara(this, mdata);" size="14" maxlength="10" class="form-control" placeholder="DD/MM/AAAA" />
+                </div>
 
             </div>
 
             <div class="row" style="padding: 15px; padding-top:2px; padding-bottom:5px;">
-
+                <input hidden id="id-mvp2" value="@ViewBag.Id_Mvp2" />
                 <div class="col-md-6" style="padding-left:0;">
                     <label for="mvp-nome">Nome</label>
                     <input type="text" id="mvp-nome-dois" name="mvp-nome" class="form-control" value="@ViewBag.NomeMvp2" />
