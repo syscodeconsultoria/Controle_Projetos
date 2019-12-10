@@ -21,7 +21,7 @@ namespace NovoControleProjetos.DAL
         /// <param name="Id_Iniciativa"></param>
         public void InsereMvpNoBanco(Mvp mvp, int Id_Iniciativa)
         {
-            var cmd = new SqlCommand("UP_Controle_Projetos_Insert_MVP", con);
+            var cmd = new SqlCommand("UP_Controle_Projetos_Oper_M_MVP", con);
 
             using (con)
             {
@@ -41,7 +41,7 @@ namespace NovoControleProjetos.DAL
                 cmd.Parameters.AddWithValue("@opermvp2", mvp.Id_Mvp2 > 0 ? "U" : "I" );
                 cmd.Parameters.AddWithValue("@id_mvp2", mvp.Id_Mvp2 > 0 ? mvp.Id_Mvp1 : (int?)null);
 
-                if (mvp.Dt_Mvp.Ticks != 0)
+                if (mvp.Dt_Mvp != null)
                 {
                     cmd.Parameters.AddWithValue("@dt_mvp", mvp.Dt_Mvp);
                 }
@@ -50,7 +50,7 @@ namespace NovoControleProjetos.DAL
                     cmd.Parameters.AddWithValue("@dt_mvp", SqlDbType.DateTime).Value = SqlDateTime.Null;
                 }
 
-                if (mvp.Dt_Mvp1.Ticks != 0)
+                if (mvp.Dt_Mvp1 != null)
                 {
                     cmd.Parameters.AddWithValue("@dt_mvp1", mvp.Dt_Mvp1);
                 }
@@ -59,7 +59,7 @@ namespace NovoControleProjetos.DAL
                     cmd.Parameters.AddWithValue("@dt_mvp1", SqlDbType.DateTime).Value = SqlDateTime.Null;
                 }
 
-                if (mvp.Dt_Mvp2.Ticks != 0)
+                if (mvp.Dt_Mvp2 != null)
                 {
                     cmd.Parameters.AddWithValue("@dt_mvp2", mvp.Dt_Mvp2);
                 }
@@ -82,7 +82,7 @@ namespace NovoControleProjetos.DAL
         public Mvp MvpsBuscaNoBanco(int IdIniciativa)
         {
             int i = 0;
-            var cmd = new SqlCommand("UP_Controle_Projetos_Insert_MVP", con);
+            var cmd = new SqlCommand("UP_Controle_Projetos_Oper_M_MVP", con);
             Mvp mvps = new Mvp();
             using (con)
             {
@@ -103,7 +103,7 @@ namespace NovoControleProjetos.DAL
                                     mvps.Id_Mvp = int.Parse(data["id_MVP"].ToString());
                                     mvps.Nome_Mvp = data["nome_mvp"].ToString();
                                     mvps.Id_Iniciativa = int.Parse(data["id_iniciativa"].ToString());
-                                    mvps.Dt_Mvp = DateTime.Parse(data["dt_mvp"].ToString());
+                                    mvps.Dt_Mvp = data["dt_mvp"] != DBNull.Value ? DateTime.Parse(data["dt_mvp"].ToString()) : (DateTime?)(null);
                                 }
                                 break;
                             case 1:
@@ -111,7 +111,7 @@ namespace NovoControleProjetos.DAL
                                     mvps.Id_Mvp1 = int.Parse(data["id_MVP"].ToString());
                                     mvps.Nome_Mvp1 = data["nome_mvp"].ToString();
                                     mvps.Id_Iniciativa1 = int.Parse(data["id_iniciativa"].ToString());
-                                    mvps.Dt_Mvp1 = DateTime.Parse(data["dt_mvp"].ToString());
+                                    mvps.Dt_Mvp1 = data["dt_mvp"] != DBNull.Value ? DateTime.Parse(data["dt_mvp"].ToString()) : (DateTime?)(null);
                                 }
                                 break;
                             case 2:
@@ -119,7 +119,7 @@ namespace NovoControleProjetos.DAL
                                     mvps.Id_Mvp2 = int.Parse(data["id_MVP"].ToString());
                                     mvps.Nome_Mvp2 = data["nome_mvp"].ToString();
                                     mvps.Id_Iniciativa2 = int.Parse(data["id_iniciativa"].ToString());
-                                    mvps.Dt_Mvp2 = DateTime.Parse(data["dt_mvp"].ToString());
+                                    mvps.Dt_Mvp2 = data["dt_mvp"] != DBNull.Value ? DateTime.Parse(data["dt_mvp"].ToString()) : (DateTime?)(null);
                                 }
                                 break;
                             default:

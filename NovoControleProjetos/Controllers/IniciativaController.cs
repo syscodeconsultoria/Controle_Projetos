@@ -254,29 +254,29 @@ namespace NovoControleProjetos.Controllers
                 ViewBag.NomeMvp2 = mvp.Nome_Mvp2;
                 ViewBag.Id_Mvp2 = mvp.Id_Mvp2;
 
-                if (mvp.Dt_Mvp.Ticks == 0)
+                if (mvp.Dt_Mvp == null)
                 {
                     ViewBag.DataMvp = null;
                 }
                 else
                 {
-                    ViewBag.DataMvp =  mvp.Dt_Mvp.ToShortDateString();
+                    ViewBag.DataMvp =  mvp.Dt_Mvp.Value.ToShortDateString();
                 }
-                if (mvp.Dt_Mvp1.Ticks == 0)
+                if (mvp.Dt_Mvp1 == null)
                 {
                     ViewBag.DataMvp1 = null;
                 }
                 else
                 {
-                    ViewBag.DataMvp1 = mvp.Dt_Mvp1.ToShortDateString();
+                    ViewBag.DataMvp1 = mvp.Dt_Mvp1.Value.ToShortDateString();
                 }
-                if (mvp.Dt_Mvp2.Ticks == 0)
+                if (mvp.Dt_Mvp2 == null)
                 {
                     ViewBag.DataMvp2 = null;
                 }
                 else
                 {
-                    ViewBag.DataMvp2 = mvp.Dt_Mvp2.ToShortDateString();
+                    ViewBag.DataMvp2 = mvp.Dt_Mvp2.Value.ToShortDateString();
                 }
             }
 
