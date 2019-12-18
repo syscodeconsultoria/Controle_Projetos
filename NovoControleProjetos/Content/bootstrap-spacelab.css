@@ -3253,7 +3253,7 @@ fieldset[disabled] .btn-info.focus {
 }
 .btn-warning {
   color: #ffffff;
-  background-color: #d47500;
+  background-color: cornflowerblue;
   border-color: #d47500;
 }
 .btn-warning:focus,

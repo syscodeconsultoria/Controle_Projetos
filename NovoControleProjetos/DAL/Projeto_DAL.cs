@@ -41,9 +41,83 @@ namespace NovoControleProjetos.DAL
             }
             con.Close();
             return projetos;
-
         }
 
+        /// <summary>
+        /// Lista para retornar lista de todos os projetos juntamente com o setor
+        /// </summary>
+        /// <returns></returns>
+        public List<ListaDeProjetosModelView> listaDeProjetos()
+        {
+            List<ListaDeProjetosModelView> listas = new List<ListaDeProjetosModelView>();
+            using (con)
+            {
+                try
+                {
+                    var cmd = new SqlCommand("UP_Controle_Projetos_Lista_Iniciativas", con);
+                    cmd.Parameters.AddWithValue("@tipo_operacao", 1);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    con.Open();
+                    var dados = cmd.ExecuteReader();
+                    while (dados.Read())
+                    {
+                        listas.Add(new ListaDeProjetosModelView
+                        {
+                            DtAprovacao = DateTime.Parse(dados["dt_aprovacao"].ToString()),
+                            IdIniciativa = int.Parse(dados["id_iniciativa"].ToString()),
+                            NomeDepartamento = dados["ds_departamento"].ToString(),
+                            NomeIniciativa = dados["nome_iniciativa"].ToString()
+                        });
+                    }
+                    return listas;
+                }
+                catch (Exception e)
+                {
+
+                    throw;
+                }
+
+            }
+        }
+
+
+        /// <summary>
+        /// Lista para retornar lista de todos os projetos juntamente com o setor passando o nome do setor como parametro
+        /// </summary>
+        /// <returns></returns>
+        public List<ListaDeProjetosModelView> listaProjetosNomeDepartamento(string nomeDepartamento)
+        {
+            List<ListaDeProjetosModelView> listas = new List<ListaDeProjetosModelView>();
+            using (con)
+            {
+                try
+                {
+                    var cmd = new SqlCommand("UP_Controle_Projetos_Lista_Iniciativas", con);
+                    cmd.Parameters.AddWithValue("@nome_departamento", nomeDepartamento);
+                    cmd.Parameters.AddWithValue("@tipo_operacao", 2);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    con.Open();
+                    var dados = cmd.ExecuteReader();
+                    while (dados.Read())
+                    {
+                        listas.Add(new ListaDeProjetosModelView
+                        {
+                            DtAprovacao = DateTime.Parse(dados["dt_aprovacao"].ToString()),
+                            IdIniciativa = int.Parse(dados["id_iniciativa"].ToString()),
+                            NomeDepartamento = dados["ds_departamento"].ToString(),
+                            NomeIniciativa = dados["nome_iniciativa"].ToString()
+                        });
+                    }
+                    return listas;
+                }
+                catch (Exception e)
+                {
+
+                    throw;
+                }
+
+            }
+        }
     }
 
 }

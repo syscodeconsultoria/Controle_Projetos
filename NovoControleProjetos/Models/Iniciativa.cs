@@ -14,7 +14,6 @@ namespace NovoControleProjetos.Models
         public DateTime? data_aprovacao { get; set; }
         public DateTime? data_piloto { get; set; }
         public DateTime? data_plenouso { get; set; }
-
         public DateTime? data_comunicacao { get; set; }
         public int? id_esteira { get; set; }
         public int? id_farol { get; set; }
@@ -41,12 +40,10 @@ namespace NovoControleProjetos.Models
         public int? id_replanejamento { get; set; }
         public int? id_visita { get; set; }
         public Replanejamento replanejamento { get; set; }
-
         public Visita visita { get; set; }
         //public Farol farol  { get  { return new Farol(); } set {  }
           
         //}
-
         public Farol farol { get; set; }
 
     }

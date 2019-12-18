@@ -4,48 +4,52 @@
     ViewBag.Title = "Home Page";
     Html.RenderPartial("~/Views/Iniciativa/_InsertIniciativa.cshtml");
 }
+<head>
+    <script src="~/Scripts/JS/iniciativa.js"></script>
+</head>
 
-<div class="jumbotron">
-    <h2>Painel administrativo</h2>
-    <p class="lead">Acesso para manutenção e inclusão de novos projetos</p>
-    <div class="btn-group">
-        @Html.ActionLink("Inserir novo projeto", "Create", "Iniciativa", new { data_toggle = "modal", data_target = "#modalIniciativa", @class = "btn btn-primary btn-lg", @style = "margin: 0 15px" })
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Editar projeto</button>
-        <a href=@Url.Action("","") , type="button" class="btn btn-primary btn-lg" style="margin:0 15px">Listar todos Projetos</a>
-    </div>
-</div>
-
-<div class="jumbotron">
-    <h2>Relatórios</h2>
-    <p class="lead">Acesso de relatórios e gráficos dos projetos</p>
-    <p><a href="#" class="btn btn-primary btn-lg">Acessar</a></p>
-</div>
+<body>
 
 
-
-
-<div class="modal fade" tabindex="-1" id="myModal" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                @using (Html.BeginForm("EditaProjeto", "Iniciativa"))
-                {
-                    @Html.DropDownList("idProjeto", new SelectList(Model, "IdProjeto", "NomeProjeto"), "Selecione um projeto...", new { style = "width:500px;", @class = "form-control" })
-                <div class="modal-footer">
-                    
-                    <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancelar</button>
-
-                    <button type="submit" class="btn btn-primary">Confirmar</button>
-
-                </div>
-                }
-            </div>
-
+    <div class="jumbotron">
+        <h2>Painel administrativo</h2>
+        <p class="lead">Acesso para manutenção e inclusão de novos projetos</p>
+        <div class="btn-group">
+            @Html.ActionLink("Inserir novo projeto", "Create", "Iniciativa", new { data_toggle = "modal", data_target = "#modalIniciativa", @class = "btn btn-primary btn-lg", @style = "margin: 0 15px" })
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Editar projeto</button>
+            <a href=@Url.Action("ListaProjetos","Iniciativa") , type="button" class="btn btn-primary btn-lg" style="margin:0 15px">Listar todos Projetos</a>
         </div>
     </div>
-</div>
+
+    <div class="jumbotron">
+        <h2>Relatórios</h2>
+        <p class="lead">Acesso de relatórios e gráficos dos projetos</p>
+        <p><a href="#" class="btn btn-primary btn-lg">Acessar</a></p>
+    </div>
 
 
-@*<script src="~/Scripts/JS/iniciativa.js"></script>*@
 
+    <div class="modal fade" tabindex="-1" id="myModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @using (Html.BeginForm("EditaProjeto", "Iniciativa"))
+                    {
+                        @Html.DropDownList("idProjeto", new SelectList(Model, "IdProjeto", "NomeProjeto"), "Selecione um projeto...", new { style = "width:500px;", @class = "form-control" })
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-default " data-dismiss="modal">Cancelar</button>
+
+                            <button type="submit" class="btn btn-primary">Confirmar</button>
+
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="~/Scripts/JS/iniciativa.js"></script>

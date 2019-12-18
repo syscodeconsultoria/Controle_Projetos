@@ -1,10 +1,13 @@
-﻿using NovoControleProjetos.DAL;
+﻿using Newtonsoft.Json;
+using NovoControleProjetos.DAL;
 using NovoControleProjetos.Models;
 using NovoControleProjetos.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace NovoControleProjetos.Controllers
@@ -19,13 +22,14 @@ namespace NovoControleProjetos.Controllers
         ReplanejamentoController replanejamentoController = new ReplanejamentoController();
         FarolController farolController = new FarolController();
         VisitaController visitaController = new VisitaController();
-        
         Mvp_DAL Mvp_DAL = new Mvp_DAL();
+        Projeto_DAL Projeto_DAL = new Projeto_DAL();
 
 
         // GET: Iniciativa
-        public ActionResult Index()
+        public ActionResult Index(bool teste)
         {
+            ViewBag.Sucesso = teste;
             return View();
         }
 
@@ -40,19 +44,12 @@ namespace NovoControleProjetos.Controllers
 
         [HttpPost]
         public ActionResult Create(Iniciativa iniciativa, Orcamento orcamento, List<Origem> origens, List<Etapa> etapas, List<Vertical> verticais,
-                                  List<Canal> canais, Visita visita, Jornada jornada, Ceti ceti, Replanejamento replanejamento, Farol farol, Mvp mvp)
+                                  List<Canal> canais, Visita visita, Jornada jornada, Ceti ceti, Replanejamento replanejamento, Farol farol)
         {
 
             try
             {
-                if (mvp != null)
-                {
-                    Mvp_DAL.InsereMvpNoBanco(mvp, iniciativa.Id_Iniciativa);
-                }
-                else
-                {
-                    return new HttpStatusCodeResult(404);
-                }
+
                 if (verticais != null)
                 {
                     bool Ok = relacionamentosController.RelacionamentosProjetoComListas(iniciativa.Id_Iniciativa, verticais.Select(x => x.Id_Vertical).ToList(), "Verticais", null, null);
@@ -121,7 +118,7 @@ namespace NovoControleProjetos.Controllers
                         return RedirectToAction("Error", "Home");
                     }
                 }
-              
+
                 if (orcamento != null)
                 {
 
@@ -130,9 +127,9 @@ namespace NovoControleProjetos.Controllers
 
                 if (jornada != null)
                 {
-                 iniciativa.id_jornada =  jornadaController.InsereJornada(jornada, iniciativa.Id_Iniciativa);
+                    iniciativa.id_jornada = jornadaController.InsereJornada(jornada, iniciativa.Id_Iniciativa);
                 }
-         
+
 
                 if (ceti.Data_Ceti != null || ceti.Total_Aprovado_Ceti != null || iniciativa.id_ceti != null)
                 {
@@ -142,9 +139,9 @@ namespace NovoControleProjetos.Controllers
                     {
                         objCeti = cetiController.BuscaCeti(null, iniciativa.id_ceti);
                         oper = ceti.Data_Ceti != objCeti.Data_Ceti ? "I" : "U";
-                    }                   
- 
-                   var id_ceti = cetiController.InsereCeti(ceti, iniciativa.Id_Iniciativa, iniciativa.id_ceti, oper ?? "I");
+                    }
+
+                    var id_ceti = cetiController.InsereCeti(ceti, iniciativa.Id_Iniciativa, iniciativa.id_ceti, oper ?? "I");
 
                     iniciativa.id_ceti = id_ceti;
                 }
@@ -161,8 +158,8 @@ namespace NovoControleProjetos.Controllers
                     }
 
                     iniciativa.id_replanejamento = replanejamentoController.InsereReplanejamento(replanejamento, iniciativa.Id_Iniciativa, iniciativa.id_replanejamento, oper ?? "I");
-                                                         
-                }               
+
+                }
 
 
                 if (farol.Comentario_Farol != null)
@@ -179,12 +176,12 @@ namespace NovoControleProjetos.Controllers
                     farolController.InsereComentarioFarol(farol, iniciativa.Id_Iniciativa, iniciativa.id_farol, farol.Id_Comentario_Farol != null ? farol.Id_Comentario_Farol : null, oper);
                 }
 
-                if(visita.Data_Visita != null || visita.Cod_Agencia != null)
+                if (visita.Data_Visita != null || visita.Cod_Agencia != null)
                 {
                     string oper = null;
                     Visita _visita = new Visita();
 
-                    if(iniciativa.id_visita != null)
+                    if (iniciativa.id_visita != null)
                     {
                         var objVisita = visitaController.BuscaVisita(iniciativa.id_visita, null);
                         oper = objVisita.Data_Visita != visita.Data_Visita || objVisita.Cod_Agencia != visita.Cod_Agencia ? "I" : "U";
@@ -199,17 +196,33 @@ namespace NovoControleProjetos.Controllers
 
                 iniciativa_DAL.UpdateIniciativa(iniciativa);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home", true);
             }
             catch (Exception ex)
-            {                
+            {
                 throw;
             }
 
 
 
         }
+        [HttpPost]
+        public JsonResult InsertMVP(string Mvp)
+        {
+            try
+            {
+                var mvpConvert = JsonConvert.DeserializeObject<List<Mvp>>(Mvp);
+                Mvp_DAL.InsereMvpNoBanco(mvpConvert);
+                ViewBag.Sucesso = true;
+            }
+            catch (Exception)
+            {
+                ViewBag.Sucesso = false;
+            }
 
+            return Json("Sucesso", JsonRequestBehavior.AllowGet);
+
+        }
 
         public ActionResult BuscaIniciativa(int? id_iniciativa)
         {
@@ -232,52 +245,59 @@ namespace NovoControleProjetos.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditaIniciativa(int id)
+        public ActionResult EditaIniciativa(int? id)
         {
 
             Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(id);
-         
+
             return View(iniciativa);
         }
 
+
+        /// <summary>
+        /// Método para pegar os dados mvp e tratalos caso a data venha nula
+        /// </summary>
+        /// <param name="id_iniciativa"></param>
+        /// <param name="replanejamento"></param>
+        /// <returns></returns>
         public ActionResult _DetalhesIniciativa(int? id_iniciativa, Replanejamento replanejamento)
         {
-            Mvp mvp = new Mvp();
-            ViewBag.id_Iniciativa = id_iniciativa;
-            if (id_iniciativa != null)
-            {
-                mvp = Mvp_DAL.MvpsBuscaNoBanco(ViewBag.id_Iniciativa);
-                ViewBag.NomeMvp = mvp.Nome_Mvp;
-                ViewBag.Id_Mvp = mvp.Id_Mvp;
-                ViewBag.NomeMvp1 = mvp.Nome_Mvp1;
-                ViewBag.Id_Mvp1 = mvp.Id_Mvp1;
-                ViewBag.NomeMvp2 = mvp.Nome_Mvp2;
-                ViewBag.Id_Mvp2 = mvp.Id_Mvp2;
 
-                if (mvp.Dt_Mvp == null)
+            ViewBag.id_Iniciativa = id_iniciativa;
+            ViewBag.MVP = Mvp_DAL.MvpsBuscaNoBanco(ViewBag.id_Iniciativa);
+            int auxiliar = 0;
+            int auxiliar2 = 0;
+            int contador = 0;
+            string[] dtConvertido;
+
+            foreach (Mvp item in ViewBag.MVP)
+            {
+
+                if (item.Id_Iniciativa == 0 || item.Id_Iniciativa == null)
                 {
-                    ViewBag.DataMvp = null;
+                    auxiliar2++;
+                }
+                auxiliar++;
+            }
+            //Efetuando for para armazenar data convertida 
+            dtConvertido = new string[auxiliar];
+            foreach (Mvp item in ViewBag.MVP)
+            {
+                if (item.Dt_Mvp == null)
+                {
+                    item.Dt_Mvp = null;
                 }
                 else
                 {
-                    ViewBag.DataMvp =  mvp.Dt_Mvp.Value.ToShortDateString();
+                    dtConvertido[contador] = item.Dt_Mvp.Value.ToShortDateString();
                 }
-                if (mvp.Dt_Mvp1 == null)
-                {
-                    ViewBag.DataMvp1 = null;
-                }
-                else
-                {
-                    ViewBag.DataMvp1 = mvp.Dt_Mvp1.Value.ToShortDateString();
-                }
-                if (mvp.Dt_Mvp2 == null)
-                {
-                    ViewBag.DataMvp2 = null;
-                }
-                else
-                {
-                    ViewBag.DataMvp2 = mvp.Dt_Mvp2.Value.ToShortDateString();
-                }
+                contador++;
+            }
+            ViewBag.dtConvertido = dtConvertido;
+
+            if (auxiliar == auxiliar2)
+            {
+                ViewBag.acao = "criar";
             }
 
             return PartialView(replanejamento);
@@ -298,11 +318,55 @@ namespace NovoControleProjetos.Controllers
         {
             if (projetoEditarModelView.IdProjeto == 0)
             {
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(projetoEditarModelView.IdProjeto);
             ViewBag.NomeProjeto = iniciativa.nome_iniciativa;
             return View(nameof(EditaIniciativa), iniciativa);
+        }
+
+        /// <summary>
+        /// Método para listar todos os projetos
+        /// </summary>
+        /// <param name="pagina"></param>
+        /// <returns></returns>
+        public ActionResult ListaProjetos(int? pagina)
+        {
+            var Listas = Projeto_DAL.listaDeProjetos();
+            if (TempData.ContainsKey("departamento"))
+            {
+                ViewBag.nomeDepartamento = TempData["departamento"].ToString();
+            }
+            return View(Listas);
+        }
+        /// <summary>
+        /// Método para enviar dados de um projeto especifico
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult DetalheProjeto(int id)
+        {
+            Iniciativa iniciativa = iniciativa_DAL.Buscainiciativa(id);
+            ViewBag.IdIniciativa = iniciativa.Id_Iniciativa;
+            ViewBag.NomeProjeto = iniciativa.nome_iniciativa;
+            return View(iniciativa);
+        }
+
+        [HttpPost]
+        public ActionResult PesquisaPorDepartamento(string Nome)
+        {
+            if (Nome == null || Nome == "")
+            {
+                var todoProjetos = Projeto_DAL.listaDeProjetos();
+                return View(nameof(ListaProjetos), todoProjetos);
+            }
+            else
+            {
+                TempData["departamento"] = Nome;
+                var lista = Projeto_DAL.listaProjetosNomeDepartamento(Nome);
+                return View(nameof(ListaProjetos), lista);
+            }
         }
     }
 }

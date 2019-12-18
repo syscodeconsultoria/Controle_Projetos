@@ -19,6 +19,7 @@ else
 
     foreach (var item in ViewBag.etapas)
     {
+        
         var check = (((List<NovoControleProjetos.Models.Checkados>)ViewBag.Checkadas).Any(x => x.id_checkado == item.Id_Etapa));
         var obj = new NovoControleProjetos.Models.Checkados();
         obj.dt_Inicio = ((List<NovoControleProjetos.Models.Checkados>)ViewBag.Checkadas).Where(y => y.id_checkado == item.Id_Etapa).Select(y => y.dt_Inicio).FirstOrDefault();

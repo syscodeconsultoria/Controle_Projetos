@@ -175,6 +175,7 @@
     <Compile Include="Models\Origem.cs" />
     <Compile Include="Models\Replanejamento.cs" />
     <Compile Include="Models\Vertical.cs" />
+    <Compile Include="Models\ViewModel\ListaDeProjetosModelView.cs" />
     <Compile Include="Models\ViewModel\ProjetoEditarModelView.cs" />
     <Compile Include="Models\Visita.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -191,6 +192,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\download.png" />
+    <Content Include="Imagens\red-subtract-icon-png-13.png" />
     <Content Include="ReleaseNotes.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -207,6 +210,7 @@
     <Content Include="Scripts\jquery.inputmask\inputmask.phone.extensions.js" />
     <Content Include="Scripts\jquery.inputmask\inputmask.regex.extensions.js" />
     <Content Include="Scripts\jquery.inputmask\jquery.inputmask.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -226,7 +230,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Iniciativa\Create.cshtml" />
     <Content Include="Views\Departamento\_ListaDepartamentos.cshtml" />
@@ -244,6 +247,9 @@
     <Content Include="Views\Iniciativa\EditaIniciativa.cshtml" />
     <Content Include="Views\Mega\_ListaMegas.cshtml" />
     <Content Include="Views\Agencias\_ListaAgencias.cshtml" />
+    <Content Include="Views\Iniciativa\ListaProjetos.cshtml" />
+    <Content Include="Views\Home\OperacaoSucesso.cshtml" />
+    <Content Include="Views\Iniciativa\DetalheProjeto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

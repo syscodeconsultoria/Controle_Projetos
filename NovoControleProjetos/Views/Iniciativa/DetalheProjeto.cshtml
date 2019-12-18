@@ -1,0 +1,233 @@
+﻿@model NovoControleProjetos.Models.Iniciativa
+
+<div>
+    <h4>Detalhes do projeto @ViewBag.NomeProjeto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Iniciativa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Iniciativa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nome_iniciativa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome_iniciativa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.num_iniciativa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num_iniciativa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_departamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_departamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_aprovacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_aprovacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_piloto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_piloto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_plenouso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_plenouso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_comunicacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_comunicacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_esteira)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_esteira)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_farol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_farol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cor_farol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cor_farol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ds_farol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ds_farol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_etapa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_etapa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CPF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CPF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_mega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_mega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TF_versao_agencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TF_versao_agencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TF_versao_PA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TF_versao_PA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.responsavel_neg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.responsavel_neg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.responsavel_DS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.responsavel_DS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.resumo_iniciativa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.resumo_iniciativa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usabilidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usabilidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.beneficio_iniciativa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.beneficio_iniciativa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_orcamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_orcamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_jornada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_jornada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_ceti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_ceti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_replanejamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_replanejamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_visita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_visita)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <div class="pull-left">
+        <a href="@Url.Action("Index","Home")" class="btn btn-default">
+            <span class="glyphicon glyphicon-backward"></span> Voltar
+        </a>
+        @Html.ActionLink("Editar", "EditaIniciativa", "Iniciativa", new { id = ViewBag.IdIniciativa }, new { @class = "btn btn-info" })
+
+    </div>
+</p>

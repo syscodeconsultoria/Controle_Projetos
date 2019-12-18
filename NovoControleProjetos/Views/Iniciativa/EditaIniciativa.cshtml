@@ -253,7 +253,7 @@
 
         <div id="detalhesDiv" class="row" style="padding-top:15px; display:none">
             <input hidden id="id-replanejamento" value="@Model.id_replanejamento" />
-            @{Html.RenderAction("_DetalhesIniciativa", "Iniciativa", new { @id_iniciativa = Model.Id_Iniciativa, @replanejamento = Model.replanejamento, });}
+            @{Html.RenderAction("_DetalhesIniciativa", "Iniciativa", new { @id_iniciativa = Model.Id_Iniciativa, @replanejamento = Model.replanejamento });}
         </div>
 
 
@@ -301,10 +301,17 @@
                 </div>
 
             </div>
-            <div class="pull-right">
-                <button type="button" class="btn btn-default" id="update-iniciativa">
-                    <span class="glyphicon glyphicon-save"></span> Salvar
-                </button>
+            <div style="margin-top:10px;">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalConfirma">
+                        <span class="glyphicon glyphicon-save"></span> Salvar
+                    </button>
+                </div>
+                <div class="pull-left">
+                    <a href="@Url.Action("Index","Home")" class="btn btn-default">
+                        <span class="glyphicon glyphicon-backward"></span> Voltar
+                    </a>
+                </div>
             </div>
         </fieldset>
     </form>
@@ -313,6 +320,28 @@
 @*</div>
     </body>
     </html>*@
+
+
+<div class="modal fade" tabindex="-1" id="myModalConfirma" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirmação</h4>
+                <div class="modal-body">
+                    <p>Você confirma está operação ?</p>
+                </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default " data-dismiss="modal">Cancelar</button>
+
+                        <button type="submit" id="update-iniciativa" class="btn btn-primary">Confirmar</button>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script>
